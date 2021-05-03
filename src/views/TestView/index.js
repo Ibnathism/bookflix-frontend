@@ -5,7 +5,7 @@ const TestView = () => {
       <Button color="primary" variant="contained">
         Hello
       </Button>
-      <Typography>Test</Typography>
+      <Typography variant="h1">Test</Typography>
     </div>
   );
 };
