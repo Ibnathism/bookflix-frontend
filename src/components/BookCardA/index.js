@@ -1,31 +1,29 @@
-import {
-  Typography,
-  Button,
-  Container,
-  Avatar,
-  Box,
-  Grid,
-} from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.primary.main,
+    width: "212px",
+    height: "375px",
+    background: theme.palette.primary.main,
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "flex-start",
   },
 }));
 const BookCardA = ({ imageUrl }) => {
   const classes = useStyles();
   return (
     <>
-      <div style={{ height: "375px", width: "260px" }}>
+      <Box className={classes.root}>
         <img alt="book" height="80%" width="100%" src={imageUrl} />
         <div
-          className={classes.root}
           style={{
             width: "100%",
             height: "20%",
           }}
         ></div>
-      </div>
+      </Box>
     </>
   );
 };
