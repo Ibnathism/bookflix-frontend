@@ -1,4 +1,4 @@
-import "./App.css";
+//import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import TestView from "./views/TestView/index";
 import TestView2 from "./views/TestView2/index";

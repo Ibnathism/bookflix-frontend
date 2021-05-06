@@ -1,11 +1,19 @@
-import { Typography, Button } from "@material-ui/core";
+import BookCardA from "../../components/BookCardA";
 const TestView = () => {
+  const genreList = [
+    {
+      name: "Crime",
+    },
+    {
+      name: "Thriller",
+    },
+    {
+      name: "Drama",
+    },
+  ];
   return (
     <div>
-      <Button color="primary" variant="contained">
-        Hello
-      </Button>
-      <Typography variant="h1">Test</Typography>
+      <BookCardA imageUrl="/images/10.jpg" genreList={genreList} />
     </div>
   );
 };
