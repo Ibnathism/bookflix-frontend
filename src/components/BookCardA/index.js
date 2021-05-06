@@ -9,6 +9,18 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "flex-start",
+    borderRadius: "8px 8px 8px 8px",
+  },
+  upperContainer: {
+    width: "100%",
+    height: "80%",
+    borderRadius: "8px 8px 0px 0px",
+  },
+  lowerContainer: {
+    width: "100%",
+    height: "20%",
+    background: theme.palette.secondary.main,
+    borderRadius: "0px 0px 8px 8px",
   },
 }));
 const BookCardA = ({ imageUrl }) => {
@@ -16,13 +28,8 @@ const BookCardA = ({ imageUrl }) => {
   return (
     <>
       <Box className={classes.root}>
-        <img alt="book" height="80%" width="100%" src={imageUrl} />
-        <div
-          style={{
-            width: "100%",
-            height: "20%",
-          }}
-        ></div>
+        <img className={classes.upperContainer} alt="book" src={imageUrl} />
+        <div className={classes.lowerContainer}></div>
       </Box>
     </>
   );
