@@ -1,4 +1,3 @@
-//import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginView from "./views/LoginView";
 import TestView from "./views/TestView";
