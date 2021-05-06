@@ -7,10 +7,14 @@ const theme = createMuiTheme({
     },
     primary: {
       main: "#2D6A4F",
+      dark: "#081C15",
       light: "#D8F3DC",
     },
     secondary: {
       main: "#74C69D",
+    },
+    info: {
+      main: "#D8F3DC",
     },
   },
   typography: {
@@ -27,7 +31,8 @@ const theme = createMuiTheme({
       fontSize: "18px",
     },
     body1: {
-      fontSize: "12px",
+      fontSize: "11px",
+      fontFamily: "Gelasio",
     },
   },
 });
