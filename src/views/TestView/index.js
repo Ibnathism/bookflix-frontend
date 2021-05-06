@@ -1,4 +1,4 @@
-import BookCardA from "../../components/BookCardA";
+import BookCardB from "../../components/BookCardB";
 const TestView = () => {
   const genreList = [
     {
@@ -13,7 +13,7 @@ const TestView = () => {
   ];
   return (
     <div>
-      <BookCardA imageUrl="/images/10.jpg" genreList={genreList} />
+      <BookCardB imageUrl="/images/10.jpg" genreList={genreList} />
     </div>
   );
 };
