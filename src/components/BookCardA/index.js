@@ -1,4 +1,4 @@
-import { Box } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,14 +22,42 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.secondary.main,
     borderRadius: "0px 0px 8px 8px",
   },
+  genre: {
+    padding: "12px",
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+  genreName: {
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+  },
 }));
-const BookCardA = ({ imageUrl }) => {
+const BookCardA = ({ imageUrl, genreList }) => {
   const classes = useStyles();
   return (
     <>
       <Box className={classes.root}>
         <img className={classes.upperContainer} alt="book" src={imageUrl} />
-        <div className={classes.lowerContainer}></div>
+        <div className={classes.lowerContainer}>
+          <div className={classes.genre}>
+            {genreList.slice(0, 3).map((item, id) => {
+              return (
+                <div className={classes.genreName}>
+                  <Typography variant="body1">{item.name}</Typography>
+                  {id !== 2 ? (
+                    <svg height="18" width="18">
+                      <circle cx="9" cy="9" r="3" fill="black" />
+                    </svg>
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
+          <div className={classes.icons}></div>
+        </div>
       </Box>
     </>
   );
