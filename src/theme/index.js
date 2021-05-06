@@ -19,10 +19,14 @@ const theme = createMuiTheme({
   },
   typography: {
     h1: {
-      fontSize: "71px",
+      fontSize: "50px",
+      fontFamily: "Concert One",
+      color: "#D8F3DC",
     },
     h2: {
-      fontSize: "36px",
+      fontSize: "30px",
+      fontFamily: "Concert One",
+      color: "#D8F3DC",
     },
     h3: {
       fontSize: "24px",
