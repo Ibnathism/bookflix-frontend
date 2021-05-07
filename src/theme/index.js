@@ -20,23 +20,22 @@ const theme = createMuiTheme({
   typography: {
     h1: {
       fontSize: "50px",
-      fontFamily: "Concert One",
       color: "#D8F3DC",
     },
     h2: {
       fontSize: "30px",
-      fontFamily: "Concert One",
       color: "#D8F3DC",
     },
     h3: {
-      fontSize: "24px",
+      fontSize: "16px",
+      color: "#D8F3DC",
     },
     h4: {
-      fontSize: "18px",
+      fontSize: "14px",
+      color: "#74C69D",
     },
     body1: {
       fontSize: "11px",
-      fontFamily: "Gelasio",
     },
   },
 });

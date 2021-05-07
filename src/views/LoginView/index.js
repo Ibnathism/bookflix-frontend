@@ -9,13 +9,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
   },
 }));
 const LoginView = () => {
   const classes = useStyles();
   return (
     <Container className={classes.root}>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={12} md={6} lg={6} xl={6}>
           <LottieAnimation lotti={LoginAnimation} height={300} width={300} />
         </Grid>
