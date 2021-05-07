@@ -1,4 +1,4 @@
-import { Box, TextField, Typography } from "@material-ui/core";
+import { Box, TextField, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,19 +22,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(1),
     },
   },
-  button: {
-    width: 100,
-    height: "43px",
-    background: theme.palette.secondary.main,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    border: "1px solid #081C15",
-    borderRadius: theme.spacing(0.5),
-  },
-  buttonText: {
-    color: theme.palette.primary.dark,
-  },
   signupText: {
     marginTop: theme.spacing(2),
     display: "flex",
@@ -48,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const LoginForm = () => {
+  const handleLogin = () => {
+    console.log("login");
+  };
+
   const classes = useStyles();
   return (
     <>
@@ -68,11 +59,14 @@ const LoginForm = () => {
             id="password"
             label="Password"
           />
-          <div className={classes.button}>
-            <Typography className={classes.buttonText} variant="body1">
-              Login
-            </Typography>
-          </div>
+          <Button
+            onClick={handleLogin}
+            type="submit"
+            variant="contained"
+            color="secondary"
+          >
+            Login
+          </Button>
         </form>
         <div className={classes.signupText}>
           <Typography variant="h3">New on BookFlix?</Typography>
