@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Grid, Typography } from "@material-ui/core";
 import LottieAnimation from "../../helpers/lottie";
-import LoginAnimation from "../../Animations/login-animation.json";
+import LoginAnimation from "../../animations/login-animation.json";
 import LoginForm from "./form";
 const useStyles = makeStyles((theme) => ({
   root: {
