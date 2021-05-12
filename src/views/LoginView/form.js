@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
   },
   form: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette.info.main,
       width: 225,
       borderRadius: 4,
-      marginBottom: theme.spacing(1),
+      marginBottom: theme.spacing(2),
     },
   },
   signupText: {
@@ -43,8 +43,6 @@ const LoginForm = () => {
   return (
     <>
       <Box className={classes.root}>
-        <Typography variant="h1">BookFlix</Typography>
-        <Typography variant="h2">All Your Books In One Place</Typography>
         <form className={classes.form}>
           <TextField
             variant="filled"
@@ -64,6 +62,7 @@ const LoginForm = () => {
             type="submit"
             variant="contained"
             color="secondary"
+            style={{ margin: "16px" }}
           >
             Login
           </Button>
