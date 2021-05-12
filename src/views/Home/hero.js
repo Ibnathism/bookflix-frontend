@@ -1,4 +1,5 @@
-import { Box, Typography, Container, Grid } from "@material-ui/core";
+import { Box, Typography, Container, Grid, Button } from "@material-ui/core";
+import heroSectionBooks from "../../data/hero.json";
 const HeroSection = () => {
   return (
     <Container>
@@ -16,50 +17,41 @@ const HeroSection = () => {
               justify="center"
               style={{ marginTop: "16px" }}
             >
-              <Grid
-                item
-                xs={12}
-                md={4}
-                lg={4}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img width="80%" height="80%" src="/images/10.jpg" alt="2nd" />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                lg={4}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  width="100%"
-                  height="100%"
-                  src="/images/10.jpg"
-                  alt="2nd"
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                lg={4}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img width="80%" height="80%" src="/images/10.jpg" alt="2nd" />
-              </Grid>
+              {heroSectionBooks.map((book, id) => {
+                var width = book.rank === 1 ? "100%" : "80%";
+                return (
+                  <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    lg={4}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Grid
+                      container
+                      direction="column"
+                      alignItems="center"
+                      justify="center"
+                      spacing={3}
+                    >
+                      <Typography variant="h2"># {book.rank}</Typography>
+                      <img width={width} src={book.imageUrl} alt={book.name} />
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        style={{ margin: "16px", height: "40px" }}
+                      >
+                        Read
+                      </Button>
+                    </Grid>
+                  </Grid>
+                );
+              })}
             </Grid>
           </Grid>
         </Grid>
