@@ -58,6 +58,7 @@ const HomeView = () => {
                               type="submit"
                               variant="contained"
                               color="primary"
+                              to="/home/1"
                               style={{
                                 margin: "16px",
                                 height: "40px",
