@@ -1,0 +1,27 @@
+{
+  "name": "The Survivors",
+  "writer": "Jane Harper",
+  "imageUrl": "/images/10.jpg",
+  "genreList": [
+    {
+      "name": "Crime"
+    },
+    {
+      "name": "Thriller"
+    },
+    {
+      "name": "Drama"
+    }
+  ],
+  "reviews": [
+    {
+      "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.” - The Guardian"
+    },
+    {
+      "review": "“A layered and nuanced mystery.” - KIRKUS"
+    },
+    {
+      "review": "“It’s still dark! But here are some thrillers to help with all the time we are spending indoors.”  - The New York Times"
+    }
+  ]
+}
