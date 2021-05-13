@@ -1,0 +1,148 @@
+[
+  {
+    "type": "A",
+    "category": "Continue Reading",
+    "books": [
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "A",
+    "category": "In Your List",
+    "books": [
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "B",
+    "category": "You May Like",
+    "books": [
+      {
+        "imageUrl": "/images/10.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      }
+    ]
+  }
+]
