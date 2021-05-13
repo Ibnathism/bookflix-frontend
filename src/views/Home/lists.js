@@ -1,5 +1,5 @@
 import homeLists from "../../data/homeLists.json";
-import { Box, Typography, Grid, Container } from "@material-ui/core";
+import { Box, Typography, Grid } from "@material-ui/core";
 import BookCardA from "../../components/BookCardA";
 import BookCardB from "../../components/BookCardB";
 const Lists = () => {
