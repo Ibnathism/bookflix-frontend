@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   upperContainerNonHovered: {
     width: "100%",
     height: "100%",
-    borderRadius: "8px 8px 0px 0px",
+    borderRadius: "8px 8px 8px 8px",
   },
   lowerContainer: {
     width: "100%",
