@@ -7,7 +7,7 @@ const Lists = () => {
     <Box style={{ margin: "16px" }}>
       {homeLists.map((list, id) => {
         return (
-          <Box>
+          <Box key={id} style={{ marginTop: "16px" }}>
             <Grid container spacing={3} direction="column">
               <Grid item>
                 <Typography variant="h2">{list.category}</Typography>
@@ -18,7 +18,7 @@ const Lists = () => {
                     <>
                       {list.books.map((book, id) => {
                         return (
-                          <Grid item>
+                          <Grid item key={id}>
                             <BookCardA
                               imageUrl={book.imageUrl}
                               genreList={book.genreList}
@@ -35,7 +35,7 @@ const Lists = () => {
                     <>
                       {list.books.map((book, id) => {
                         return (
-                          <Grid item>
+                          <Grid item key={id}>
                             <BookCardB
                               imageUrl={book.imageUrl}
                               review={book.review}
