@@ -44,7 +44,11 @@ const HeroSection = () => {
                         type="submit"
                         variant="contained"
                         color="primary"
-                        style={{ margin: "16px", height: "40px" }}
+                        style={{
+                          margin: "16px",
+                          height: "40px",
+                          width: "100px",
+                        }}
                       >
                         Read
                       </Button>

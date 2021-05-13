@@ -1,16 +1,18 @@
 import CommonLayout from "../../layouts/CommonLayout";
 import HeroSection from "./hero";
-import { Container, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import Lists from "./lists";
 const HomeView = () => {
   return (
     <CommonLayout>
-      <Container>
-        <Grid container direction="column">
-          <Grid item>
-            <HeroSection />
-          </Grid>
+      <Grid container direction="column">
+        <Grid item>
+          <HeroSection />
         </Grid>
-      </Container>
+        <Grid item>
+          <Lists />
+        </Grid>
+      </Grid>
     </CommonLayout>
   );
 };

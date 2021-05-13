@@ -59,7 +59,6 @@ const LoginForm = () => {
           />
           <Button
             onClick={handleLogin}
-            type="submit"
             variant="contained"
             color="secondary"
             style={{ margin: "16px" }}
