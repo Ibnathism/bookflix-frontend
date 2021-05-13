@@ -1,5 +1,5 @@
 import CommonLayout from "../../layouts/CommonLayout";
-import { Container, Grid, Typography, Chip } from "@material-ui/core";
+import { Container, Grid, Typography, Chip, Button } from "@material-ui/core";
 import Lists from "../ListsView";
 import details from "../../data/details.json";
 const DetailsView = () => {
@@ -23,7 +23,13 @@ const DetailsView = () => {
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} xl={6}>
-                <Grid container direction="column" spacing={3}>
+                <Grid
+                  container
+                  direction="column"
+                  spacing={6}
+                  alignItems="center"
+                  justify="center"
+                >
                   <Grid item>
                     <Typography variant="h1">{details.name}</Typography>
                   </Grid>
@@ -57,6 +63,11 @@ const DetailsView = () => {
                         );
                       })}
                     </Grid>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="contained" color="primary">
+                      Start Reading
+                    </Button>
                   </Grid>
                 </Grid>
               </Grid>
