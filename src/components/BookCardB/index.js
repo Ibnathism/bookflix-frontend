@@ -1,9 +1,20 @@
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useState } from "react";
 const useStyles = makeStyles((theme) => ({
-  root: {
+  hoveredRoot: {
     width: "336px",
     height: "267px",
+    background: theme.palette.primary.main,
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    borderRadius: "8px",
+  },
+  nonHoveredRoot: {
+    width: "280px",
+    height: "223px",
     background: theme.palette.primary.main,
     display: "flex",
     alignItems: "center",
@@ -46,21 +57,53 @@ const useStyles = makeStyles((theme) => ({
 }));
 const BookCardB = ({ imageUrl, review }) => {
   const classes = useStyles();
+  const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
   return (
     <>
-      <Box className={classes.root}>
-        <img className={classes.leftContainer} alt="book" src={imageUrl} />
-        <div className={classes.rightContainer}>
-          <Typography className={classes.review} variant="body1">
-            {review}
-          </Typography>
-          <div className={classes.button}>
-            <Typography className={classes.buttonText} variant="body1">
-              Read Later
+      {isHovered ? (
+        <Box
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={classes.hoveredRoot}
+        >
+          <img className={classes.leftContainer} alt="book" src={imageUrl} />
+          <div className={classes.rightContainer}>
+            <Typography className={classes.review} variant="body1">
+              {review}
             </Typography>
+            <div className={classes.button}>
+              <Typography className={classes.buttonText} variant="body1">
+                Read Later
+              </Typography>
+            </div>
           </div>
-        </div>
-      </Box>
+        </Box>
+      ) : (
+        <Box
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={classes.nonHoveredRoot}
+        >
+          <img className={classes.leftContainer} alt="book" src={imageUrl} />
+          <div className={classes.rightContainer}>
+            <Typography className={classes.review} variant="body1">
+              {review}
+            </Typography>
+            <div className={classes.button}>
+              <Typography className={classes.buttonText} variant="body1">
+                Read Later
+              </Typography>
+            </div>
+          </div>
+        </Box>
+      )}
     </>
   );
 };
