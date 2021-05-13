@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { ReactReader } from "react-reader";
+import CommonLayout from "../../layouts/CommonLayout";
+import { Container } from "@material-ui/core";
 const storage = global.localStorage || null;
 
 const BookReaderView = () => {
@@ -13,24 +15,30 @@ const BookReaderView = () => {
     setLocation(storage && storage.setItem("epub-location", location));
   };
   return (
-    <div
-      style={{
-        fontSize: "16px",
-        position: "absolute",
-        top: "135px",
-        left: "1rem",
-        right: "1rem",
-        bottom: "1rem",
-        transition: "all 0.6s ease 0 0 5px rgba(0, 0, 0, 0.3)",
-      }}
-    >
-      <ReactReader
-        url={"/1342.epub.images.epub"}
-        title={"Alice in wonderland"}
-        location={location}
-        locationChanged={onLocationChanged}
-      />
-    </div>
+    <CommonLayout>
+      <Container>
+        <div
+          style={{
+            fontSize: "16px",
+            position: "absolute",
+            width: "1320px",
+            height: "804px",
+            margin: "16px",
+            //left: "1rem",
+            //right: "1rem",
+            //bottom: "1rem",
+            //transition: "all 0.6s ease 0 0 5px rgba(0, 0, 0, 0.3)",
+          }}
+        >
+          <ReactReader
+            url={"/alice.epub"}
+            title={"Alice in wonderland"}
+            location={location}
+            locationChanged={onLocationChanged}
+          />
+        </div>
+      </Container>
+    </CommonLayout>
   );
 };
 
