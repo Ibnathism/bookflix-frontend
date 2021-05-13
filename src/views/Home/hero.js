@@ -38,7 +38,7 @@ const HeroSection = () => {
                       justify="center"
                       spacing={3}
                     >
-                      <Typography variant="h2"># {book.rank}</Typography>
+                      <Typography variant="h1"># {book.rank}</Typography>
                       <img width={width} src={book.imageUrl} alt={book.name} />
                       <Button
                         type="submit"
