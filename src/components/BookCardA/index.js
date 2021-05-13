@@ -70,10 +70,12 @@ const BookCardA = ({ imageUrl, genreList }) => {
   return (
     <>
       {isHovered ? (
-        <Box className={classes.hoveredRoot}>
+        <Box
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={classes.hoveredRoot}
+        >
           <img
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
             className={classes.upperContainerHovered}
             alt="book"
             src={imageUrl}
@@ -102,10 +104,12 @@ const BookCardA = ({ imageUrl, genreList }) => {
           </div>
         </Box>
       ) : (
-        <Box className={classes.nonHoveredRoot}>
+        <Box
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={classes.nonHoveredRoot}
+        >
           <img
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
             className={classes.upperContainerNonHovered}
             alt="book"
             src={imageUrl}
