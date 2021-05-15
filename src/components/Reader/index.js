@@ -5,7 +5,7 @@ const storage = global.localStorage || null;
 
 const book = {
   title: "Alice in wonderland",
-  link: "/alice.epub",
+  link: "books/alice.epub",
 };
 
 const BookReader = () => {

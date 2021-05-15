@@ -1,6 +1,7 @@
 import CommonLayout from "../../layouts/CommonLayout";
 import { Box, Typography, Container, Grid, Button } from "@material-ui/core";
 import heroSectionBooks from "../../data/hero.json";
+import { Link as RouterLink } from "react-router-dom";
 import Lists from "../ListsView";
 const HomeView = () => {
   return (
@@ -32,6 +33,7 @@ const HomeView = () => {
                       return (
                         <Grid
                           item
+                          key={id}
                           xs={12}
                           md={4}
                           lg={4}
@@ -54,19 +56,20 @@ const HomeView = () => {
                               src={book.imageUrl}
                               alt={book.name}
                             />
-                            <Button
-                              type="submit"
-                              variant="contained"
-                              color="primary"
-                              to="/home/1"
-                              style={{
-                                margin: "16px",
-                                height: "40px",
-                                width: "100px",
-                              }}
-                            >
-                              Read
-                            </Button>
+                            <RouterLink to="/home/1">
+                              <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                style={{
+                                  margin: "16px",
+                                  height: "40px",
+                                  width: "100px",
+                                }}
+                              >
+                                Read
+                              </Button>
+                            </RouterLink>
                           </Grid>
                         </Grid>
                       );
