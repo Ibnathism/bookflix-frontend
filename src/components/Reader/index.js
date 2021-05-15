@@ -38,11 +38,8 @@ const BookReader = () => {
           swipeable
           url={book.link}
           title={book.title}
-          //location={"epubcfi(/6/2[cover]!/6)"}
-          //locationChanged={(epubcifi) => console.log(epubcifi)}
           location={location}
           locationChanged={onLocationChanged}
-          //rendition={getRendition}
         />
       </div>
     </Container>
