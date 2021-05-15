@@ -3,15 +3,21 @@ import { ReactReader } from "react-reader";
 import { Container } from "@material-ui/core";
 const storage = global.localStorage || null;
 
+const book = {
+  title: "Alice in wonderland",
+  link: "/alice.epub",
+};
+
 const BookReader = () => {
   const [location, setLocation] = useState(
     storage && storage.getItem("epub-location")
       ? storage.getItem("epub-location")
       : 2
   );
-
-  const onLocationChanged = () => {
-    setLocation(storage && storage.setItem("epub-location", location));
+  const onLocationChanged = (location) => {
+    setLocation(location);
+    storage.setItem("epub-location", location);
+    //setLocation(storage && storage.setItem("epub-location", location));
   };
   return (
     <Container>
@@ -29,10 +35,14 @@ const BookReader = () => {
         }}
       >
         <ReactReader
-          url={"/alice.epub"}
-          title={"Alice in wonderland"}
+          swipeable
+          url={book.link}
+          title={book.title}
+          //location={"epubcfi(/6/2[cover]!/6)"}
+          //locationChanged={(epubcifi) => console.log(epubcifi)}
           location={location}
           locationChanged={onLocationChanged}
+          //rendition={getRendition}
         />
       </div>
     </Container>
