@@ -1,27 +1,27 @@
 {
-  "name": "The Survivors",
-  "writer": "Jane Harper",
-  "imageUrl": "/images/10.jpg",
+  "name": "Out of the Box",
+  "writer": "Christina Dudley",
+  "imageUrl": "/images/7.jpg",
   "genreList": [
     {
-      "name": "Crime"
+      "name": "Non-fiction"
     },
     {
-      "name": "Thriller"
+      "name": "Social"
     },
     {
-      "name": "Drama"
+      "name": "Narrative"
     }
   ],
   "reviews": [
     {
-      "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.” - The Guardian"
+      "review": "“OUT OF THE BOX is a literary car crash that you can’t turn away from, but happily, one in which the victims walk away, scarred but intact.” - The Guardian"
     },
     {
-      "review": "“A layered and nuanced mystery.” - KIRKUS"
+      "review": "“Ms. Dudley’s voice and tone are lovely, unadorned, genuine and vulnerable. I welcome the process of revisiting darkness and pain for the dual purpose of wrestling old demons and also helping lead others out of their own dark nights of the soul. I have no doubt that her story, so beautifully and authentically rendered, will inspire, soothe, and accompany others as they rebuild lives shattered by abuse.” - KIRKUS"
     },
     {
-      "review": "“It’s still dark! But here are some thrillers to help with all the time we are spending indoors.”  - The New York Times"
+      "review": "“Christina’s barebones honesty gripped me from her first words.”  - The New York Times"
     }
   ]
 }

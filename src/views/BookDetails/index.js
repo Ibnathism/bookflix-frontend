@@ -66,7 +66,7 @@ const DetailsView = () => {
                     </Grid>
                   </Grid>
                   <Grid item>
-                    <RouterLink to="/read">
+                    <RouterLink to="/home">
                       <Button variant="contained" color="primary">
                         Start Reading
                       </Button>
