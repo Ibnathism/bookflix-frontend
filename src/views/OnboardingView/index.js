@@ -1,44 +1,43 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Grid, Typography } from "@material-ui/core";
-
+import { Container, Grid, Typography, Box } from "@material-ui/core";
+import onboardings from "../../data/onboarding.json";
+import BookSelectCard from "../../components/BookSelectCard";
 const useStyles = makeStyles((theme) => ({
-  root: {
-    background: theme.palette.background.default,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    left: "50%",
-    top: "20%",
-    transform: "translate(-50%, -40%)",
+  box: {
+    width: "1000px",
   },
 }));
 
 const OnboardingView = () => {
   const classes = useStyles();
   return (
-    <Container className={classes.root}>
-      <Grid
-        container
-        spacing={3}
-        direction="column"
-        justify="center"
-        alignItems="center"
-      >
+    <Container>
+      <Box className={classes.box}>
         <Grid
-          item
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          container
+          spacing={3}
+          direction="column"
+          justify="center"
+          alignItems="center"
         >
-          <Typography variant="h2">
-            Select at least 5 books you like !
-          </Typography>
+          <Grid item>
+            <Typography variant="h2">
+              Select at least 5 books you like !
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Grid container spacing={3}>
+              {onboardings.map((item, id) => {
+                return (
+                  <Grid item md={3} xs={6}>
+                    <BookSelectCard imageUrl={item.imageUrl} />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </Container>
   );
 };
