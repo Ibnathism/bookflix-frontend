@@ -1,7 +1,7 @@
 import { Container, Grid, Typography } from "@material-ui/core";
 import CommonLayout from "../../layouts/CommonLayout";
 import BookCardA from "../../components/BookCardA";
-import MyList from "../../data/mylist.json";
+import myList from "../../data/mylist.json";
 const MyListView = () => {
   return (
     <CommonLayout>
@@ -10,7 +10,7 @@ const MyListView = () => {
           In your list
         </Typography>
         <Grid container spacing={3} style={{ marginTop: "16px" }}>
-          {MyList.map((book, id) => {
+          {myList.map((book, id) => {
             return (
               <Grid item key={id}>
                 <BookCardA

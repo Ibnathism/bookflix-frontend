@@ -1,0 +1,364 @@
+[
+  {
+    "type": "A",
+    "category": "Continue Reading",
+    "books": [
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/2.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/3.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/6.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/7.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/11.jpeg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/13.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/15.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/17.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "A",
+    "category": "In Your List",
+    "books": [
+      {
+        "imageUrl": "/images/6.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/3.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/1.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/12.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "B",
+    "category": "You May Like",
+    "books": [
+      {
+        "imageUrl": "/images/15.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/18.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/14.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/2.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      }
+    ]
+  },
+  {
+    "type": "A",
+    "category": "Trending Now",
+    "books": [
+      {
+        "imageUrl": "/images/1.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/11.jpeg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/12.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/13.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "A",
+    "category": "Top Picks For You",
+    "books": [
+      {
+        "imageUrl": "/images/16.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/15.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/10.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      },
+      {
+        "imageUrl": "/images/3.jpg",
+        "genreList": [
+          {
+            "name": "Crime"
+          },
+          {
+            "name": "Thriller"
+          },
+          {
+            "name": "Drama"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "B",
+    "category": "Want A Re-Read?",
+    "books": [
+      {
+        "imageUrl": "/images/6.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/11.jpeg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/14.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      },
+      {
+        "imageUrl": "/images/1.jpg",
+        "review": "“As thrilling and smart as it is terrifying. There have been a number of big-gun literary series brought to screen over the past decade. This slays them all.”  - The Guardian"
+      }
+    ]
+  }
+]
