@@ -2,6 +2,7 @@ import CommonLayout from "../../layouts/CommonLayout";
 import { Container, Grid, Typography, Chip, Button } from "@material-ui/core";
 import Lists from "../ListsView";
 import details from "../../data/details.json";
+import { Link as RouterLink } from "react-router-dom";
 const DetailsView = () => {
   return (
     <CommonLayout>
@@ -65,9 +66,11 @@ const DetailsView = () => {
                     </Grid>
                   </Grid>
                   <Grid item>
-                    <Button variant="contained" color="primary">
-                      Start Reading
-                    </Button>
+                    <RouterLink to="/read">
+                      <Button variant="contained" color="primary">
+                        Start Reading
+                      </Button>
+                    </RouterLink>
                   </Grid>
                 </Grid>
               </Grid>

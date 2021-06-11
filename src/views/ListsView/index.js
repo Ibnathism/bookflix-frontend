@@ -2,6 +2,7 @@ import homeLists from "../../data/homeLists.json";
 import { Box, Typography, Grid } from "@material-ui/core";
 import BookCardA from "../../components/BookCardA";
 import BookCardB from "../../components/BookCardB";
+import { Link as RouterLink } from "react-router-dom";
 const Lists = () => {
   return (
     <Box style={{ margin: "16px" }}>
@@ -19,10 +20,12 @@ const Lists = () => {
                       {list.books.map((book, id) => {
                         return (
                           <Grid item key={id}>
-                            <BookCardA
-                              imageUrl={book.imageUrl}
-                              genreList={book.genreList}
-                            />
+                            <RouterLink to="/home/1">
+                              <BookCardA
+                                imageUrl={book.imageUrl}
+                                genreList={book.genreList}
+                              />
+                            </RouterLink>
                           </Grid>
                         );
                       })}

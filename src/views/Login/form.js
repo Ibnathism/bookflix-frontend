@@ -1,5 +1,6 @@
 import { Box, TextField, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link as RouterLink } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(3),
@@ -57,14 +58,16 @@ const LoginForm = () => {
             id="password"
             label="Password"
           />
-          <Button
-            onClick={handleLogin}
-            variant="contained"
-            color="secondary"
-            style={{ margin: "16px" }}
-          >
-            Login
-          </Button>
+          <RouterLink to="home">
+            <Button
+              onClick={handleLogin}
+              variant="contained"
+              color="primary"
+              style={{ margin: "16px" }}
+            >
+              Login
+            </Button>
+          </RouterLink>
         </form>
         <div className={classes.signupText}>
           <Typography variant="h3">New on BookFlix?</Typography>
