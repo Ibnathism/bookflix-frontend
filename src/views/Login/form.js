@@ -62,7 +62,7 @@ const LoginForm = () => {
             <Button
               onClick={handleLogin}
               variant="contained"
-              color="secondary"
+              color="primary"
               style={{ margin: "16px" }}
             >
               Login
