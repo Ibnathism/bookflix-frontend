@@ -71,7 +71,7 @@ const SignupForm = () => {
             id="confirmPassword"
             label="Confirm Password"
           />
-          <RouterLink to="home">
+          <RouterLink to="onboarding">
             <Button
               onClick={handleLogin}
               variant="contained"
