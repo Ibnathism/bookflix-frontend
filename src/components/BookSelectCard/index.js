@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme) => ({
     height: "223px",
     background: theme.palette.primary.main,
     borderRadius: "8px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   imageContainer: {
     width: "100%",
