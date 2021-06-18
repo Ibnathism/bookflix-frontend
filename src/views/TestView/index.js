@@ -5,15 +5,11 @@ import { GET_WEATHER_QUERY } from "../../graphql/Queries";
 import { useState } from "react";
 const TestView = () => {
   const [city, setCity] = useState("");
-  const [details, setDetails] = useState({});
-  const [getWeather, { loading, data, error }] = useLazyQuery(
-    GET_WEATHER_QUERY,
-    {
-      variables: {
-        name: city,
-      },
-    }
-  );
+  const [getWeather, { data, error }] = useLazyQuery(GET_WEATHER_QUERY, {
+    variables: {
+      name: city,
+    },
+  });
   if (error) return <h1>Error Found</h1>;
 
   if (data) {
