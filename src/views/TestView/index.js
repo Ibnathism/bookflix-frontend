@@ -1,13 +1,13 @@
 import { Container, Typography } from "@material-ui/core";
 import CommonLayout from "../../layouts/CommonLayout";
 import { useLazyQuery } from "@apollo/client";
-import { GET_WEATHER_QUERY } from "../../graphql/Queries";
+import { GET_BOOK_TITLE } from "../../graphql/Queries";
 import { useState } from "react";
 const TestView = () => {
-  const [city, setCity] = useState("");
-  const [getWeather, { data, error }] = useLazyQuery(GET_WEATHER_QUERY, {
+  const [bookId, setBookId] = useState();
+  const [getTitle, { data, error }] = useLazyQuery(GET_BOOK_TITLE, {
     variables: {
-      name: city,
+      id: bookId,
     },
   });
   if (error) return <h1>Error Found</h1>;
@@ -32,25 +32,16 @@ const TestView = () => {
           </Typography>
           <input
             type="text"
-            placeholder="City name..."
+            placeholder="Book ID..."
             onChange={(event) => {
-              setCity(event.target.value);
+              setBookId(event.target.value);
             }}
           />
-          <button onClick={() => getWeather()}>Search</button>
+          <button onClick={() => getTitle()}>Search Book</button>
           <div className="weather">
             {data && (
               <>
-                <Typography variant="h1">{data.getCityByName.name}</Typography>
-                <Typography variant="h1">
-                  Temperature: {data.getCityByName.weather.temperature.actual}
-                </Typography>
-                <Typography variant="h1">
-                  Description: {data.getCityByName.weather.summary.description}
-                </Typography>
-                <Typography variant="h1">
-                  Wind Speed: {data.getCityByName.weather.wind.speed}
-                </Typography>
+                <Typography variant="h1">{data.book.title}</Typography>
               </>
             )}
           </div>
