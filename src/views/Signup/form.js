@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "center",
   },
   form: {
     marginTop: theme.spacing(5),
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "underline",
   },
 }));
-const LoginForm = () => {
+const SignupForm = () => {
   const handleLogin = () => {
     console.log("login");
   };
@@ -54,26 +54,39 @@ const LoginForm = () => {
           />
           <TextField
             variant="filled"
+            type="text"
+            InputLabelProps={{ color: "primary" }}
+            id="email"
+            label="Email"
+          />
+          <TextField
+            variant="filled"
             type="password"
             id="password"
             label="Password"
           />
-          <RouterLink to="home">
+          <TextField
+            variant="filled"
+            type="password"
+            id="confirmPassword"
+            label="Confirm Password"
+          />
+          <RouterLink to="onboarding">
             <Button
               onClick={handleLogin}
               variant="contained"
               color="primary"
               style={{ margin: "16px" }}
             >
-              Login
+              Sign Up
             </Button>
           </RouterLink>
         </form>
         <div className={classes.signupText}>
-          <Typography variant="h3">New on BookFlix?</Typography>
-          <RouterLink to="signup">
+          <Typography variant="h3">Already have an account?</Typography>
+          <RouterLink to="login">
             <Typography className={classes.signup} variant="h4">
-              Signup
+              Login
             </Typography>
           </RouterLink>
         </div>
@@ -82,4 +95,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
