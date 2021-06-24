@@ -40,22 +40,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 const LoginForm = () => {
   const classes = useStyles();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
   const [login, { data, error }] = useMutation(LOGIN, {
     variables: {
-      username: "muntaka",
-      password: "muntaka",
+      username: username,
+      password: password,
     },
   });
 
-  if (error) return <h1>Error Found</h1>;
-
-  if (data) {
-    console.log(data);
-  }
-
-  const handleLogin = () => {
-    console.log("login");
-    login();
+  const handleLogin = async () => {
+    await login();
+    if (!error && data && data.login.token) {
+      const token = data.login.token;
+      localStorage.setItem("token", token);
+      console.log(token);
+    } else {
+      return <h1>Error</h1>;
+    }
   };
   return (
     <>
@@ -67,21 +69,25 @@ const LoginForm = () => {
             InputLabelProps={{ color: "primary" }}
             id="username"
             label="Username"
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant="filled"
             type="password"
             id="password"
             label="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <Button
-            onClick={handleLogin}
-            variant="contained"
-            color="primary"
-            style={{ margin: "16px" }}
-          >
-            Login
-          </Button>
+          <RouterLink to="/home">
+            <Button
+              onClick={handleLogin}
+              variant="contained"
+              color="primary"
+              style={{ margin: "16px" }}
+            >
+              Login
+            </Button>
+          </RouterLink>
         </form>
         <div className={classes.signupText}>
           <Typography variant="h3">New on BookFlix?</Typography>
