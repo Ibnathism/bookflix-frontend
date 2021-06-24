@@ -1,6 +1,9 @@
 import { Box, TextField, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../../graphql/Queries";
+import { useState } from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(3),
@@ -36,11 +39,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const LoginForm = () => {
+  const classes = useStyles();
+  const [login, { data, error }] = useMutation(LOGIN, {
+    variables: {
+      username: "muntaka",
+      password: "muntaka",
+    },
+  });
+
+  if (error) return <h1>Error Found</h1>;
+
+  if (data) {
+    console.log(data);
+  }
+
   const handleLogin = () => {
     console.log("login");
+    login();
   };
-
-  const classes = useStyles();
   return (
     <>
       <Box className={classes.root}>
@@ -58,16 +74,14 @@ const LoginForm = () => {
             id="password"
             label="Password"
           />
-          <RouterLink to="home">
-            <Button
-              onClick={handleLogin}
-              variant="contained"
-              color="primary"
-              style={{ margin: "16px" }}
-            >
-              Login
-            </Button>
-          </RouterLink>
+          <Button
+            onClick={handleLogin}
+            variant="contained"
+            color="primary"
+            style={{ margin: "16px" }}
+          >
+            Login
+          </Button>
         </form>
         <div className={classes.signupText}>
           <Typography variant="h3">New on BookFlix?</Typography>
