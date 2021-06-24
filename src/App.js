@@ -4,6 +4,7 @@ import DetailsView from "./views/BookDetails";
 import HomeView from "./views/Home";
 import LoginView from "./views/Login";
 import SignupView from "./views/Signup";
+import OnboardingView from "./views/OnboardingView";
 import MyListView from "./views/MyList";
 import TestView from "./views/TestView";
 import BookReaderView from "./views/BookReader";
