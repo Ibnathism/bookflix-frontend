@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "translate(-50%, -40%)",
   },
 }));
-const LoginView = () => {
+const SignupView = () => {
   const classes = useStyles();
   return (
     <Container className={classes.root}>
@@ -46,4 +46,4 @@ const LoginView = () => {
   );
 };
 
-export default LoginView;
+export default SignupView;

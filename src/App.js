@@ -14,7 +14,6 @@ function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     uri: "http://13.250.6.97/graphql/",
-    //uri: "https://graphql-weather-api.herokuapp.com/",
   });
   return (
     <ApolloProvider client={client}>
@@ -26,6 +25,7 @@ function App() {
         <Route path="/home/:id" exact component={DetailsView} />
         <Route path="/list" exact component={MyListView} />
         <Route path="/read" exact component={BookReaderView} />
+        <Route path="/onboarding" exact component={OnboardingView} />
         <Route path="/test" exact component={TestView} />
         <GlobalStyles />
       </Router>
