@@ -8,12 +8,32 @@ import OnboardingView from "./views/OnboardingView";
 import MyListView from "./views/MyList";
 import TestView from "./views/TestView";
 import BookReaderView from "./views/BookReader";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 function App() {
+  const httpLink = createHttpLink({
+    uri: "http://13.250.6.97/graphql/",
+  });
+  const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem("token");
+
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `${token}` : "",
+      },
+    };
+  });
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: "http://13.250.6.97/graphql/",
+    link: authLink.concat(httpLink),
+    //uri: "http://13.250.6.97/graphql/",
   });
   return (
     <ApolloProvider client={client}>
