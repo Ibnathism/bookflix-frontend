@@ -3,6 +3,10 @@ import { Container, Grid, Typography } from "@material-ui/core";
 import LottieAnimation from "../../helpers/lottie";
 import LoginAnimation from "../../animations/login-animation.json";
 import LoginForm from "./form";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { LOGIN } from "../../graphql/Queries";
+import { useState } from "react";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     background: theme.palette.background.default,
@@ -17,6 +21,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 const LoginView = () => {
   const classes = useStyles();
+  const [login, { data, error }] = useMutation(LOGIN, {
+    variables: {
+      username: "muntaka",
+      password: "muntaka",
+    },
+  });
+  if (error) return <h1>Error Found</h1>;
+
+  if (data) {
+    console.log(data);
+  }
   return (
     <Container className={classes.root}>
       <Grid
@@ -44,6 +59,7 @@ const LoginView = () => {
           </Grid>
           <Grid item xs={12} md={6} lg={6} xl={6}>
             <LoginForm />
+            <button onClick={() => login()}>Login</button>
           </Grid>
         </Grid>
       </Grid>

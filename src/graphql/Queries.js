@@ -10,3 +10,14 @@ export const GET_BOOK_TITLE = gql`
     }
   }
 `;
+
+export const LOGIN = gql`
+  mutation userLogin($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      token
+      user {
+        name
+      }
+    }
+  }
+`;
