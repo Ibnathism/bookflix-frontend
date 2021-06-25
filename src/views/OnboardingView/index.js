@@ -30,13 +30,13 @@ const OnboardingView = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <BooksOnboard />
-            </Grid>
-            <Grid item>
               <GenresOnboard />
             </Grid>
             <Grid item>
               <AuthorsOnboard />
+            </Grid>
+            <Grid item>
+              <BooksOnboard />
             </Grid>
           </Grid>
         </Box>

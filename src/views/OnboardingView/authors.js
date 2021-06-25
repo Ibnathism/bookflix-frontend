@@ -1,13 +1,31 @@
-import { Grid, Typography, Card } from "@material-ui/core";
-import onboardings from "../../data/onboarding.json";
-import BookSelectCard from "../../components/BookSelectCard";
+import { Grid, Typography, Box } from "@material-ui/core";
+import authors from "../../data/authors.json";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "160px",
+    height: "223px",
+    background: theme.palette.primary.main,
+    borderRadius: "8px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  imageContainer: {
+    width: "100%",
+    height: "100%",
+    borderRadius: "8px",
+  },
+}));
 
 const AuthorsOnboard = () => {
+  const classes = useStyles();
   return (
     <>
       <Typography variant="h2">Authors</Typography>
       <Grid container spacing={3}>
-        {onboardings.map((item, id) => {
+        {authors.map((item, id) => {
           return (
             <Grid
               item
@@ -19,7 +37,9 @@ const AuthorsOnboard = () => {
                 justifyContent: "center",
               }}
             >
-              <BookSelectCard imageUrl={item.imageUrl} />
+              <Box className={classes.root}>
+                <Typography variant="h3">{item.name}</Typography>
+              </Box>
             </Grid>
           );
         })}
