@@ -23,7 +23,9 @@ const AuthorsOnboard = () => {
   const classes = useStyles();
   return (
     <>
-      <Typography variant="h2">Authors</Typography>
+      <Typography variant="h2" style={{ marginBottom: "16px" }}>
+        Authors
+      </Typography>
       <Grid container spacing={3}>
         {authors.map((item, id) => {
           return (

@@ -1,21 +1,18 @@
-import { Grid, Typography, Box } from "@material-ui/core";
+import { Grid, Typography, Box, Card } from "@material-ui/core";
 import genres from "../../data/genres.json";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "160px",
-    height: "223px",
-    background: theme.palette.primary.main,
-    borderRadius: "8px",
+    width: "300px",
+    height: "120px",
+    background: theme.palette.secondary.main,
+    borderRadius: "64px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  },
-  imageContainer: {
-    width: "100%",
-    height: "100%",
-    borderRadius: "8px",
+    textAlign: "center",
+    padding: "8px",
   },
 }));
 
@@ -31,7 +28,7 @@ const GenresOnboard = () => {
           return (
             <Grid
               item
-              md={2}
+              md={3}
               xs={6}
               style={{
                 display: "flex",
@@ -39,9 +36,11 @@ const GenresOnboard = () => {
                 justifyContent: "center",
               }}
             >
-              <Box className={classes.root}>
-                <Typography variant="h3">{item.name}</Typography>
-              </Box>
+              <Card className={classes.root}>
+                <Typography style={{ color: "#030c08", fontSize: "16px" }}>
+                  {item.name}
+                </Typography>
+              </Card>
             </Grid>
           );
         })}
