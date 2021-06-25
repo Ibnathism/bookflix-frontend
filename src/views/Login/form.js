@@ -2,7 +2,7 @@ import { Box, TextField, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { LOGIN } from "../../graphql/Queries";
+import { LOGIN } from "../../graphql/Mutations";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { useState } from "react";
 const useStyles = makeStyles((theme) => ({

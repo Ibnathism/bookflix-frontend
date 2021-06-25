@@ -11,11 +11,14 @@ export const GET_BOOK_TITLE = gql`
   }
 `;
 
-export const LOGIN = gql`
-  mutation userLogin($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      token
-      user {
+export const GET_BOOK_DETAILS = gql`
+  query getBookDetails($id: ID!) {
+    book(bookId: $id) {
+      title
+      fileUrl
+      fileType
+      coverImageUrl
+      genres {
         name
       }
     }
