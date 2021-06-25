@@ -1,6 +1,11 @@
 import { Box, TextField, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { SIGNUP } from "../../graphql/Mutations";
+import { Alert, AlertTitle } from "@material-ui/lab";
+import { useState } from "react";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(3),
@@ -35,15 +40,67 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "underline",
   },
 }));
+
 const SignupForm = () => {
-  const handleLogin = () => {
-    console.log("login");
+  const history = useHistory();
+  const classes = useStyles();
+
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+  const [username, setUsername] = useState();
+  const [name, setName] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+
+  const [signup, { data, error }] = useMutation(SIGNUP, {
+    variables: {
+      username: username,
+      name: name,
+      password: password,
+    },
+    onCompleted: () => {
+      history.push("/onboarding");
+    },
+    onError: () => {
+      setShowErrorAlert(true);
+    },
+  });
+
+  const handleSignup = () => {
+    if (password != confirmPassword) {
+      setPasswordMismatch(true);
+    } else {
+      setShowErrorAlert(false);
+      setPasswordMismatch(false);
+      signup();
+      //console.log(data);
+      if (!error && data && data.signup.token) {
+        const token = data.signup.token;
+        localStorage.setItem("token", token);
+        //console.log(token);
+      }
+    }
   };
 
-  const classes = useStyles();
   return (
     <>
       <Box className={classes.root}>
+        {showErrorAlert ? (
+          <Alert severity="error">
+            <AlertTitle>Error</AlertTitle>
+            Signup Failed -- <strong>Invalid Credentials</strong>
+          </Alert>
+        ) : (
+          <></>
+        )}
+        {passwordMismatch ? (
+          <Alert severity="error">
+            <AlertTitle>Error</AlertTitle>
+            Signup Failed -- <strong>Passwords Mismatch</strong>
+          </Alert>
+        ) : (
+          <></>
+        )}
         <form className={classes.form}>
           <TextField
             variant="filled"
@@ -51,36 +108,38 @@ const SignupForm = () => {
             InputLabelProps={{ color: "primary" }}
             id="username"
             label="Username"
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant="filled"
             type="text"
             InputLabelProps={{ color: "primary" }}
-            id="email"
-            label="Email"
+            id="name"
+            label="Name"
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
             variant="filled"
             type="password"
             id="password"
             label="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             variant="filled"
             type="password"
             id="confirmPassword"
             label="Confirm Password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <RouterLink to="onboarding">
-            <Button
-              onClick={handleLogin}
-              variant="contained"
-              color="primary"
-              style={{ margin: "16px" }}
-            >
-              Sign Up
-            </Button>
-          </RouterLink>
+          <Button
+            onClick={handleSignup}
+            variant="contained"
+            color="primary"
+            style={{ margin: "16px" }}
+          >
+            Sign Up
+          </Button>
         </form>
         <div className={classes.signupText}>
           <Typography variant="h3">Already have an account?</Typography>

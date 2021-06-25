@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../graphql/Mutations";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { useState } from "react";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(3),
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "underline",
   },
 }));
+
 const LoginForm = () => {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const history = useHistory();
