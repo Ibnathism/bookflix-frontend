@@ -1,0 +1,34 @@
+[
+  {
+    "name": "William Shakespeare",
+    "id": 1
+  },
+  {
+    "name": "Emily Dickinson",
+    "id": 2
+  },
+  {
+    "name": "H. P. Lovecraft",
+    "id": 3
+  },
+  {
+    "name": "Arthur Conan Doyle",
+    "id": 4
+  },
+  {
+    "name": "Leo Tolstoy",
+    "id": 5
+  },
+  {
+    "name": "Edgar Allan Poe",
+    "id": 6
+  },
+  {
+    "name": "Robert Ervin Howard",
+    "id": 7
+  },
+  {
+    "name": "Rabindranath Tagore",
+    "id": 8
+  }
+]
