@@ -67,7 +67,7 @@ const SignupForm = () => {
   });
 
   const handleSignup = () => {
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       setPasswordMismatch(true);
     } else {
       setShowErrorAlert(false);
