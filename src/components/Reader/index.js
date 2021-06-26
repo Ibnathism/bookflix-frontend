@@ -5,7 +5,9 @@ const storage = global.localStorage || null;
 
 const book = {
   title: "Alice in wonderland",
-  link: "books/alice.epub",
+  //link: "https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/books/Graph_Theory.pdf",
+  link: "https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/books/1064.epub.images.epub",
+  //link: "https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/books/45315.epub",
 };
 
 const BookReader = () => {
@@ -28,10 +30,6 @@ const BookReader = () => {
           width: "1320px",
           height: "804px",
           margin: "16px",
-          //left: "1rem",
-          //right: "1rem",
-          //bottom: "1rem",
-          //transition: "all 0.6s ease 0 0 5px rgba(0, 0, 0, 0.3)",
         }}
       >
         <ReactReader
