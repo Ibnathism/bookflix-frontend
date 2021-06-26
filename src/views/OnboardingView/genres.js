@@ -1,4 +1,4 @@
-import { Grid, Typography, Card } from "@material-ui/core";
+import { Grid, Typography, Card, Chip } from "@material-ui/core";
 import genres from "../../data/genres.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
@@ -24,6 +24,29 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#505050",
     },
   },
+  chipSelected: {
+    width: "300px",
+    height: "120px",
+    background: "#505050",
+    borderRadius: "64px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "16px",
+  },
+  chip: {
+    width: "300px",
+    height: "120px",
+    backgroundColor: theme.palette.secondary.main,
+    borderRadius: "64px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "16px",
+    fontSize: "18px",
+  },
 }));
 
 const GenresOnboard = () => {
@@ -35,12 +58,25 @@ const GenresOnboard = () => {
       item.selected = false;
     });
     setGenreData(genres);
-    console.log(genreData);
-  }, [genreData]);
+    //console.log(genreData);
+  }, []);
 
   const cardOnClickHandler = (id) => {
-    console.log("clicked card", id);
-    document.getElementById("book-card");
+    // console.log("clicked card", id);
+    // var genreList = genreData;
+    // var objIndex = genreList.findIndex((obj) => obj.id == id);
+    // //Log object to Console.
+    // console.log("Before update: ", genreList[objIndex]);
+    // //Update object's name property.
+    // genreList[objIndex].selected = !genreList[objIndex].selected;
+    // //Log object to console again.
+    // console.log("After update: ", genreList[objIndex]);
+    // setGenreData(genreList);
+    // const newItems = [...genreData];
+    // var objIndex = genreData.findIndex((obj) => obj.id == id);
+    // console.log(objIndex);
+    // //newItems[objIndex].selected = true;
+    // setGenreData(newItems);
   };
   return (
     <>
@@ -61,10 +97,27 @@ const GenresOnboard = () => {
                 justifyContent: "center",
               }}
             >
+              {/* <Chip
+                label={item.name}
+                // icon={
+                //   <CheckIcon
+                //     key={index}
+                //     id={`check_${item.name}`}
+                //     color="primary"
+                //     visibility={item.selected ? "visible" : "hidden"}
+                //   />
+                // }
+                //key={id}
+                onClick={() => console.log(item)}
+                id={`chip_${item.name}`}
+                //ref={setChipRef}
+                className={item.selected ? classes.chipSelected : classes.chip}
+              /> */}
               <Card
                 className={classes.root}
-                onMouseEnter={cardOnClickHandler(item.id)}
                 id="book-card"
+                onClick={cardOnClickHandler(id)}
+                role="button"
               >
                 <Typography
                   style={{
