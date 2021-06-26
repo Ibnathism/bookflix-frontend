@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+//import { makeStyles } from "@material-ui/core/styles";
 import { Container, Grid, Typography, Box, Button } from "@material-ui/core";
 import BooksOnboard from "./books";
 import GenresOnboard from "./genres";
@@ -7,20 +7,20 @@ import GlobalLayout from "../../layouts/GlobalLayout";
 import { useState } from "react";
 import { useHistory } from "react-router";
 
-const useStyles = makeStyles((theme) => ({
-  box: {
-    margin: "32px",
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   box: {
+//     margin: "32px",
+//   },
+// }));
 
 const OnboardingView = () => {
-  const classes = useStyles();
+  //const classes = useStyles();
   const history = useHistory();
   const [step, setStep] = useState(0);
   return (
     <GlobalLayout>
       <Container>
-        <Box className={classes.box}>
+        <Box style={{ margin: "32px" }}>
           <Grid
             container
             spacing={6}
