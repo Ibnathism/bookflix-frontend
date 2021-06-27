@@ -10,6 +10,7 @@ const OnboardingView = () => {
   const history = useHistory();
   const [step, setStep] = useState(0);
   const [genreSelected, setGenreSelected] = useState([]);
+  const [authorSelected, setAuthorSelected] = useState([]);
   return (
     <GlobalLayout>
       <Container>
@@ -61,7 +62,7 @@ const OnboardingView = () => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <AuthorsOnboard />
+                  <AuthorsOnboard setAuthorSelected={setAuthorSelected} />
                 </Grid>
                 <Grid>
                   <Button

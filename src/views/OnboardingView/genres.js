@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     padding: "16px",
     cursor: "pointer",
-    "&:hover, &:focus": {
-      backgroundColor: theme.palette.primary.light,
+    "&:hover": {
+      opacity: "0.8",
     },
   },
 }));
@@ -60,15 +60,13 @@ const GenresOnboard = ({ setGenreSelected }) => {
               }}
             >
               <Box
+                className={classes.root}
                 style={{
                   backgroundColor: item.selected
                     ? "#40916c"
                     : theme.palette.secondary.main,
                 }}
-                className={classes.root}
-                id="book-card"
                 onClick={() => onClickHandler(item.id)}
-                role="button"
               >
                 <Typography
                   style={{

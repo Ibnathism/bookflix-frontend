@@ -1,31 +1,52 @@
 import { Grid, Typography, Box } from "@material-ui/core";
 import authors from "../../data/authors.json";
 import { makeStyles } from "@material-ui/core/styles";
+import { useState, useEffect } from "react";
+import { useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "160px",
-    height: "223px",
+    height: "160px",
     background: theme.palette.primary.main,
     borderRadius: "8px",
+    padding: "16px",
     display: "flex",
+    textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
-  },
-  imageContainer: {
-    width: "100%",
-    height: "100%",
-    borderRadius: "8px",
+    cursor: "pointer",
+    "&:hover": {
+      opacity: "0.8",
+    },
   },
 }));
 
-const AuthorsOnboard = () => {
+const AuthorsOnboard = ({ setAuthorSelected }) => {
+  const theme = useTheme();
   const classes = useStyles();
+  const [authorData, setAuthorData] = useState([]);
+
+  useEffect(() => {
+    authors.forEach((item) => {
+      item.selected = false;
+    });
+    setAuthorData(authors);
+    //console.log(authorData);
+  }, []);
+
+  const onClickHandler = (id) => {
+    const newItems = [...authorData];
+    var item = authorData.findIndex((obj) => obj.id === id);
+    newItems[item].selected = !newItems[item].selected;
+    setAuthorData(newItems);
+
+    var myFav = authorData.filter((item) => item.selected);
+    setAuthorSelected(myFav);
+    //console.log(authorData);
+  };
   return (
     <>
-      <Typography variant="h2" style={{ marginBottom: "16px" }}>
-        Authors
-      </Typography>
       <Grid container spacing={3}>
         {authors.map((item, id) => {
           return (
@@ -40,8 +61,23 @@ const AuthorsOnboard = () => {
                 justifyContent: "center",
               }}
             >
-              <Box className={classes.root}>
-                <Typography variant="h3">{item.name}</Typography>
+              <Box
+                style={{
+                  backgroundColor: item.selected
+                    ? "#40916c"
+                    : theme.palette.secondary.main,
+                }}
+                onClick={() => onClickHandler(item.id)}
+                className={classes.root}
+              >
+                <Typography
+                  style={{
+                    color: "#030c08",
+                    fontSize: "20px",
+                  }}
+                >
+                  {item.name}
+                </Typography>
               </Box>
             </Grid>
           );
