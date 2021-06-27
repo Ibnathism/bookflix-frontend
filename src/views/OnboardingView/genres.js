@@ -4,8 +4,13 @@ import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 import { useTheme } from "@material-ui/styles";
-const useStyles = makeStyles((theme) => ({
-  root: {
+const useStyles = makeStyles(() => ({
+  container: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  box: {
     width: "280px",
     height: "100px",
     borderRadius: "64px",
@@ -17,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       opacity: "0.8",
     },
+  },
+  text: {
+    fontSize: "22px",
+    padding: "32px",
   },
 }));
 
@@ -30,11 +39,9 @@ const GenresOnboard = ({ setGenreSelected }) => {
       item.selected = false;
     });
     setGenreData(genres);
-    //console.log(genreData);
   }, []);
 
   const onClickHandler = (id) => {
-    //console.log("clicked", id);
     const newItems = [...genreData];
     var item = genreData.findIndex((obj) => obj.id === id);
     newItems[item].selected = !newItems[item].selected;
@@ -42,26 +49,15 @@ const GenresOnboard = ({ setGenreSelected }) => {
 
     var myFav = genreData.filter((item) => item.selected);
     setGenreSelected(myFav);
-    //console.log(genreData);
   };
   return (
     <>
       <Grid container spacing={3}>
         {genreData.map((item, id) => {
           return (
-            <Grid
-              key={id}
-              item
-              md={3}
-              xs={6}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <Grid key={id} item md={3} xs={6} className={classes.container}>
               <Box
-                className={classes.root}
+                className={classes.box}
                 style={{
                   backgroundColor: item.selected
                     ? theme.palette.secondary.main
@@ -74,9 +70,8 @@ const GenresOnboard = ({ setGenreSelected }) => {
                     color: item.selected
                       ? theme.palette.primary.dark
                       : theme.palette.primary.light,
-                    fontSize: "22px",
-                    padding: "32px",
                   }}
+                  className={classes.text}
                 >
                   {item.name.length >= constants.genreNameMaxLength
                     ? `${item.name}`.substr(0, constants.genreNameMaxLength) +

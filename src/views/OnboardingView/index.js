@@ -47,7 +47,7 @@ const OnboardingView = () => {
               <>
                 <Grid item>
                   <Typography variant="h2">
-                    Select at least 3 genres you like !
+                    Choose at least 3 genres you like !
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -73,7 +73,7 @@ const OnboardingView = () => {
               <>
                 <Grid item>
                   <Typography variant="h2">
-                    Select at least 3 authors you like !
+                    Choose at least 3 authors you like !
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -99,7 +99,7 @@ const OnboardingView = () => {
               <>
                 <Grid item>
                   <Typography variant="h2">
-                    Select at least 3 Books you like !
+                    Choose at least 3 Books you like !
                   </Typography>
                 </Grid>
                 <Grid item>

@@ -6,7 +6,12 @@ import { useState, useEffect } from "react";
 import { useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  container: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  box: {
     width: "248px",
     height: "188px",
     borderRadius: "8px",
@@ -18,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       opacity: "0.8",
     },
+  },
+  text: {
+    fontSize: "22px",
+    padding: "32px",
   },
 }));
 
@@ -31,11 +40,9 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
       item.selected = false;
     });
     setAuthorData(authors);
-    //console.log(authorData);
   }, []);
 
   const onClickHandler = (id) => {
-    //console.log("clicked", id);
     const newItems = [...authorData];
     var item = authorData.findIndex((obj) => obj.id === id);
     newItems[item].selected = !newItems[item].selected;
@@ -43,24 +50,13 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
 
     var myFav = authorData.filter((item) => item.selected);
     setAuthorSelected(myFav);
-    //console.log(authorData);
   };
   return (
     <>
       <Grid container spacing={3}>
         {authorData.map((item, id) => {
           return (
-            <Grid
-              item
-              key={id}
-              md={3}
-              xs={6}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <Grid item key={id} md={3} xs={6} className={classes.container}>
               <Box
                 style={{
                   backgroundColor: item.selected
@@ -68,16 +64,15 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
                     : theme.palette.primary.main,
                 }}
                 onClick={() => onClickHandler(item.id)}
-                className={classes.root}
+                className={classes.box}
               >
                 <Typography
                   style={{
                     color: item.selected
                       ? theme.palette.primary.dark
                       : theme.palette.primary.light,
-                    fontSize: "22px",
-                    padding: "32px",
                   }}
+                  className={classes.text}
                 >
                   {item.name.length >= constants.authorNameMaxLength
                     ? `${item.name}`.substr(0, constants.authorNameMaxLength) +
