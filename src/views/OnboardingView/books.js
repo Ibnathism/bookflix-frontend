@@ -2,8 +2,14 @@ import { Grid, Box } from "@material-ui/core";
 import books from "../../data/onboarding.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
+
 const useStyles = makeStyles((theme) => ({
-  root: {
+  container: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  box: {
     width: "160px",
     height: "223px",
     background: theme.palette.primary.main,
@@ -35,7 +41,6 @@ const BooksOnboard = ({ setBookSelected }) => {
   }, []);
 
   const onClickHandler = (id) => {
-    //console.log("clicked", id);
     const newItems = [...bookData];
     var item = bookData.findIndex((obj) => obj.id === id);
     newItems[item].selected = !newItems[item].selected;
@@ -43,7 +48,6 @@ const BooksOnboard = ({ setBookSelected }) => {
 
     var myFav = bookData.filter((item) => item.selected);
     setBookSelected(myFav);
-    //console.log(bookData);
   };
 
   return (
@@ -51,19 +55,9 @@ const BooksOnboard = ({ setBookSelected }) => {
       <Grid container spacing={3}>
         {bookData.map((item, id) => {
           return (
-            <Grid
-              item
-              key={id}
-              md={2}
-              xs={6}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <Grid item key={id} md={2} xs={6} className={classes.container}>
               <Box
-                className={classes.root}
+                className={classes.box}
                 style={{
                   border: item.selected ? "6px solid aqua" : "none",
                 }}
