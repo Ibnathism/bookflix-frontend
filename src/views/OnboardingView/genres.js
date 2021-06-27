@@ -1,9 +1,13 @@
 import { Grid, Typography, Box } from "@material-ui/core";
-import genres from "../../data/genres.json";
+//import genres from "../../data/genres.json";
 import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 import { useTheme } from "@material-ui/styles";
+
+import { GET_ALL_GENRE } from "../../graphql/Queries";
+import { useLazyQuery } from "@apollo/client";
+
 const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
@@ -34,12 +38,28 @@ const GenresOnboard = ({ setGenreSelected }) => {
   const classes = useStyles();
   const [genreData, setGenreData] = useState([]);
 
+  const [getAllGenre, { data, error }] = useLazyQuery(GET_ALL_GENRE, {
+    onCompleted: () => {
+      console.log(data.genres.genres);
+      var response = JSON.parse(JSON.stringify(data.genres));
+      response.genres.forEach((item) => {
+        item.selected = false;
+      });
+      console.log(response);
+      setGenreData(response.genres);
+    },
+    onError: () => {
+      console.log(error);
+    },
+  });
+
   useEffect(() => {
-    genres.forEach((item) => {
-      item.selected = false;
-    });
-    setGenreData(genres);
-  }, []);
+    getAllGenre();
+    // genres.forEach((item) => {
+    //   item.selected = false;
+    // });
+    // setGenreData(genres);
+  }, [getAllGenre]);
 
   const onClickHandler = (id) => {
     const newItems = [...genreData];

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   box: {
-    marginTop: "64px",
+    margin: "64px",
   },
 }));
 
@@ -47,7 +47,7 @@ const OnboardingView = () => {
               <>
                 <Grid item>
                   <Typography variant="h2">
-                    Choose at least 3 genres you like !
+                    Pick at least 3 of your favorite genres
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -73,7 +73,7 @@ const OnboardingView = () => {
               <>
                 <Grid item>
                   <Typography variant="h2">
-                    Choose at least 3 authors you like !
+                    Pick at least 3 of your favorite authors
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -99,7 +99,7 @@ const OnboardingView = () => {
               <>
                 <Grid item>
                   <Typography variant="h2">
-                    Choose at least 3 Books you like !
+                    Pick at least 3 books you like
                   </Typography>
                 </Grid>
                 <Grid item>

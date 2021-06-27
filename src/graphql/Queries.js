@@ -24,3 +24,14 @@ export const GET_BOOK_DETAILS = gql`
     }
   }
 `;
+
+export const GET_ALL_GENRE = gql`
+  query getAllGenre {
+    genres {
+      genres {
+        id
+        name
+      }
+    }
+  }
+`;
