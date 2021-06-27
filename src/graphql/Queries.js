@@ -35,3 +35,14 @@ export const GET_ALL_GENRE = gql`
     }
   }
 `;
+
+export const GET_ALL_AUTHOR = gql`
+  query getAllAuthor {
+    authors {
+      authors {
+        id
+        name
+      }
+    }
+  }
+`;

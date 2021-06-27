@@ -5,6 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 import { useTheme } from "@material-ui/styles";
 
+import { GET_ALL_AUTHOR } from "../../graphql/Queries";
+import { useLazyQuery } from "@apollo/client";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -35,12 +38,28 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
   const classes = useStyles();
   const [authorData, setAuthorData] = useState([]);
 
+  const [getAllAuthor, { data, error }] = useLazyQuery(GET_ALL_AUTHOR, {
+    onCompleted: () => {
+      console.log(data.authors.authors);
+      var response = JSON.parse(JSON.stringify(data.authors));
+      response.authors.forEach((item) => {
+        item.selected = false;
+      });
+      console.log(response);
+      setAuthorData(response.authors);
+    },
+    onError: () => {
+      console.log(error);
+    },
+  });
+
   useEffect(() => {
-    authors.forEach((item) => {
-      item.selected = false;
-    });
-    setAuthorData(authors);
-  }, []);
+    getAllAuthor();
+    // authors.forEach((item) => {
+    //   item.selected = false;
+    // });
+    // setAuthorData(authors);
+  }, [getAllAuthor]);
 
   const onClickHandler = (id) => {
     const newItems = [...authorData];
