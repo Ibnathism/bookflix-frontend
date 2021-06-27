@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
       opacity: "0.6",
     },
   },
+  box: {
+    marginTop: "64px",
+  },
 }));
 
 const OnboardingView = () => {
@@ -32,7 +35,7 @@ const OnboardingView = () => {
   return (
     <GlobalLayout>
       <Container>
-        <Box style={{ margin: "32px" }}>
+        <Box className={classes.box}>
           <Grid
             container
             spacing={6}
@@ -43,8 +46,8 @@ const OnboardingView = () => {
             {step === 0 ? (
               <>
                 <Grid item>
-                  <Typography variant="h2" style={{ marginTop: "16px" }}>
-                    Select at least 3 Genres you like !
+                  <Typography variant="h2">
+                    Select at least 3 genres you like !
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -69,8 +72,8 @@ const OnboardingView = () => {
             {step === 1 ? (
               <>
                 <Grid item>
-                  <Typography variant="h2" style={{ marginTop: "16px" }}>
-                    Select at least 3 Authors you like !
+                  <Typography variant="h2">
+                    Select at least 3 authors you like !
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -95,7 +98,7 @@ const OnboardingView = () => {
             {step === 2 ? (
               <>
                 <Grid item>
-                  <Typography variant="h2" style={{ marginTop: "16px" }}>
+                  <Typography variant="h2">
                     Select at least 3 Books you like !
                   </Typography>
                 </Grid>
