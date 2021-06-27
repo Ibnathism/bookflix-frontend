@@ -2,6 +2,7 @@ import { Grid, Typography, Box } from "@material-ui/core";
 import genres from "../../data/genres.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
+import { useTheme } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "300px",
@@ -14,12 +15,13 @@ const useStyles = makeStyles((theme) => ({
     padding: "16px",
     cursor: "pointer",
     "&:hover, &:focus": {
-      backgroundColor: "#D8F3DC",
+      backgroundColor: theme.palette.primary.light,
     },
   },
 }));
 
-const GenresOnboard = () => {
+const GenresOnboard = ({ setGenreSelected }) => {
+  const theme = useTheme();
   const classes = useStyles();
   const [genreData, setGenreData] = useState([]);
 
@@ -32,12 +34,13 @@ const GenresOnboard = () => {
   }, []);
 
   const onClickHandler = (id) => {
-    //console.log("clicked card", id);
     const newItems = [...genreData];
     var item = genreData.findIndex((obj) => obj.id === id);
-    //console.log(item);
     newItems[item].selected = !newItems[item].selected;
     setGenreData(newItems);
+
+    var myFav = genreData.filter((item) => item.selected);
+    setGenreSelected(myFav);
     //console.log(genreData);
   };
   return (
@@ -58,7 +61,9 @@ const GenresOnboard = () => {
             >
               <Box
                 style={{
-                  backgroundColor: item.selected ? "#505050" : "#D8F3DC",
+                  backgroundColor: item.selected
+                    ? "#40916c"
+                    : theme.palette.secondary.main,
                 }}
                 className={classes.root}
                 id="book-card"

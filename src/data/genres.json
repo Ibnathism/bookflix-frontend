@@ -30,5 +30,29 @@
   {
     "name": "History",
     "id": 8
+  },
+  {
+    "name": "Fiction Fiction Fiction Fiction",
+    "id": 10
+  },
+  {
+    "name": "Fantasy",
+    "id": 22
+  },
+  {
+    "name": "Horror",
+    "id": 31
+  },
+  {
+    "name": "Romance",
+    "id": 42
+  },
+  {
+    "name": "Comedy",
+    "id": 52
+  },
+  {
+    "name": "Sci-Fi",
+    "id": 62
   }
 ]

@@ -1,4 +1,3 @@
-//import { makeStyles } from "@material-ui/core/styles";
 import { Container, Grid, Typography, Box, Button } from "@material-ui/core";
 import BooksOnboard from "./books";
 import GenresOnboard from "./genres";
@@ -7,16 +6,10 @@ import GlobalLayout from "../../layouts/GlobalLayout";
 import { useState } from "react";
 import { useHistory } from "react-router";
 
-// const useStyles = makeStyles((theme) => ({
-//   box: {
-//     margin: "32px",
-//   },
-// }));
-
 const OnboardingView = () => {
-  //const classes = useStyles();
   const history = useHistory();
   const [step, setStep] = useState(0);
+  const [genreSelected, setGenreSelected] = useState([]);
   return (
     <GlobalLayout>
       <Container>
@@ -36,18 +29,21 @@ const OnboardingView = () => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <GenresOnboard />
+                  <GenresOnboard setGenreSelected={setGenreSelected} />
                 </Grid>
                 <Grid>
                   <Button
                     style={{
                       marginTop: "16px",
-                      width: "180px",
-                      height: "70px",
+                      width: "120px",
+                      height: "50px",
                     }}
                     variant="contained"
                     color="primary"
-                    onClick={() => setStep(1)} //check api call validity
+                    onClick={() => {
+                      console.log(genreSelected);
+                      setStep(1);
+                    }} //check api call validity
                   >
                     Continue
                   </Button>
