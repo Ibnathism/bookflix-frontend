@@ -39,35 +39,68 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
   const classes = useStyles();
   const [bookData, setBookData] = useState([]);
 
-  const [getFilteredBook, { data, error }] = useLazyQuery(GET_FILTERED_BOOK, {
+  const [
+    getFilteredBookByGenre,
+    { data: genreFilteredData, error: genreFilteredError },
+  ] = useLazyQuery(GET_FILTERED_BOOK, {
     variables: {
       filter: {
         genres: genreSelected.map((genre) => genre.id),
+      },
+    },
+    onCompleted: () => {
+      //console.log(data);
+      var tempData = [...bookData];
+
+      var response = JSON.parse(JSON.stringify(genreFilteredData.books));
+      response.books.forEach((item) => {
+        item.selected = false;
+        tempData.push(item);
+      });
+      //console.log(response);
+      setBookData(tempData);
+    },
+    onError: () => {
+      console.log(genreFilteredError);
+      setBookData([]);
+    },
+  });
+
+  const [
+    getFilteredBookByAuthor,
+    { data: authorFilteredData, error: authorFilteredError },
+  ] = useLazyQuery(GET_FILTERED_BOOK, {
+    variables: {
+      filter: {
         authors: authorSelected.map((author) => author.id),
       },
     },
     onCompleted: () => {
-      console.log(data);
-      var response = JSON.parse(JSON.stringify(data.books));
+      //console.log(data);
+      var tempData = [...bookData];
+
+      var response = JSON.parse(JSON.stringify(authorFilteredData.books));
       response.books.forEach((item) => {
         item.selected = false;
+        tempData.push(item);
       });
-      console.log(response);
-      setBookData(response.books);
+      //console.log(response);
+      setBookData(tempData);
     },
     onError: () => {
-      console.log(error);
+      console.log(authorFilteredError);
       setBookData([]);
     },
   });
 
   useEffect(() => {
-    getFilteredBook();
+    getFilteredBookByGenre();
+    getFilteredBookByAuthor();
     // books.forEach((item) => {
     //   item.selected = false;
     // });
     // setBookData(books);
-  }, []);
+  }, [getFilteredBookByAuthor, getFilteredBookByGenre]);
 
   const onClickHandler = (id) => {
     const newItems = [...bookData];
@@ -88,7 +121,7 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
               <Box
                 className={classes.box}
                 style={{
-                  border: item.selected ? "6px solid aqua" : "none",
+                  border: item.selected ? "10px solid #D8F3DC" : "none",
                 }}
                 onClick={() => onClickHandler(item.id)}
               >

@@ -1,5 +1,5 @@
 import { Grid, Typography, Box } from "@material-ui/core";
-import authors from "../../data/authors.json";
+//import authors from "../../data/authors.json";
 import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";

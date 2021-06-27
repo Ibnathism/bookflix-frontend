@@ -21,3 +21,11 @@ export const SIGNUP = gql`
     }
   }
 `;
+
+export const SET_FAV_GENRE = gql`
+  mutation setFavGenre($genreIds: [Int!]!, $operation: AddOrRemove!) {
+    setFavoriteGenres(genreIds: $genreIds, operation: $operation) {
+      count
+    }
+  }
+`;
