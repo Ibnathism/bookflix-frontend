@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "imageUrl": "/images/1.jpg",
+    "coverImageUrl": "/images/1.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -16,7 +16,7 @@
   },
   {
     "id": 2,
-    "imageUrl": "/images/2.jpg",
+    "coverImageUrl": "/images/2.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -31,7 +31,7 @@
   },
   {
     "id": 3,
-    "imageUrl": "/images/3.jpg",
+    "coverImageUrl": "/images/3.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -46,7 +46,7 @@
   },
   {
     "id": 6,
-    "imageUrl": "/images/6.jpg",
+    "coverImageUrl": "/images/6.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -61,7 +61,7 @@
   },
   {
     "id": 7,
-    "imageUrl": "/images/7.jpg",
+    "coverImageUrl": "/images/7.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -76,7 +76,7 @@
   },
   {
     "id": 10,
-    "imageUrl": "/images/10.jpg",
+    "coverImageUrl": "/images/10.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -91,7 +91,7 @@
   },
   {
     "id": 11,
-    "imageUrl": "/images/11.jpeg",
+    "coverImageUrl": "/images/11.jpeg",
     "genreList": [
       {
         "name": "Crime"
@@ -106,7 +106,7 @@
   },
   {
     "id": 12,
-    "imageUrl": "/images/12.jpg",
+    "coverImageUrl": "/images/12.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -121,7 +121,7 @@
   },
   {
     "id": 13,
-    "imageUrl": "/images/13.jpg",
+    "coverImageUrl": "/images/13.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -136,7 +136,7 @@
   },
   {
     "id": 14,
-    "imageUrl": "/images/14.jpg",
+    "coverImageUrl": "/images/14.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -151,7 +151,7 @@
   },
   {
     "id": 15,
-    "imageUrl": "/images/15.jpg",
+    "coverImageUrl": "/images/15.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -166,7 +166,7 @@
   },
   {
     "id": 16,
-    "imageUrl": "/images/16.jpg",
+    "coverImageUrl": "/images/16.jpg",
     "genreList": [
       {
         "name": "Crime"

@@ -103,7 +103,11 @@ const OnboardingView = () => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <BooksOnboard setBookSelected={setBookSelected} />
+                  <BooksOnboard
+                    setBookSelected={setBookSelected}
+                    genreSelected={genreSelected}
+                    authorSelected={authorSelected}
+                  />
                 </Grid>
                 <Grid>
                   <Button

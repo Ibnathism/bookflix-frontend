@@ -1,9 +1,15 @@
 import { Grid, Box } from "@material-ui/core";
-import books from "../../data/onboarding.json";
+//import books from "../../data/onboarding.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 
+import { GET_FILTERED_BOOK } from "../../graphql/Queries";
+import { useLazyQuery } from "@apollo/client";
+
 const useStyles = makeStyles((theme) => ({
+  outerContainer: {
+    minWidth: "960px",
+  },
   container: {
     display: "flex",
     alignItems: "center",
@@ -29,15 +35,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BooksOnboard = ({ setBookSelected }) => {
+const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
   const classes = useStyles();
   const [bookData, setBookData] = useState([]);
 
+  const [getFilteredBook, { data, error }] = useLazyQuery(GET_FILTERED_BOOK, {
+    variables: {
+      filter: {
+        genres: genreSelected.map((genre) => genre.id),
+        authors: authorSelected.map((author) => author.id),
+      },
+    },
+    onCompleted: () => {
+      console.log(data);
+      var response = JSON.parse(JSON.stringify(data.books));
+      response.books.forEach((item) => {
+        item.selected = false;
+      });
+      console.log(response);
+      setBookData(response.books);
+    },
+    onError: () => {
+      console.log(error);
+      setBookData([]);
+    },
+  });
+
   useEffect(() => {
-    books.forEach((item) => {
-      item.selected = false;
-    });
-    setBookData(books);
+    getFilteredBook();
+    // books.forEach((item) => {
+    //   item.selected = false;
+    // });
+    // setBookData(books);
   }, []);
 
   const onClickHandler = (id) => {
@@ -52,7 +81,7 @@ const BooksOnboard = ({ setBookSelected }) => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={classes.outerContainer}>
         {bookData.map((item, id) => {
           return (
             <Grid item key={id} md={2} xs={6} className={classes.container}>
@@ -65,8 +94,8 @@ const BooksOnboard = ({ setBookSelected }) => {
               >
                 <img
                   className={classes.imageContainer}
-                  src={item.imageUrl}
-                  alt="book"
+                  src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${item.coverImageUrl}`}
+                  alt={item.title}
                 />
               </Box>
             </Grid>

@@ -49,6 +49,7 @@ const GenresOnboard = ({ setGenreSelected }) => {
       setGenreData(response.genres);
     },
     onError: () => {
+      setGenreData([]);
       console.log(error);
     },
   });

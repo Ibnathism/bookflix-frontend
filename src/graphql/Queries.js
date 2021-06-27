@@ -46,3 +46,16 @@ export const GET_ALL_AUTHOR = gql`
     }
   }
 `;
+
+export const GET_FILTERED_BOOK = gql`
+  query getFilteredBook($filter: BookFilterInput) {
+    books(filter: $filter) {
+      books {
+        id
+        title
+        coverImageUrl
+      }
+      count
+    }
+  }
+`;

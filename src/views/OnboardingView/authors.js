@@ -49,6 +49,7 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
       setAuthorData(response.authors);
     },
     onError: () => {
+      setAuthorData([]);
       console.log(error);
     },
   });
