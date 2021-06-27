@@ -1,7 +1,7 @@
-import { Grid, Typography, Box } from "@material-ui/core";
-import onboardings from "../../data/onboarding.json";
+import { Grid, Box } from "@material-ui/core";
+import books from "../../data/onboarding.json";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { useState, useEffect } from "react";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "160px",
@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    cursor: "pointer",
+    "&:hover": {
+      opacity: "0.4",
+    },
   },
   imageContainer: {
     width: "100%",
@@ -19,15 +23,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BooksOnboard = () => {
+const BooksOnboard = ({ setBookSelected }) => {
   const classes = useStyles();
+  const [bookData, setBookData] = useState([]);
+
+  useEffect(() => {
+    books.forEach((item) => {
+      item.selected = false;
+    });
+    setBookData(books);
+  }, []);
+
+  const onClickHandler = (id) => {
+    //console.log("clicked", id);
+    const newItems = [...bookData];
+    var item = bookData.findIndex((obj) => obj.id === id);
+    newItems[item].selected = !newItems[item].selected;
+    setBookData(newItems);
+
+    var myFav = bookData.filter((item) => item.selected);
+    setBookSelected(myFav);
+    //console.log(bookData);
+  };
+
   return (
     <>
-      <Typography variant="h2" style={{ marginBottom: "16px" }}>
-        Books
-      </Typography>
       <Grid container spacing={3}>
-        {onboardings.map((item, id) => {
+        {bookData.map((item, id) => {
           return (
             <Grid
               item
@@ -40,7 +62,13 @@ const BooksOnboard = () => {
                 justifyContent: "center",
               }}
             >
-              <Box className={classes.root}>
+              <Box
+                className={classes.root}
+                style={{
+                  border: item.selected ? "6px solid aqua" : "none",
+                }}
+                onClick={() => onClickHandler(item.id)}
+              >
                 <img
                   className={classes.imageContainer}
                   src={item.imageUrl}

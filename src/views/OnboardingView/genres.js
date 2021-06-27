@@ -5,14 +5,15 @@ import { useState, useEffect } from "react";
 import { useTheme } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "300px",
+    maxWidth: "300px",
+    width: "250px",
     height: "100px",
     borderRadius: "64px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-    padding: "16px",
+    padding: "32px",
     cursor: "pointer",
     "&:hover": {
       opacity: "0.8",
@@ -34,6 +35,7 @@ const GenresOnboard = ({ setGenreSelected }) => {
   }, []);
 
   const onClickHandler = (id) => {
+    //console.log("clicked", id);
     const newItems = [...genreData];
     var item = genreData.findIndex((obj) => obj.id === id);
     newItems[item].selected = !newItems[item].selected;
@@ -63,15 +65,17 @@ const GenresOnboard = ({ setGenreSelected }) => {
                 className={classes.root}
                 style={{
                   backgroundColor: item.selected
-                    ? "#40916c"
-                    : theme.palette.secondary.main,
+                    ? theme.palette.secondary.main
+                    : theme.palette.primary.main,
                 }}
                 onClick={() => onClickHandler(item.id)}
               >
                 <Typography
                   style={{
-                    color: "#030c08",
-                    fontSize: "20px",
+                    color: item.selected
+                      ? theme.palette.primary.dark
+                      : theme.palette.primary.light,
+                    fontSize: "24px",
                   }}
                 >
                   {item.name}

@@ -11,6 +11,7 @@ const OnboardingView = () => {
   const [step, setStep] = useState(0);
   const [genreSelected, setGenreSelected] = useState([]);
   const [authorSelected, setAuthorSelected] = useState([]);
+  const [bookSelected, setBookSelected] = useState([]);
   return (
     <GlobalLayout>
       <Container>
@@ -68,12 +69,15 @@ const OnboardingView = () => {
                   <Button
                     style={{
                       marginTop: "16px",
-                      width: "180px",
-                      height: "70px",
+                      width: "120px",
+                      height: "50px",
                     }}
                     variant="contained"
                     color="primary"
-                    onClick={() => setStep(2)} //check api call validity
+                    onClick={() => {
+                      console.log(authorSelected);
+                      setStep(2);
+                    }} //check validity whether at least 3 have been selected
                   >
                     Continue
                   </Button>
@@ -91,18 +95,21 @@ const OnboardingView = () => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <BooksOnboard />
+                  <BooksOnboard setBookSelected={setBookSelected} />
                 </Grid>
                 <Grid>
                   <Button
                     style={{
                       marginTop: "16px",
-                      width: "180px",
-                      height: "70px",
+                      width: "120px",
+                      height: "50px",
                     }}
                     variant="contained"
                     color="primary"
-                    onClick={() => history.push("/home")} //check api call validity
+                    onClick={() => {
+                      console.log(bookSelected);
+                      history.push("/home");
+                    }} //check api call validity
                   >
                     Continue
                   </Button>

@@ -36,6 +36,7 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
   }, []);
 
   const onClickHandler = (id) => {
+    //console.log("clicked", id);
     const newItems = [...authorData];
     var item = authorData.findIndex((obj) => obj.id === id);
     newItems[item].selected = !newItems[item].selected;
@@ -48,7 +49,7 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
   return (
     <>
       <Grid container spacing={3}>
-        {authors.map((item, id) => {
+        {authorData.map((item, id) => {
           return (
             <Grid
               item
@@ -64,8 +65,8 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
               <Box
                 style={{
                   backgroundColor: item.selected
-                    ? "#40916c"
-                    : theme.palette.secondary.main,
+                    ? theme.palette.secondary.main
+                    : "#40916c",
                 }}
                 onClick={() => onClickHandler(item.id)}
                 className={classes.root}
