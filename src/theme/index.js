@@ -19,11 +19,11 @@ const theme = createMuiTheme({
   },
   typography: {
     h1: {
-      fontSize: "50px",
+      fontSize: "48px",
       color: "#D8F3DC",
     },
     h2: {
-      fontSize: "30px",
+      fontSize: "32px",
       color: "#D8F3DC",
     },
     h3: {

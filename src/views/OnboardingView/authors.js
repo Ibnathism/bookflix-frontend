@@ -1,16 +1,15 @@
 import { Grid, Typography, Box } from "@material-ui/core";
 import authors from "../../data/authors.json";
+import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 import { useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "160px",
-    height: "160px",
-    background: theme.palette.primary.main,
+    width: "248px",
+    height: "188px",
     borderRadius: "8px",
-    padding: "16px",
     display: "flex",
     textAlign: "center",
     alignItems: "center",
@@ -54,7 +53,7 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
             <Grid
               item
               key={id}
-              md={2}
+              md={3}
               xs={6}
               style={{
                 display: "flex",
@@ -66,18 +65,24 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
                 style={{
                   backgroundColor: item.selected
                     ? theme.palette.secondary.main
-                    : "#40916c",
+                    : theme.palette.primary.main,
                 }}
                 onClick={() => onClickHandler(item.id)}
                 className={classes.root}
               >
                 <Typography
                   style={{
-                    color: "#030c08",
-                    fontSize: "20px",
+                    color: item.selected
+                      ? theme.palette.primary.dark
+                      : theme.palette.primary.light,
+                    fontSize: "22px",
+                    padding: "32px",
                   }}
                 >
-                  {item.name}
+                  {item.name.length >= constants.authorNameMaxLength
+                    ? `${item.name}`.substr(0, constants.authorNameMaxLength) +
+                      " ..."
+                    : `${item.name}`}
                 </Typography>
               </Box>
             </Grid>

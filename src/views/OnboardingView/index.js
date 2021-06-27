@@ -5,9 +5,26 @@ import AuthorsOnboard from "./authors";
 import GlobalLayout from "../../layouts/GlobalLayout";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    borderRadius: "8px",
+    marginTop: "16px",
+    width: "240px",
+    height: "90px",
+    fontSize: "24px",
+    border: "4px solid",
+    color: theme.palette.primary.light,
+    "&:hover": {
+      opacity: "0.6",
+    },
+  },
+}));
 
 const OnboardingView = () => {
   const history = useHistory();
+  const classes = useStyles();
   const [step, setStep] = useState(0);
   const [genreSelected, setGenreSelected] = useState([]);
   const [authorSelected, setAuthorSelected] = useState([]);
@@ -35,13 +52,7 @@ const OnboardingView = () => {
                 </Grid>
                 <Grid>
                   <Button
-                    style={{
-                      marginTop: "16px",
-                      width: "120px",
-                      height: "50px",
-                    }}
-                    variant="contained"
-                    color="primary"
+                    className={classes.button}
                     onClick={() => {
                       console.log(genreSelected);
                       setStep(1);
@@ -67,13 +78,7 @@ const OnboardingView = () => {
                 </Grid>
                 <Grid>
                   <Button
-                    style={{
-                      marginTop: "16px",
-                      width: "120px",
-                      height: "50px",
-                    }}
-                    variant="contained"
-                    color="primary"
+                    className={classes.button}
                     onClick={() => {
                       console.log(authorSelected);
                       setStep(2);
@@ -99,13 +104,7 @@ const OnboardingView = () => {
                 </Grid>
                 <Grid>
                   <Button
-                    style={{
-                      marginTop: "16px",
-                      width: "120px",
-                      height: "50px",
-                    }}
-                    variant="contained"
-                    color="primary"
+                    className={classes.button}
                     onClick={() => {
                       console.log(bookSelected);
                       history.push("/home");

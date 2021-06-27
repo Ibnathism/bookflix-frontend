@@ -1,19 +1,18 @@
 import { Grid, Typography, Box } from "@material-ui/core";
 import genres from "../../data/genres.json";
+import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 import { useTheme } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "300px",
-    width: "250px",
+    width: "280px",
     height: "100px",
     borderRadius: "64px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-    padding: "32px",
     cursor: "pointer",
     "&:hover": {
       opacity: "0.8",
@@ -75,10 +74,14 @@ const GenresOnboard = ({ setGenreSelected }) => {
                     color: item.selected
                       ? theme.palette.primary.dark
                       : theme.palette.primary.light,
-                    fontSize: "24px",
+                    fontSize: "22px",
+                    padding: "32px",
                   }}
                 >
-                  {item.name}
+                  {item.name.length >= constants.genreNameMaxLength
+                    ? `${item.name}`.substr(0, constants.genreNameMaxLength) +
+                      " ..."
+                    : `${item.name}`}
                 </Typography>
               </Box>
             </Grid>
