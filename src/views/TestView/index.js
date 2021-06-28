@@ -1,11 +1,11 @@
 import { Container, Typography } from "@material-ui/core";
 import CommonLayout from "../../layouts/CommonLayout";
 import { useLazyQuery } from "@apollo/client";
-import { GET_BOOK_TITLE } from "../../graphql/Queries";
+import { GET_BOOK_URL } from "../../graphql/Queries";
 import { useState } from "react";
 const TestView = () => {
   const [bookId, setBookId] = useState();
-  const [getTitle, { data, error }] = useLazyQuery(GET_BOOK_TITLE, {
+  const [getTitle, { data, error }] = useLazyQuery(GET_BOOK_URL, {
     variables: {
       id: bookId,
     },
@@ -41,7 +41,7 @@ const TestView = () => {
           <div className="weather">
             {data && (
               <>
-                <Typography variant="h1">{data.book.title}</Typography>
+                <Typography variant="h1">{data.book.fileUrl}</Typography>
               </>
             )}
           </div>

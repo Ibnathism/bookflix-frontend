@@ -1,12 +1,11 @@
 import CommonLayout from "../../layouts/CommonLayout";
 import { Container, Grid, Typography, Chip, Button } from "@material-ui/core";
 import Feed from "../../components/Feed";
-//import details from "../../data/details.json";
-import { Link as RouterLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { GET_FEED, GET_BOOK_DETAILS } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
+
 const DetailsView = () => {
   const [feed, setFeed] = useState([]);
   const [details, setDetails] = useState({
@@ -17,6 +16,7 @@ const DetailsView = () => {
     authors: [],
   });
   const { id } = useParams();
+  const history = useHistory();
   //console.log(id);
 
   const [getFeed, { data, error }] = useLazyQuery(GET_FEED, {
@@ -67,7 +67,7 @@ const DetailsView = () => {
         spacing={3}
         style={{ marginTop: "16px" }}
       >
-        <Grid item>
+        <Grid item md={12} xs={12}>
           <Container>
             <Grid container spacing={3} alignItems="center" justify="center">
               <Grid item xs={12} md={6} lg={6} xl={6}>
@@ -127,18 +127,23 @@ const DetailsView = () => {
                       justifyContent: "center",
                     }}
                   >
-                    <RouterLink to="/read">
-                      <Button variant="contained" color="primary">
-                        Start Reading
-                      </Button>
-                    </RouterLink>
+                    {/* <RouterLink to="/read"> */}
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => history.push(`/home/${details.id}/read`)}
+                    >
+                      Start Reading
+                    </Button>
+                    {/* </RouterLink> */}
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Container>
         </Grid>
-        <Grid item>
+
+        <Grid item md={12} xs={12}>
           <Feed feed={feed} />
         </Grid>
       </Grid>

@@ -1,12 +1,10 @@
 import { gql } from "@apollo/client";
 
-export const GET_BOOK_TITLE = gql`
+export const GET_BOOK_URL = gql`
   query getBookName($id: ID!) {
     book(bookId: $id) {
       title
-      authors {
-        name
-      }
+      fileUrl
     }
   }
 `;

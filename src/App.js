@@ -61,7 +61,7 @@ function App() {
         <Route path="/home" exact component={HomeView} />
         <Route path="/home/:id" exact component={DetailsView} />
         <Route path="/list" exact component={MyListView} />
-        <Route path="/read" exact component={BookReaderView} />
+        <Route path="/home/:id/read" exact component={BookReaderView} />
         <Route path="/onboarding" exact component={OnboardingView} />
         <Route path="/test" exact component={TestView} />
         <GlobalStyles />

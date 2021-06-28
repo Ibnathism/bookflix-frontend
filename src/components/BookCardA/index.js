@@ -86,11 +86,6 @@ const BookCardA = ({ imageUrl, genreList }) => {
                 return (
                   <div className={classes.genreName} key={id}>
                     <Typography variant="body1">{item.name}</Typography>
-                    {/* {id !== 2 ? (
-                      <svg height="18" width="18">
-                        <circle cx="9" cy="9" r="3" fill="black" />
-                      </svg>
-                    ) : null} */}
                   </div>
                 );
               })}
