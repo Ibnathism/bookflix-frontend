@@ -3,7 +3,7 @@ import BooksOnboard from "./books";
 import GenresOnboard from "./genres";
 import AuthorsOnboard from "./authors";
 import GlobalLayout from "../../layouts/GlobalLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -32,6 +32,7 @@ const OnboardingView = () => {
   const [genreSelected, setGenreSelected] = useState([]);
   const [authorSelected, setAuthorSelected] = useState([]);
   const [bookSelected, setBookSelected] = useState([]);
+
   return (
     <GlobalLayout>
       <Container>

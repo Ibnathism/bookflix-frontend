@@ -9,6 +9,7 @@ import MyListView from "./views/MyList";
 import TestView from "./views/TestView";
 import BookReaderView from "./views/BookReader";
 import {
+  gql,
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
@@ -33,7 +34,12 @@ function App() {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     link: authLink.concat(httpLink),
-    //uri: "http://13.250.6.97/graphql/",
+    typeDefs: gql`
+      enum AddOrRemove {
+        add
+        remove
+      }
+    `,
   });
   return (
     <ApolloProvider client={client}>

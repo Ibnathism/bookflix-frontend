@@ -56,10 +56,6 @@ const GenresOnboard = ({ setGenreSelected }) => {
 
   useEffect(() => {
     getAllGenre();
-    // genres.forEach((item) => {
-    //   item.selected = false;
-    // });
-    // setGenreData(genres);
   }, [getAllGenre]);
 
   const onClickHandler = (id) => {
