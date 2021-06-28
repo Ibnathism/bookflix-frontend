@@ -21,11 +21,26 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    "& .MuiTextField-root": {
-      background: theme.palette.info.main,
-      width: 225,
-      borderRadius: 4,
+    "& .MuiInputBase-root": {
       marginBottom: theme.spacing(2),
+    },
+    "& .MuiInputLabel-root": {
+      fontSize: "22px",
+      paddingLeft: theme.spacing(2),
+    },
+    "& .MuiFilledInput-input": {
+      background: theme.palette.info.main,
+      width: 300,
+      borderRadius: 4,
+      paddingLeft: theme.spacing(3.5),
+      fontSize: "20px"
+    },
+    "& .MuiButton-label": {
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
+      paddingTop: theme.spacing(0.4),
+      paddingBottom: theme.spacing(0.4),
+      fontSize: "18px"
     },
   },
   signupText: {
@@ -34,10 +49,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    fontSize: "20px",
   },
   signup: {
+    fontSize: "20px",
     marginLeft: theme.spacing(1),
-    textDecoration: "underline",
+    textDecoration: "underline"
   },
 }));
 

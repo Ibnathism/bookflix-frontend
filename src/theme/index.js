@@ -18,6 +18,14 @@ const theme = createMuiTheme({
     },
   },
   typography: {
+    fontFamily: [
+      'Open Sans',
+      'Helvetica Neue',
+      'Arial',
+      'sans-serif',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+    ].join(','),
     h1: {
       fontSize: "48px",
       color: "#D8F3DC",
