@@ -1,9 +1,32 @@
 import CommonLayout from "../../layouts/CommonLayout";
 import { Container, Grid, Typography, Chip, Button } from "@material-ui/core";
-import Lists from "../ListsView";
+import Feed from "../../components/Feed";
 import details from "../../data/details.json";
 import { Link as RouterLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { GET_FEED } from "../../graphql/Queries";
+import { useLazyQuery } from "@apollo/client";
 const DetailsView = () => {
+  const [feed, setFeed] = useState([]);
+
+  const [getFeed, { data, error }] = useLazyQuery(GET_FEED, {
+    variables: {
+      bookCountEachCategory: 10,
+      categoryCount: 10,
+    },
+    onCompleted: () => {
+      console.log(data);
+      const res = JSON.parse(JSON.stringify(data.feed));
+      setFeed(res);
+    },
+    onError: () => {
+      setFeed([]);
+      console.log(error);
+    },
+  });
+  useEffect(() => {
+    getFeed();
+  }, [getFeed]);
   return (
     <CommonLayout>
       <Grid
@@ -78,7 +101,7 @@ const DetailsView = () => {
           </Container>
         </Grid>
         <Grid item>
-          <Lists />
+          <Feed feed={feed} />
         </Grid>
       </Grid>
     </CommonLayout>

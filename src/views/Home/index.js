@@ -1,30 +1,36 @@
 import CommonLayout from "../../layouts/CommonLayout";
 import { Box, Typography, Container, Grid, Button } from "@material-ui/core";
-import heroSectionBooks from "../../data/hero.json";
+//import heroSectionBooks from "../../data/hero.json";
 import { Link as RouterLink } from "react-router-dom";
-import Lists from "../ListsView";
+import Feed from "../../components/Feed";
 import { useState, useEffect } from "react";
 import { GET_FEED } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
+import { useHistory } from "react-router";
 
 const HomeView = () => {
+  const history = useHistory();
   const [feed, setFeed] = useState([]);
+  const [topPicks, setTopPicks] = useState({
+    books: [],
+  });
 
   const [getFeed, { data, error }] = useLazyQuery(GET_FEED, {
     variables: {
-      bookCountEachCategory: 5,
+      bookCountEachCategory: 10,
       categoryCount: 10,
     },
     onCompleted: () => {
-      console.log(data);
-      const res = JSON.parse(JSON.stringify(data));
-      setFeed(res.feed);
+      console.log(data.feed);
+      const res = JSON.parse(JSON.stringify(data.feed));
+      setFeed(res);
+      setTopPicks(res[0]);
     },
     onError: () => {
+      setFeed([]);
       console.log(error);
     },
   });
-
   useEffect(() => {
     getFeed();
   }, [getFeed]);
@@ -42,7 +48,7 @@ const HomeView = () => {
                 alignItems="center"
               >
                 <Grid item>
-                  <Typography variant="h1">Reader's Choice</Typography>
+                  <Typography variant="h1">Top Chart</Typography>
                 </Grid>
                 <Grid item>
                   <Grid
@@ -53,8 +59,8 @@ const HomeView = () => {
                     justify="center"
                     style={{ marginTop: "16px" }}
                   >
-                    {heroSectionBooks.map((book, id) => {
-                      var width = book.rank === 1 ? "100%" : "80%";
+                    {topPicks.books.slice(0, 3).map((book, id) => {
+                      var width = id === 1 ? "100%" : "80%";
                       return (
                         <Grid
                           item
@@ -75,26 +81,32 @@ const HomeView = () => {
                             justify="center"
                             spacing={3}
                           >
-                            <Typography variant="h1"># {book.rank}</Typography>
+                            {
+                              //TODO: Need rank for books from backend
+                            }
+                            <Typography variant="h1">
+                              # {id === 0 ? 2 : id === 2 ? 3 : 1}
+                            </Typography>
                             <img
                               width={width}
-                              src={book.imageUrl}
-                              alt={book.name}
+                              src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
+                              alt={book.title}
                             />
-                            <RouterLink to="/home/1">
-                              <Button
-                                type="submit"
-                                variant="contained"
-                                color="primary"
-                                style={{
-                                  margin: "16px",
-                                  height: "40px",
-                                  width: "100px",
-                                }}
-                              >
-                                Read
-                              </Button>
-                            </RouterLink>
+                            {/* <RouterLink to="/home/1"> */}
+                            <Button
+                              type="submit"
+                              variant="contained"
+                              color="primary"
+                              onClick={() => history.push(`/home/${book.id}`)}
+                              style={{
+                                margin: "16px",
+                                height: "40px",
+                                width: "100px",
+                              }}
+                            >
+                              Read
+                            </Button>
+                            {/* </RouterLink> */}
                           </Grid>
                         </Grid>
                       );
@@ -106,7 +118,7 @@ const HomeView = () => {
           </Container>
         </Grid>
         <Grid item>
-          <Lists feed={feed} />
+          <Feed feed={feed} />
         </Grid>
       </Grid>
     </CommonLayout>
