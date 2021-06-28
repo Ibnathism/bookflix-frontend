@@ -76,7 +76,7 @@ const SignupForm = () => {
       //console.log(data);
       if (!error && data && data.signup.token) {
         const token = data.signup.token;
-        localStorage.setItem("token", token);
+        localStorage.setItem("bookflix-token", token);
         //console.log(token);
       }
     }

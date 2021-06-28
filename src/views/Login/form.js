@@ -66,7 +66,7 @@ const LoginForm = () => {
     //console.log(data);
     if (!error && data && data.login.token) {
       const token = data.login.token;
-      localStorage.setItem("token", token);
+      localStorage.setItem("bookflix-token", token);
       //console.log(token);
     }
   };

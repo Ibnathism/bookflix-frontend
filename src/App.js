@@ -21,7 +21,7 @@ function App() {
     uri: "http://13.250.6.97/graphql/",
   });
   const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("bookflix-token");
 
     return {
       headers: {
