@@ -94,11 +94,15 @@ const HomeView = () => {
                               <Typography variant="h1">
                                 # {id === 0 ? 2 : id === 2 ? 3 : 1}
                               </Typography>
-                              <img
-                                width={width}
-                                src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
-                                alt={book.title}
-                              />
+                              {book.coverImageUrl ? (
+                                <img
+                                  width={width}
+                                  src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
+                                  alt={book.title}
+                                />
+                              ) : (
+                                <></>
+                              )}
                               {/* <RouterLink to="/home/1"> */}
                               <Button
                                 type="submit"

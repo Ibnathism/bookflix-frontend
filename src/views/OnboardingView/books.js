@@ -162,11 +162,15 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
                 }}
                 onClick={() => onClickHandler(item.id)}
               >
-                <img
-                  className={classes.imageContainer}
-                  src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${item.coverImageUrl}`}
-                  alt={item.title}
-                />
+                {item.coverImageUrl ? (
+                  <img
+                    className={classes.imageContainer}
+                    src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${item.coverImageUrl}`}
+                    alt={item.title}
+                  />
+                ) : (
+                  <></>
+                )}
               </Box>
             </Grid>
           );

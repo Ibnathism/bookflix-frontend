@@ -7,7 +7,7 @@ const BookReader = ({ title, link }) => {
   const [location, setLocation] = useState(
     storage && storage.getItem("epub-location")
       ? storage.getItem("epub-location")
-      : 0
+      : 15
   );
   const onLocationChanged = (location) => {
     setLocation(location);

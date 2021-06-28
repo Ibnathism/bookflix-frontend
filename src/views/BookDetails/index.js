@@ -78,12 +78,16 @@ const DetailsView = () => {
             <Container>
               <Grid container spacing={3} alignItems="center" justify="center">
                 <Grid item xs={12} md={6} lg={6} xl={6}>
-                  <img
-                    width="420px"
-                    style={{ borderRadius: "8px" }}
-                    src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${details.coverImageUrl}`}
-                    alt={details.title}
-                  />
+                  {details.coverImageUrl === "" ? (
+                    <></>
+                  ) : (
+                    <img
+                      width="420px"
+                      style={{ borderRadius: "8px" }}
+                      src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${details.coverImageUrl}`}
+                      alt={details.title}
+                    />
+                  )}
                 </Grid>
                 <Grid item xs={12} md={6} lg={6} xl={6}>
                   <Grid container direction="column" spacing={6}>

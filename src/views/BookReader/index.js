@@ -8,7 +8,7 @@ import { useParams } from "react-router";
 const ReaderView = () => {
   const { id } = useParams();
   const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(null);
 
   const [getBookUrl, { data, error }] = useLazyQuery(GET_BOOK_URL, {
     variables: {
@@ -32,10 +32,14 @@ const ReaderView = () => {
   }, [getBookUrl]);
   return (
     <CommonLayout>
-      <BookReader
-        title={title}
-        link={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${url}`}
-      />
+      {url ? (
+        <BookReader
+          title={title}
+          link={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${url}`}
+        />
+      ) : (
+        <></>
+      )}
     </CommonLayout>
   );
 };
