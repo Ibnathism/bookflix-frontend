@@ -76,7 +76,7 @@ const BookCardB = ({ imageUrl, review }) => {
           <img className={classes.leftContainer} alt="book" src={imageUrl} />
           <div className={classes.rightContainer}>
             <Typography className={classes.review} variant="body1">
-              {review}
+              {review ? review : ""}
             </Typography>
             <div className={classes.button}>
               <Typography className={classes.buttonText} variant="body1">

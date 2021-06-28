@@ -3,7 +3,32 @@ import { Box, Typography, Container, Grid, Button } from "@material-ui/core";
 import heroSectionBooks from "../../data/hero.json";
 import { Link as RouterLink } from "react-router-dom";
 import Lists from "../ListsView";
+import { useState, useEffect } from "react";
+import { GET_FEED } from "../../graphql/Queries";
+import { useLazyQuery } from "@apollo/client";
+
 const HomeView = () => {
+  const [feed, setFeed] = useState([]);
+
+  const [getFeed, { data, error }] = useLazyQuery(GET_FEED, {
+    variables: {
+      bookCountEachCategory: 5,
+      categoryCount: 10,
+    },
+    onCompleted: () => {
+      console.log(data);
+      const res = JSON.parse(JSON.stringify(data));
+      setFeed(res.feed);
+    },
+    onError: () => {
+      console.log(error);
+    },
+  });
+
+  useEffect(() => {
+    getFeed();
+  }, [getFeed]);
+
   return (
     <CommonLayout>
       <Grid container direction="column">
@@ -81,7 +106,7 @@ const HomeView = () => {
           </Container>
         </Grid>
         <Grid item>
-          <Lists />
+          <Lists feed={feed} />
         </Grid>
       </Grid>
     </CommonLayout>

@@ -15,10 +15,16 @@ export const GET_BOOK_DETAILS = gql`
   query getBookDetails($id: ID!) {
     book(bookId: $id) {
       title
+      id
       fileUrl
       fileType
       coverImageUrl
+      description
+      rating
       genres {
+        name
+      }
+      authors {
         name
       }
     }
@@ -56,6 +62,28 @@ export const GET_FILTERED_BOOK = gql`
         coverImageUrl
       }
       count
+    }
+  }
+`;
+
+export const GET_FEED = gql`
+  query getFeed($bookCountEachCategory: Int!, $categoryCount: Int!) {
+    feed(
+      bookCountEachCategory: $bookCountEachCategory
+      categoryCount: $categoryCount
+    ) {
+      id
+      books {
+        id
+        title
+        description
+        coverImageUrl
+        genres {
+          name
+        }
+      }
+      count
+      category
     }
   }
 `;

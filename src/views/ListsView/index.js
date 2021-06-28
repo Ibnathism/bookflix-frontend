@@ -3,27 +3,28 @@ import { Box, Typography, Grid } from "@material-ui/core";
 import BookCardA from "../../components/BookCardA";
 import BookCardB from "../../components/BookCardB";
 import { Link as RouterLink } from "react-router-dom";
-const Lists = () => {
+const Lists = ({ feed }) => {
+  console.log(feed);
   return (
     <Box style={{ margin: "16px" }}>
-      {homeLists.map((list, id) => {
+      {feed.map((list, idx) => {
         return (
-          <Box key={id} style={{ marginTop: "16px" }}>
+          <Box key={idx} style={{ marginTop: "16px" }}>
             <Grid container spacing={3} direction="column">
               <Grid item>
                 <Typography variant="h2">{list.category}</Typography>
               </Grid>
               <Grid item>
                 <Grid container spacing={3} direction="row">
-                  {list.type === "A" ? (
+                  {idx % 2 === 0 ? (
                     <>
                       {list.books.map((book, id) => {
                         return (
                           <Grid item key={id}>
                             <RouterLink to="/home/1">
                               <BookCardA
-                                imageUrl={book.imageUrl}
-                                genreList={book.genreList}
+                                imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
+                                genreList={book.genres.slice(0, 2)}
                               />
                             </RouterLink>
                           </Grid>
@@ -34,14 +35,20 @@ const Lists = () => {
                     <span></span>
                   )}
 
-                  {list.type === "B" ? (
+                  {idx % 2 !== 0 ? (
                     <>
                       {list.books.map((book, id) => {
                         return (
                           <Grid item key={id}>
                             <BookCardB
-                              imageUrl={book.imageUrl}
-                              review={book.review}
+                              imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
+                              review={
+                                book.description &&
+                                book.description.length >= 100
+                                  ? `${book.description}`.substr(0, 100) +
+                                    " ..."
+                                  : `${book.description}`
+                              }
                             />
                           </Grid>
                         );
