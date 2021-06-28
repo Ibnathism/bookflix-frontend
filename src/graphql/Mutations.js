@@ -29,3 +29,16 @@ export const SET_FAV_GENRE = gql`
     }
   }
 `;
+
+export const SET_FAV_AUTHOR = gql`
+  mutation setFavAuthor($authorId: ID!, $operation: AddOrRemove!) {
+    setFavoriteAuthor(authorId: $authorId, operation: $operation) {
+      author {
+        name
+      }
+      user {
+        name
+      }
+    }
+  }
+`;

@@ -7,7 +7,7 @@ import { GET_FILTERED_BOOK } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
 
 import { useMutation } from "@apollo/client";
-import { SET_FAV_GENRE } from "../../graphql/Mutations";
+import { SET_FAV_GENRE, SET_FAV_AUTHOR } from "../../graphql/Mutations";
 
 const useStyles = makeStyles((theme) => ({
   outerContainer: {
@@ -109,9 +109,26 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
     },
   });
 
+  const [setFavAuthor] = useMutation(SET_FAV_AUTHOR, {
+    variables: {
+      authorId: authorSelected.map((author) => parseInt(author.id))[0],
+      operation: "add",
+    },
+    onCompleted: () => {
+      console.log("Successfully added fav author");
+    },
+    onError: () => {
+      console.log("Couldn't add fav author");
+    },
+  });
+
   useEffect(() => {
     setFavGenre();
   }, [setFavGenre]);
+
+  useEffect(() => {
+    setFavAuthor();
+  }, [setFavAuthor]);
 
   useEffect(() => {
     getFilteredBookByGenre();
