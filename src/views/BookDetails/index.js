@@ -1,13 +1,23 @@
 import CommonLayout from "../../layouts/CommonLayout";
 import { Container, Grid, Typography, Chip, Button } from "@material-ui/core";
 import Feed from "../../components/Feed";
-import details from "../../data/details.json";
+//import details from "../../data/details.json";
 import { Link as RouterLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { GET_FEED } from "../../graphql/Queries";
+import { GET_FEED, GET_BOOK_DETAILS } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
+import { useParams } from "react-router";
 const DetailsView = () => {
   const [feed, setFeed] = useState([]);
+  const [details, setDetails] = useState({
+    title: "",
+    coverImageUrl: "",
+    description: "",
+    genres: [],
+    authors: [],
+  });
+  const { id } = useParams();
+  //console.log(id);
 
   const [getFeed, { data, error }] = useLazyQuery(GET_FEED, {
     variables: {
@@ -24,9 +34,31 @@ const DetailsView = () => {
       console.log(error);
     },
   });
+
   useEffect(() => {
     getFeed();
   }, [getFeed]);
+
+  const [getBookDetails, { data: bookDetails, error: bookError }] =
+    useLazyQuery(GET_BOOK_DETAILS, {
+      variables: {
+        id: id,
+      },
+      onCompleted: () => {
+        console.log(bookDetails);
+        const res = JSON.parse(JSON.stringify(bookDetails.book));
+        setDetails(res);
+      },
+      onError: () => {
+        setDetails({});
+        console.log(bookError);
+      },
+    });
+
+  useEffect(() => {
+    getBookDetails();
+  }, [getBookDetails]);
+
   return (
     <CommonLayout>
       <Grid
@@ -42,27 +74,33 @@ const DetailsView = () => {
                 <img
                   width="420px"
                   style={{ borderRadius: "8px" }}
-                  src={details.imageUrl}
-                  alt={details.name}
+                  src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${details.coverImageUrl}`}
+                  alt={details.title}
                 />
               </Grid>
               <Grid item xs={12} md={6} lg={6} xl={6}>
-                <Grid
-                  container
-                  direction="column"
-                  spacing={6}
-                  alignItems="center"
-                  justify="center"
-                >
+                <Grid container direction="column" spacing={6}>
                   <Grid item>
-                    <Typography variant="h1">{details.name}</Typography>
+                    <Typography variant="h1" align="left">
+                      {details.title}
+                    </Typography>
                   </Grid>
                   <Grid item>
-                    <Typography variant="h2">By {details.writer}</Typography>
+                    <Typography variant="h2" align="left">
+                      By{" "}
+                      {details.authors.length !== 0
+                        ? details.authors[0].name
+                        : ""}
+                    </Typography>
                   </Grid>
                   <Grid item>
-                    <Grid container spacing={3}>
-                      {details.genreList.map((genre, id) => {
+                    <Grid
+                      container
+                      spacing={3}
+                      alignItems="center"
+                      justify="center"
+                    >
+                      {details.genres.map((genre, id) => {
                         return (
                           <Grid item key={id}>
                             <Chip
@@ -77,18 +115,18 @@ const DetailsView = () => {
                   </Grid>
                   <Grid item>
                     <Grid container spacing={3}>
-                      {details.reviews.map((review, id) => {
-                        return (
-                          <Grid item key={id}>
-                            <Typography variant="h3">
-                              {review.review}
-                            </Typography>
-                          </Grid>
-                        );
-                      })}
+                      <Typography variant="h3" align="left">
+                        {details.description}
+                      </Typography>
                     </Grid>
                   </Grid>
-                  <Grid item>
+                  <Grid
+                    item
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
                     <RouterLink to="/read">
                       <Button variant="contained" color="primary">
                         Start Reading
