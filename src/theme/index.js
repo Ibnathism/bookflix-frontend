@@ -37,6 +37,7 @@ const theme = createMuiTheme({
     },
     body1: {
       fontSize: "11px",
+      color: "#030c08",
     },
   },
 });
