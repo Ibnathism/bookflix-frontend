@@ -1,7 +1,7 @@
 import CommonLayout from "../../layouts/CommonLayout";
 import { Box, Typography, Container, Grid, Button } from "@material-ui/core";
 //import heroSectionBooks from "../../data/hero.json";
-import { Link as RouterLink } from "react-router-dom";
+//import { Link as RouterLink } from "react-router-dom";
 import Feed from "../../components/Feed";
 import { useState, useEffect } from "react";
 import { GET_FEED } from "../../graphql/Queries";
@@ -21,7 +21,7 @@ const HomeView = () => {
       categoryCount: 10,
     },
     onCompleted: () => {
-      console.log(data.feed);
+      console.log("on completed of home", data.feed);
       const res = JSON.parse(JSON.stringify(data.feed));
       setFeed(res);
       setTopPicks(res[0]);

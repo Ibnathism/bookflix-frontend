@@ -31,8 +31,19 @@ function App() {
       },
     };
   });
+  const defaultOptions = {
+    watchQuery: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "ignore",
+    },
+    query: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    },
+  };
   const client = new ApolloClient({
     cache: new InMemoryCache(),
+    defaultOptions: defaultOptions,
     link: authLink.concat(httpLink),
     typeDefs: gql`
       enum AddOrRemove {

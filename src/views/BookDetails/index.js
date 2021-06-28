@@ -15,7 +15,7 @@ const DetailsView = () => {
       categoryCount: 10,
     },
     onCompleted: () => {
-      console.log(data);
+      console.log("on completed of details", data.feed);
       const res = JSON.parse(JSON.stringify(data.feed));
       setFeed(res);
     },
@@ -64,7 +64,7 @@ const DetailsView = () => {
                     <Grid container spacing={3}>
                       {details.genreList.map((genre, id) => {
                         return (
-                          <Grid item>
+                          <Grid item key={id}>
                             <Chip
                               variant="default"
                               color="secondary"
@@ -79,7 +79,7 @@ const DetailsView = () => {
                     <Grid container spacing={3}>
                       {details.reviews.map((review, id) => {
                         return (
-                          <Grid item>
+                          <Grid item key={id}>
                             <Typography variant="h3">
                               {review.review}
                             </Typography>

@@ -84,7 +84,7 @@ const BookCardA = ({ imageUrl, genreList }) => {
             <div className={classes.genre}>
               {genreList.slice(0, 3).map((item, id) => {
                 return (
-                  <div className={classes.genreName}>
+                  <div className={classes.genreName} key={id}>
                     <Typography variant="body1">{item.name}</Typography>
                     {id !== 2 ? (
                       <svg height="18" width="18">
