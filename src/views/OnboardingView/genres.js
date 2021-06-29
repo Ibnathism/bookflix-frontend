@@ -32,6 +32,7 @@ const useStyles = makeStyles(() => ({
   text: {
     fontSize: "22px",
     padding: "32px",
+    lineHeight: "1.15"
   },
 }));
 
