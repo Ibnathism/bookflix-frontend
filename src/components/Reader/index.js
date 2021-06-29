@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { ReactReader } from "react-reader";
 import { Container } from "@material-ui/core";
+import LoadAnimation from "../../animations/feed-loading.json";
+import LottieAnimation from "../../helpers/lottie";
 const storage = global.localStorage || null;
 
 const BookReader = ({ title, link }) => {
-  const [location, setLocation] = useState(
-    storage && storage.getItem("epub-location")
-      ? storage.getItem("epub-location")
-      : 15
-  );
+  const [location, setLocation] = useState(null);
   const onLocationChanged = (location) => {
     setLocation(location);
     storage.setItem("epub-location", location);
-    //setLocation(storage && storage.setItem("epub-location", location));
   };
   return (
     <Container>
@@ -31,6 +28,24 @@ const BookReader = ({ title, link }) => {
           title={title}
           location={location}
           locationChanged={onLocationChanged}
+          loadingView={
+            <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
+          }
+          getRendition={(rendition) => {
+            const spine_get = rendition.book.spine.get.bind(
+              rendition.book.spine
+            );
+            rendition.book.spine.get = function (target) {
+              let t = spine_get(target);
+              console.log("t", t);
+              target = target.toString();
+              console.log("target", target);
+              if (!t) {
+                t = spine_get(target);
+              }
+              return t;
+            };
+          }}
         />
       </div>
     </Container>
