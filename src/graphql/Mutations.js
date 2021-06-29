@@ -37,3 +37,11 @@ export const SET_FAV_AUTHOR = gql`
     }
   }
 `;
+
+export const SET_FAV_Book = gql`
+  mutation setFavBooks($bookIds: [ID!]!, $operation: AddOrRemove!) {
+    setFavoriteBooks(bookIds: $bookIds, operation: $operation) {
+      count
+    }
+  }
+`;

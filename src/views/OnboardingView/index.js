@@ -3,9 +3,11 @@ import BooksOnboard from "./books";
 import GenresOnboard from "./genres";
 import AuthorsOnboard from "./authors";
 import GlobalLayout from "../../layouts/GlobalLayout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
+import { useMutation } from "@apollo/client";
+import { SET_FAV_Book } from "../../graphql/Mutations";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -32,6 +34,19 @@ const OnboardingView = () => {
   const [genreSelected, setGenreSelected] = useState([]);
   const [authorSelected, setAuthorSelected] = useState([]);
   const [bookSelected, setBookSelected] = useState([]);
+
+  const [setFavBooks] = useMutation(SET_FAV_Book, {
+    variables: {
+      bookIds: bookSelected.map((book) => book.id),
+      operation: "add",
+    },
+    onCompleted: () => {
+      console.log("Successfully added fav book");
+    },
+    onError: () => {
+      console.log("Couldn't add fav book");
+    },
+  });
 
   return (
     <GlobalLayout>
@@ -115,6 +130,7 @@ const OnboardingView = () => {
                     className={classes.button}
                     onClick={() => {
                       console.log(bookSelected);
+                      setFavBooks();
                       history.push("/home");
                     }} //check api call validity
                   >
