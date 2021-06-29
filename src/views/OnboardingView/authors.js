@@ -1,4 +1,4 @@
-import { Grid, Typography, Box } from "@material-ui/core";
+import { Grid, Typography, Box, Container } from "@material-ui/core";
 //import authors from "../../data/authors.json";
 import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,6 +8,8 @@ import { useTheme } from "@material-ui/styles";
 import { GET_ALL_AUTHOR } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
 
+import LottieAnimation from "../../helpers/lottie";
+import LoadAnimation from "../../animations/feed-loading.json";
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -38,21 +40,24 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
   const classes = useStyles();
   const [authorData, setAuthorData] = useState([]);
 
-  const [getAllAuthor, { data, error }] = useLazyQuery(GET_ALL_AUTHOR, {
-    onCompleted: () => {
-      console.log(data.authors.authors);
-      var response = JSON.parse(JSON.stringify(data.authors));
-      response.authors.forEach((item) => {
-        item.selected = false;
-      });
-      console.log(response);
-      setAuthorData(response.authors);
-    },
-    onError: () => {
-      setAuthorData([]);
-      console.log(error);
-    },
-  });
+  const [getAllAuthor, { data, loading, error }] = useLazyQuery(
+    GET_ALL_AUTHOR,
+    {
+      onCompleted: () => {
+        console.log(data.authors.authors);
+        var response = JSON.parse(JSON.stringify(data.authors));
+        response.authors.forEach((item) => {
+          item.selected = false;
+        });
+        console.log(response);
+        setAuthorData(response.authors);
+      },
+      onError: () => {
+        setAuthorData([]);
+        console.log(error);
+      },
+    }
+  );
 
   useEffect(() => {
     getAllAuthor();
@@ -74,6 +79,13 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
   return (
     <>
       <Grid container spacing={3}>
+        {loading ? (
+          <Container>
+            <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
+          </Container>
+        ) : (
+          <></>
+        )}
         {authorData.map((item, id) => {
           return (
             <Grid item key={id} md={3} xs={6} className={classes.container}>

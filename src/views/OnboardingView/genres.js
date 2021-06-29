@@ -1,4 +1,4 @@
-import { Grid, Typography, Box } from "@material-ui/core";
+import { Grid, Typography, Box, Container } from "@material-ui/core";
 //import genres from "../../data/genres.json";
 import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,6 +8,8 @@ import { useTheme } from "@material-ui/styles";
 import { GET_ALL_GENRE } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
 
+import LottieAnimation from "../../helpers/lottie";
+import LoadAnimation from "../../animations/feed-loading.json";
 const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
@@ -38,7 +40,7 @@ const GenresOnboard = ({ setGenreSelected }) => {
   const classes = useStyles();
   const [genreData, setGenreData] = useState([]);
 
-  const [getAllGenre, { data, error }] = useLazyQuery(GET_ALL_GENRE, {
+  const [getAllGenre, { data, loading, error }] = useLazyQuery(GET_ALL_GENRE, {
     onCompleted: () => {
       console.log(data.genres.genres);
       var response = JSON.parse(JSON.stringify(data.genres));
@@ -70,6 +72,13 @@ const GenresOnboard = ({ setGenreSelected }) => {
   return (
     <>
       <Grid container spacing={3}>
+        {loading ? (
+          <Container>
+            <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
+          </Container>
+        ) : (
+          <></>
+        )}
         {genreData.map((item, id) => {
           return (
             <Grid key={id} item md={3} xs={6} className={classes.container}>

@@ -1,4 +1,4 @@
-import { Grid, Box } from "@material-ui/core";
+import { Grid, Box, Container } from "@material-ui/core";
 //import books from "../../data/onboarding.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
@@ -8,6 +8,9 @@ import { useLazyQuery } from "@apollo/client";
 
 import { useMutation } from "@apollo/client";
 import { SET_FAV_GENRE, SET_FAV_AUTHOR } from "../../graphql/Mutations";
+
+import LottieAnimation from "../../helpers/lottie";
+import LoadAnimation from "../../animations/feed-loading.json";
 
 const useStyles = makeStyles((theme) => ({
   outerContainer: {
@@ -44,7 +47,11 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
 
   const [
     getFilteredBookByGenre,
-    { data: genreFilteredData, error: genreFilteredError },
+    {
+      data: genreFilteredData,
+      loading: loadingGenre,
+      error: genreFilteredError,
+    },
   ] = useLazyQuery(GET_FILTERED_BOOK, {
     variables: {
       filter: {
@@ -71,7 +78,11 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
 
   const [
     getFilteredBookByAuthor,
-    { data: authorFilteredData, error: authorFilteredError },
+    {
+      data: authorFilteredData,
+      loading: loadingAuthor,
+      error: authorFilteredError,
+    },
   ] = useLazyQuery(GET_FILTERED_BOOK, {
     variables: {
       filter: {
@@ -133,10 +144,6 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
   useEffect(() => {
     getFilteredBookByGenre();
     getFilteredBookByAuthor();
-    // books.forEach((item) => {
-    //   item.selected = false;
-    // });
-    // setBookData(books);
   }, [getFilteredBookByAuthor, getFilteredBookByGenre]);
 
   const onClickHandler = (id) => {
@@ -152,29 +159,37 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
   return (
     <>
       <Grid container spacing={3} className={classes.outerContainer}>
-        {bookData.map((item, id) => {
-          return (
-            <Grid item key={id} md={2} xs={6} className={classes.container}>
-              <Box
-                className={classes.box}
-                style={{
-                  border: item.selected ? "10px solid #80DEEA" : "none",
-                }}
-                onClick={() => onClickHandler(item.id)}
-              >
-                {item.coverImageUrl ? (
-                  <img
-                    className={classes.imageContainer}
-                    src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${item.coverImageUrl}`}
-                    alt={item.title}
-                  />
-                ) : (
-                  <></>
-                )}
-              </Box>
-            </Grid>
-          );
-        })}
+        {loadingGenre || loadingAuthor ? (
+          <Container>
+            <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
+          </Container>
+        ) : (
+          <>
+            {bookData.map((item, id) => {
+              return (
+                <Grid item key={id} md={2} xs={6} className={classes.container}>
+                  <Box
+                    className={classes.box}
+                    style={{
+                      border: item.selected ? "10px solid #80DEEA" : "none",
+                    }}
+                    onClick={() => onClickHandler(item.id)}
+                  >
+                    {item.coverImageUrl ? (
+                      <img
+                        className={classes.imageContainer}
+                        src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${item.coverImageUrl}`}
+                        alt={item.title}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </Box>
+                </Grid>
+              );
+            })}
+          </>
+        )}
       </Grid>
     </>
   );

@@ -36,7 +36,6 @@ const BookReader = ({ title, link }) => {
             );
             rendition.book.spine.get = function (target) {
               let t = spine_get(target);
-              target = target.toString();
               if (!t) {
                 t = spine_get(target);
               }

@@ -60,7 +60,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const [signup, { data, loading, error }] = useMutation(SIGNUP, {
+  const [signup, { data, loading }] = useMutation(SIGNUP, {
     variables: {
       username: username,
       name: name,
