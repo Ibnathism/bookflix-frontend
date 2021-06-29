@@ -1,10 +1,18 @@
-import { Box, TextField, Typography, Button } from "@material-ui/core";
+import {
+  Box,
+  TextField,
+  Typography,
+  Button,
+  Container,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN } from "../../graphql/Mutations";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { useState } from "react";
+import LottieAnimation from "../../helpers/lottie";
+import LoadAnimation from "../../animations/feed-loading.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +56,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
-  const [login, { data, loading, error }] = useMutation(LOGIN, {
+  const [login, { data, loading }] = useMutation(LOGIN, {
     variables: {
       username: username,
       password: password,
@@ -77,6 +85,13 @@ const LoginForm = () => {
             <AlertTitle>Error</AlertTitle>
             Login Failed -- <strong>Invalid Credentials</strong>
           </Alert>
+        ) : (
+          <></>
+        )}
+        {loading ? (
+          <Container>
+            <LottieAnimation lotti={LoadAnimation} height={200} width={200} />
+          </Container>
         ) : (
           <></>
         )}

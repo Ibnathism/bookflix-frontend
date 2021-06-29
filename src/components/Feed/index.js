@@ -5,9 +5,11 @@ import BookCardB from "../../components/BookCardB";
 import { Link as RouterLink } from "react-router-dom";
 
 const Feed = ({ feed }) => {
+  const newFeed = [...feed];
+
   return (
     <Box style={{ margin: "16px" }}>
-      {feed.map((list, idx) => {
+      {newFeed.slice(1).map((list, idx) => {
         return (
           <Box key={idx} style={{ marginTop: "16px" }}>
             <Grid container spacing={3} direction="column">
