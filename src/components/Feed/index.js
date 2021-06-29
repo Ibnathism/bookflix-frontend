@@ -3,10 +3,30 @@ import { Box, Typography, Grid } from "@material-ui/core";
 import BookCardA from "../../components/BookCardA";
 import BookCardB from "../../components/BookCardB";
 import { Link as RouterLink } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  hs: {
+    display: "grid",
+    gridTemplateColumns: "10px",
+    gridAutoFlow: "column",
+    gridAutoColumns: "calc(50%-20*2)",
+    overflowX: "scroll",
+    scrollSnapType: "x proximity",
+    "&::before": {
+      content: "",
+      width: "10px",
+    },
+    "&::after": {
+      content: "",
+      width: "10px",
+    },
+  },
+}));
 
 const Feed = ({ feed }) => {
   const newFeed = [...feed];
-
+  const classes = useStyles();
   return (
     <Box style={{ margin: "16px" }}>
       {newFeed.slice(1).map((list, idx) => {
@@ -17,7 +37,7 @@ const Feed = ({ feed }) => {
                 <Typography variant="h2">{list.category}</Typography>
               </Grid>
               <Grid item>
-                <Grid container spacing={3} direction="row">
+                <Grid container spacing={3}>
                   {idx % 2 === 0 ? (
                     <>
                       {list.books.map((book, id) => {

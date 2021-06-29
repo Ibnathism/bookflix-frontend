@@ -23,7 +23,7 @@ const DetailsView = () => {
 
   const [getFeed, { data, error }] = useLazyQuery(GET_FEED, {
     variables: {
-      bookCountEachCategory: 10,
+      bookCountEachCategory: 6,
       categoryCount: 10,
     },
     onCompleted: () => {

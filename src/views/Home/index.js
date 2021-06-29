@@ -19,7 +19,7 @@ const HomeView = () => {
 
   const [getFeed, { data, loading, error }] = useLazyQuery(GET_FEED, {
     variables: {
-      bookCountEachCategory: 10,
+      bookCountEachCategory: 20,
       categoryCount: 10,
     },
     onCompleted: () => {
