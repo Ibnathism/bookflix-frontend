@@ -85,3 +85,18 @@ export const GET_FEED = gql`
     }
   }
 `;
+
+export const GET_MY_LIST = gql`
+  query getMyList($paginate: PaginationInput) {
+    myList(paginate: $paginate) {
+      books {
+        id
+        title
+        coverImageUrl
+        genres {
+          name
+        }
+      }
+    }
+  }
+`;

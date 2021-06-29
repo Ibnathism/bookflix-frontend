@@ -3,7 +3,7 @@ import BooksOnboard from "./books";
 import GenresOnboard from "./genres";
 import AuthorsOnboard from "./authors";
 import GlobalLayout from "../../layouts/GlobalLayout";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
 import { useMutation } from "@apollo/client";
