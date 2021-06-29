@@ -192,7 +192,17 @@ const DetailsView = () => {
                     </Grid>
                     <Grid item>
                       <Grid container spacing={3}>
-                        <Typography variant="h3" align="left">
+                        <Typography
+                          variant="h3"
+                          align="left"
+                          style={{
+                            lineHeight: 1.5,
+                            fontSize:
+                              details?.description?.length >= 300
+                                ? "18px"
+                                : "24px",
+                          }}
+                        >
                           {details.description}
                         </Typography>
                       </Grid>
