@@ -84,7 +84,7 @@ const SignupForm = () => {
     } else {
       setShowErrorAlert(false);
       setPasswordMismatch(false);
-      if (!data || error) signup();
+      if (!data) signup();
     }
   };
 

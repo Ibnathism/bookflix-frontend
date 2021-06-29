@@ -48,27 +48,26 @@ const LoginForm = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
-  const [login, { data, error }] = useMutation(LOGIN, {
+  const [login, { data, loading, error }] = useMutation(LOGIN, {
     variables: {
       username: username,
       password: password,
     },
-    onCompleted: () => {
+    onCompleted: (data) => {
+      console.log(data);
+      const token = JSON.parse(JSON.stringify(data.login.token));
+      localStorage.setItem("bookflix-token", token);
       history.push("/home");
     },
-    onError: () => {
+    onError: (error) => {
+      console.log(error);
       setShowErrorAlert(true);
     },
   });
 
   const handleLogin = () => {
-    login();
-    //console.log(data);
-    if (!error && data && data.login.token) {
-      const token = data.login.token;
-      localStorage.setItem("bookflix-token", token);
-      //console.log(token);
-    }
+    setShowErrorAlert(false);
+    if (!data) login();
   };
   return (
     <>
