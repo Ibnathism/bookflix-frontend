@@ -109,7 +109,7 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
 
   const [setFavGenre] = useMutation(SET_FAV_GENRE, {
     variables: {
-      genreIds: genreSelected.map((genre) => parseInt(genre.id)),
+      genreIds: genreSelected.map((genre) => genre.id),
       operation: "add",
     },
     onCompleted: () => {
