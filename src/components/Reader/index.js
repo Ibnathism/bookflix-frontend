@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ReactReader } from "react-reader";
-import { Container } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
+import { ReaderContainer } from "./styledComponent";
 import LoadAnimation from "../../animations/feed-loading.json";
 import LottieAnimation from "../../helpers/lottie";
 const storage = global.localStorage || null;
@@ -11,17 +12,13 @@ const BookReader = ({ title, link }) => {
     setLocation(location);
     storage.setItem("epub-location", location);
   };
+
   return (
-    <Container>
-      <div
-        style={{
-          fontSize: "16px",
-          position: "absolute",
-          width: "1320px",
-          height: "804px",
-          margin: "16px",
-        }}
-      >
+    <Container
+      style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}
+    >
+      <Typography variant="h2">{title}</Typography>
+      <ReaderContainer>
         <ReactReader
           swipeable
           url={link}
@@ -37,9 +34,7 @@ const BookReader = ({ title, link }) => {
             );
             rendition.book.spine.get = function (target) {
               let t = spine_get(target);
-              console.log("t", t);
               target = target.toString();
-              console.log("target", target);
               if (!t) {
                 t = spine_get(target);
               }
@@ -47,7 +42,7 @@ const BookReader = ({ title, link }) => {
             };
           }}
         />
-      </div>
+      </ReaderContainer>
     </Container>
   );
 };
