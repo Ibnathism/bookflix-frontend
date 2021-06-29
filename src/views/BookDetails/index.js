@@ -115,7 +115,7 @@ const DetailsView = () => {
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
           open={snackOpen}
-          autoHideDuration={6000}
+          autoHideDuration={2000}
           onClose={handleClose}
         >
           <Alert
@@ -210,7 +210,7 @@ const DetailsView = () => {
                             variant="contained"
                             color="primary"
                             onClick={() => {
-                              if (!addedToListData) setBookToList();
+                              setBookToList();
                             }}
                           >
                             Read Later
