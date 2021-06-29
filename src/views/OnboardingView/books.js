@@ -111,7 +111,7 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
 
   const [setFavAuthor] = useMutation(SET_FAV_AUTHOR, {
     variables: {
-      authorId: authorSelected.map((author) => parseInt(author.id))[0],
+      authorIds: authorSelected.map((author) => author.id),
       operation: "add",
     },
     onCompleted: () => {

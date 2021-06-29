@@ -23,7 +23,7 @@ export const SIGNUP = gql`
 `;
 
 export const SET_FAV_GENRE = gql`
-  mutation setFavGenre($genreIds: [Int!]!, $operation: AddOrRemove!) {
+  mutation setFavGenre($genreIds: [ID!]!, $operation: AddOrRemove!) {
     setFavoriteGenres(genreIds: $genreIds, operation: $operation) {
       count
     }
@@ -31,14 +31,9 @@ export const SET_FAV_GENRE = gql`
 `;
 
 export const SET_FAV_AUTHOR = gql`
-  mutation setFavAuthor($authorId: ID!, $operation: AddOrRemove!) {
-    setFavoriteAuthor(authorId: $authorId, operation: $operation) {
-      author {
-        name
-      }
-      user {
-        name
-      }
+  mutation setFavAuthors($authorIds: [ID!]!, $operation: AddOrRemove!) {
+    setFavoriteAuthors(authorIds: $authorIds, operation: $operation) {
+      count
     }
   }
 `;
