@@ -1,10 +1,18 @@
-import { Box, TextField, Typography, Button } from "@material-ui/core";
+import {
+  Box,
+  TextField,
+  Typography,
+  Button,
+  Container,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { SIGNUP } from "../../graphql/Mutations";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { useState } from "react";
+import LottieAnimation from "../../helpers/lottie";
+import LoadAnimation from "../../animations/feed-loading.json";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,16 +60,20 @@ const SignupForm = () => {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const [signup, { data, error }] = useMutation(SIGNUP, {
+  const [signup, { data, loading, error }] = useMutation(SIGNUP, {
     variables: {
       username: username,
       name: name,
       password: password,
     },
-    onCompleted: () => {
+    onCompleted: (data) => {
+      console.log(data);
+      const token = JSON.parse(JSON.stringify(data.signup.token));
+      localStorage.setItem("bookflix-token", token);
       history.push("/onboarding");
     },
-    onError: () => {
+    onError: (error) => {
+      console.log(error);
       setShowErrorAlert(true);
     },
   });
@@ -72,13 +84,7 @@ const SignupForm = () => {
     } else {
       setShowErrorAlert(false);
       setPasswordMismatch(false);
-      signup();
-      //console.log(data);
-      if (!error && data && data.signup.token) {
-        const token = data.signup.token;
-        localStorage.setItem("bookflix-token", token);
-        //console.log(token);
-      }
+      if (!data || error) signup();
     }
   };
 
@@ -98,6 +104,13 @@ const SignupForm = () => {
             <AlertTitle>Error</AlertTitle>
             Signup Failed -- <strong>Passwords Mismatch</strong>
           </Alert>
+        ) : (
+          <></>
+        )}
+        {loading ? (
+          <Container>
+            <LottieAnimation lotti={LoadAnimation} height={200} width={200} />
+          </Container>
         ) : (
           <></>
         )}
