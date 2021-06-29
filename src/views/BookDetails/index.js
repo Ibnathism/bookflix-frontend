@@ -1,9 +1,18 @@
 import CommonLayout from "../../layouts/CommonLayout";
-import { Container, Grid, Typography, Chip, Button } from "@material-ui/core";
+import {
+  Container,
+  Grid,
+  Typography,
+  Chip,
+  Button,
+  Snackbar,
+} from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import Feed from "../../components/Feed";
 import { useState, useEffect } from "react";
 import { GET_FEED, GET_BOOK_DETAILS } from "../../graphql/Queries";
-import { useLazyQuery } from "@apollo/client";
+import { SET_BOOK_TO_LIST } from "../../graphql/Mutations";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { useParams, useHistory } from "react-router";
 import LottieAnimation from "../../helpers/lottie";
 import LoadAnimation from "../../animations/feed-loading.json";
@@ -20,6 +29,43 @@ const DetailsView = () => {
   const { id } = useParams();
   const history = useHistory();
   //console.log(id);
+  const [snackOpen, setSnackOpen] = useState(false);
+  const [snackProperty, setSnackProperty] = useState({
+    severity: "info",
+    message: "",
+  });
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnackOpen(false);
+  };
+  const [
+    setBookToList,
+    { data: addedToListData, loading: addedToListLoading },
+  ] = useMutation(SET_BOOK_TO_LIST, {
+    variables: {
+      bookId: id,
+      operation: "add",
+    },
+    onCompleted: () => {
+      setSnackOpen(true);
+      setSnackProperty({
+        severity: "success",
+        message: "Book added to your list",
+      });
+      console.log("Book added to your list");
+    },
+    onError: () => {
+      setSnackOpen(true);
+      setSnackProperty({
+        severity: "error",
+        message: "Could not add to your list. Try again!",
+      });
+      console.log("Could not add book to your list");
+    },
+  });
 
   const [getFeed, { data, error }] = useLazyQuery(GET_FEED, {
     variables: {
@@ -63,6 +109,26 @@ const DetailsView = () => {
 
   return (
     <CommonLayout>
+      {addedToListLoading || !addedToListData ? (
+        <></>
+      ) : (
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          open={snackOpen}
+          autoHideDuration={6000}
+          onClose={handleClose}
+        >
+          <Alert
+            elevation={6}
+            variant="filled"
+            onClose={handleClose}
+            severity={snackProperty.severity}
+          >
+            {snackProperty.message}
+          </Alert>
+        </Snackbar>
+      )}
+
       {loading ? (
         <Container>
           <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
@@ -138,15 +204,30 @@ const DetailsView = () => {
                         justifyContent: "center",
                       }}
                     >
-                      {/* <RouterLink to="/read"> */}
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => history.push(`/home/${details.id}/read`)}
-                      >
-                        Start Reading
-                      </Button>
-                      {/* </RouterLink> */}
+                      <Grid container spacing={3} justify="center">
+                        <Grid item>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => {
+                              if (!addedToListData) setBookToList();
+                            }}
+                          >
+                            Read Later
+                          </Button>
+                        </Grid>
+                        <Grid item>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() =>
+                              history.push(`/home/${details.id}/read`)
+                            }
+                          >
+                            Start Reading
+                          </Button>
+                        </Grid>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
