@@ -17,7 +17,9 @@ const BookReader = ({ title, link }) => {
     <Container
       style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}
     >
-      <Typography variant="h2">{title}</Typography>
+      <Typography variant={title.length >= 30 ? "h3" : "h2"}>
+        {title}
+      </Typography>
       <ReaderContainer>
         <ReactReader
           swipeable
