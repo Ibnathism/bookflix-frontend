@@ -48,6 +48,9 @@ const Feed = ({ feed }) => {
                                   book.description.length >= 100
                                     ? `${book.description}`.substr(0, 100) +
                                       " ..."
+                                    : !book.description ||
+                                      book.description.length <= 5
+                                    ? ""
                                     : `${book.description}`
                                 }
                               />

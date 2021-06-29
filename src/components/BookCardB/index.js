@@ -1,10 +1,10 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 const useStyles = makeStyles((theme) => ({
   hoveredRoot: {
-    width: "336px",
-    height: "267px",
+    width: "308px",
+    height: "245px",
     background: theme.palette.primary.main,
     display: "flex",
     alignItems: "center",
@@ -93,14 +93,20 @@ const BookCardB = ({ imageUrl, review }) => {
         >
           <img className={classes.leftContainer} alt="book" src={imageUrl} />
           <div className={classes.rightContainer}>
-            <Typography className={classes.review} variant="body1">
-              {review}
-            </Typography>
-            <div className={classes.button}>
-              <Typography className={classes.buttonText} variant="body1">
-                Read Later
-              </Typography>
-            </div>
+            <Grid container direction="column" justify="space-evenly">
+              <Grid item>
+                <Typography className={classes.review} variant="body1">
+                  {review}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <div className={classes.button}>
+                  <Typography className={classes.buttonText} variant="body1">
+                    Read Later
+                  </Typography>
+                </div>
+              </Grid>
+            </Grid>
           </div>
         </Box>
       )}

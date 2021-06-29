@@ -158,7 +158,7 @@ const BooksOnboard = ({ setBookSelected, genreSelected, authorSelected }) => {
               <Box
                 className={classes.box}
                 style={{
-                  border: item.selected ? "10px solid #D8F3DC" : "none",
+                  border: item.selected ? "10px solid #80DEEA" : "none",
                 }}
                 onClick={() => onClickHandler(item.id)}
               >
