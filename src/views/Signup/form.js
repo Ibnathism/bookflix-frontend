@@ -41,14 +41,14 @@ const useStyles = makeStyles((theme) => ({
       width: 300,
       borderRadius: 4,
       paddingLeft: theme.spacing(3.5),
-      fontSize: "20px"
+      fontSize: "20px",
     },
     "& .MuiButton-label": {
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1),
       paddingTop: theme.spacing(0.4),
       paddingBottom: theme.spacing(0.4),
-      fontSize: "18px"
+      fontSize: "18px",
     },
   },
   signupText: {
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   signup: {
     fontSize: "20px",
     marginLeft: theme.spacing(1),
-    textDecoration: "underline"
+    textDecoration: "underline",
   },
 }));
 
@@ -96,11 +96,11 @@ const SignupForm = () => {
   });
 
   const handleSignup = () => {
+    setShowErrorAlert(false);
+    setPasswordMismatch(false);
     if (password !== confirmPassword) {
       setPasswordMismatch(true);
     } else {
-      setShowErrorAlert(false);
-      setPasswordMismatch(false);
       if (!data) signup();
     }
   };
