@@ -1,45 +1,49 @@
 import React, { useState } from "react";
 import { ReactReader } from "react-reader";
-import { Container } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
+import { ReaderContainer } from "./styledComponent";
+import LoadAnimation from "../../animations/feed-loading.json";
+import LottieAnimation from "../../helpers/lottie";
 const storage = global.localStorage || null;
 
-const book = {
-  title: "Alice in wonderland",
-  //link: "https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/books/Graph_Theory.pdf",
-  link: "https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/books/1064.epub.images.epub",
-  //link: "https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/books/45315.epub",
-};
-
-const BookReader = () => {
-  const [location, setLocation] = useState(
-    storage && storage.getItem("epub-location")
-      ? storage.getItem("epub-location")
-      : 2
-  );
+const BookReader = ({ title, link }) => {
+  const [location, setLocation] = useState(null);
   const onLocationChanged = (location) => {
     setLocation(location);
     storage.setItem("epub-location", location);
-    //setLocation(storage && storage.setItem("epub-location", location));
   };
+
   return (
-    <Container>
-      <div
-        style={{
-          fontSize: "16px",
-          position: "absolute",
-          width: "1320px",
-          height: "804px",
-          margin: "16px",
-        }}
-      >
+    <Container
+      style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}
+    >
+      <Typography variant={title.length >= 30 ? "h3" : "h2"}>
+        {title}
+      </Typography>
+      <ReaderContainer>
         <ReactReader
           swipeable
-          url={book.link}
-          title={book.title}
+          url={link}
+          title={title}
           location={location}
           locationChanged={onLocationChanged}
+          loadingView={
+            <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
+          }
+          getRendition={(rendition) => {
+            const spine_get = rendition.book.spine.get.bind(
+              rendition.book.spine
+            );
+            rendition.book.spine.get = function (target) {
+              let t = spine_get(target);
+              if (!t) {
+                t = spine_get(target);
+              }
+              return t;
+            };
+          }}
         />
-      </div>
+      </ReaderContainer>
     </Container>
   );
 };

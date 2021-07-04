@@ -7,12 +7,8 @@ const Navbar = () => {
       <Nav>
         <Bars />
         <NavMenu>
-          <NavLink to="/home" activeStyle>
-            Home
-          </NavLink>
-          <NavLink to="/list" activeStyle>
-            My List
-          </NavLink>
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/list">My List</NavLink>
         </NavMenu>
         <NavBtn>
           <NavBtnLink to="/login">Log Out</NavBtnLink>

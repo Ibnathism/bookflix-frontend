@@ -1,0 +1,34 @@
+[
+  {
+    "name": "William Shakespeare",
+    "id": 1
+  },
+  {
+    "name": "Shelley, Mary Wollstonecraft",
+    "id": 2
+  },
+  {
+    "name": "H. P. Lovecraft",
+    "id": 3
+  },
+  {
+    "name": "Arthur Conan Doyle",
+    "id": 4
+  },
+  {
+    "name": "Du Bois, W. E. B. (William Edward Burghardt) Du Bois, W. E. B. (William Edward Burghardt)",
+    "id": 5
+  },
+  {
+    "name": "Fitzgerald, F. Scott (Francis Scott)",
+    "id": 6
+  },
+  {
+    "name": "Robert Ervin Howard",
+    "id": 7
+  },
+  {
+    "name": "Rabindranath Tagore",
+    "id": 8
+  }
+]

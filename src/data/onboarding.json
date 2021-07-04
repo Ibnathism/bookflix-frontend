@@ -1,6 +1,7 @@
 [
   {
-    "imageUrl": "/images/1.jpg",
+    "id": 1,
+    "coverImageUrl": "/images/1.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -14,7 +15,8 @@
     ]
   },
   {
-    "imageUrl": "/images/2.jpg",
+    "id": 2,
+    "coverImageUrl": "/images/2.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -28,7 +30,8 @@
     ]
   },
   {
-    "imageUrl": "/images/3.jpg",
+    "id": 3,
+    "coverImageUrl": "/images/3.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -42,7 +45,8 @@
     ]
   },
   {
-    "imageUrl": "/images/6.jpg",
+    "id": 6,
+    "coverImageUrl": "/images/6.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -56,7 +60,8 @@
     ]
   },
   {
-    "imageUrl": "/images/7.jpg",
+    "id": 7,
+    "coverImageUrl": "/images/7.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -70,7 +75,8 @@
     ]
   },
   {
-    "imageUrl": "/images/10.jpg",
+    "id": 10,
+    "coverImageUrl": "/images/10.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -84,7 +90,8 @@
     ]
   },
   {
-    "imageUrl": "/images/11.jpeg",
+    "id": 11,
+    "coverImageUrl": "/images/11.jpeg",
     "genreList": [
       {
         "name": "Crime"
@@ -98,7 +105,8 @@
     ]
   },
   {
-    "imageUrl": "/images/12.jpg",
+    "id": 12,
+    "coverImageUrl": "/images/12.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -112,7 +120,8 @@
     ]
   },
   {
-    "imageUrl": "/images/13.jpg",
+    "id": 13,
+    "coverImageUrl": "/images/13.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -126,7 +135,8 @@
     ]
   },
   {
-    "imageUrl": "/images/14.jpg",
+    "id": 14,
+    "coverImageUrl": "/images/14.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -140,7 +150,8 @@
     ]
   },
   {
-    "imageUrl": "/images/15.jpg",
+    "id": 15,
+    "coverImageUrl": "/images/15.jpg",
     "genreList": [
       {
         "name": "Crime"
@@ -154,21 +165,8 @@
     ]
   },
   {
-    "imageUrl": "/images/16.jpg",
-    "genreList": [
-      {
-        "name": "Crime"
-      },
-      {
-        "name": "Thriller"
-      },
-      {
-        "name": "Drama"
-      }
-    ]
-  },
-  {
-    "imageUrl": "/images/17.jpg",
+    "id": 16,
+    "coverImageUrl": "/images/16.jpg",
     "genreList": [
       {
         "name": "Crime"

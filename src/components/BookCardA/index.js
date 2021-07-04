@@ -82,15 +82,10 @@ const BookCardA = ({ imageUrl, genreList }) => {
           />
           <div className={classes.lowerContainer}>
             <div className={classes.genre}>
-              {genreList.slice(0, 3).map((item, id) => {
+              {genreList.slice(0, 1).map((item, id) => {
                 return (
-                  <div className={classes.genreName}>
+                  <div className={classes.genreName} key={id}>
                     <Typography variant="body1">{item.name}</Typography>
-                    {id !== 2 ? (
-                      <svg height="18" width="18">
-                        <circle cx="9" cy="9" r="3" fill="black" />
-                      </svg>
-                    ) : null}
                   </div>
                 );
               })}

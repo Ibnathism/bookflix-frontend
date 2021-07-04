@@ -3,6 +3,7 @@ import { Container, Grid, Typography } from "@material-ui/core";
 import LottieAnimation from "../../helpers/lottie";
 import LoginAnimation from "../../animations/login-animation.json";
 import LoginForm from "./form";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     background: theme.palette.background.default,
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const LoginView = () => {
   const classes = useStyles();
+
   return (
     <Container className={classes.root}>
       <Grid

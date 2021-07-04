@@ -11,20 +11,27 @@ const theme = createMuiTheme({
       light: "#D8F3DC",
     },
     secondary: {
-      main: "#80deea",
+      main: "#80DEEA",
     },
     info: {
       main: "#D8F3DC",
     },
   },
   typography: {
+    fontFamily: [
+      "system-ui",
+      "sans-serif",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+    ].join(","),
     h1: {
-      fontSize: "50px",
+      fontSize: "48px",
       color: "#D8F3DC",
     },
     h2: {
-      fontSize: "30px",
+      fontSize: "32px",
       color: "#D8F3DC",
+      fontWeight: "bold",
     },
     h3: {
       fontSize: "16px",
@@ -36,6 +43,7 @@ const theme = createMuiTheme({
     },
     body1: {
       fontSize: "11px",
+      color: "#030c08",
     },
   },
 });
