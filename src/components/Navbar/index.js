@@ -4,17 +4,16 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  //InputBase,
+  Grid,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-//import SearchIcon from "@material-ui/icons/Search";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import { NavLink } from "./elements";
 
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import { useHistory } from "react-router";
 import { SEARCH } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
 
@@ -82,10 +81,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchAppBar = () => {
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const [searchText, setSearchText] = useState();
-  //const loading = open && options.length === 0;
   const classes = useStyles();
 
   const [search, { data, loading }] = useLazyQuery(SEARCH, {
@@ -100,7 +99,9 @@ const SearchAppBar = () => {
   });
 
   useEffect(() => {
-    search();
+    if (searchText?.length >= 3) {
+      search();
+    }
   }, [searchText, search]);
 
   return (
@@ -120,19 +121,6 @@ const SearchAppBar = () => {
               <NavLink to="/list">My List</NavLink>
             </Typography>
           </div>
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div> */}
           <div className={classes.search}>
             {/* <div className={classes.searchIcon}>
               <SearchIcon />
@@ -146,13 +134,48 @@ const SearchAppBar = () => {
               }}
               onClose={() => {
                 setOpen(false);
+                //history.push(`/home/1`);
               }}
               getOptionSelected={(option, value) =>
                 option.title === value.title
               }
+              onChange={(event) => {
+                console.log("in the on change", event.target.textContent);
+                if (event.target.textContent !== "") {
+                  let books = options.filter(
+                    (item) => item.title === event.target.textContent
+                  );
+                  console.log(books);
+                  books.length !== 0
+                    ? history.push(`/home/${books[0].id}`)
+                    : console.log("Book not found");
+                }
+              }}
               getOptionLabel={(option) => option.title}
               options={options}
               loading={loading}
+              renderOption={(option) => (
+                <React.Fragment>
+                  <img
+                    alt="img"
+                    width="50px"
+                    height="70px"
+                    src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${option.coverImageUrl}`}
+                  />
+                  <Grid container style={{ padding: "8px" }}>
+                    <Grid>
+                      <Typography variant="body1">{option.title}</Typography>
+                    </Grid>
+                    <Grid>
+                      <Typography variant="body1">
+                        {option.authors.length !== 0
+                          ? option.authors[0].name
+                          : ""}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </React.Fragment>
+              )}
               renderInput={(params) => (
                 <TextField
                   {...params}

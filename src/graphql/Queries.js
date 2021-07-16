@@ -106,6 +106,11 @@ export const SEARCH = gql`
     search(filter: $filter) {
       books {
         title
+        id
+        coverImageUrl
+        authors {
+          name
+        }
       }
     }
   }
