@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
   IconButton,
   Typography,
-  InputBase,
+  //InputBase,
 } from "@material-ui/core";
-import { alpha, makeStyles } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
+import { makeStyles } from "@material-ui/core/styles";
+//import SearchIcon from "@material-ui/icons/Search";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import { NavLink } from "./elements";
+
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+import { SEARCH } from "../../graphql/Queries";
+import { useLazyQuery } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,9 +43,10 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: theme.palette.primary.light,
     "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      //backgroundColor: alpha(theme.palette.primary.light, 0.25),
+      backgroundColor: theme.palette.info.light,
     },
     marginLeft: 0,
     width: "100%",
@@ -73,12 +81,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+const SearchAppBar = () => {
+  const [open, setOpen] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [searchText, setSearchText] = useState();
+  //const loading = open && options.length === 0;
   const classes = useStyles();
+
+  const [search, { data, loading }] = useLazyQuery(SEARCH, {
+    variables: {
+      filter: searchText,
+    },
+    onCompleted: () => {
+      console.log("on completed of search", data.search);
+      const res = JSON.parse(JSON.stringify(data.search));
+      setOptions(res.books);
+    },
+  });
+
+  useEffect(() => {
+    search();
+  }, [searchText, search]);
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" color="transparent">
         <Toolbar>
           <div className={classes.left}>
             <Typography className={classes.title} variant="h2" noWrap>
@@ -93,7 +120,7 @@ export default function SearchAppBar() {
               <NavLink to="/list">My List</NavLink>
             </Typography>
           </div>
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -104,6 +131,47 @@ export default function SearchAppBar() {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+            />
+          </div> */}
+          <div className={classes.search}>
+            {/* <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div> */}
+            <Autocomplete
+              id="asynchronous-demo"
+              style={{ width: 300 }}
+              open={open}
+              onOpen={() => {
+                setOpen(true);
+              }}
+              onClose={() => {
+                setOpen(false);
+              }}
+              getOptionSelected={(option, value) =>
+                option.title === value.title
+              }
+              getOptionLabel={(option) => option.title}
+              options={options}
+              loading={loading}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  value={searchText}
+                  onChange={(event) => setSearchText(event.target.value)}
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <React.Fragment>
+                        {loading ? (
+                          <CircularProgress color="inherit" size={20} />
+                        ) : null}
+                        {params.InputProps.endAdornment}
+                      </React.Fragment>
+                    ),
+                  }}
+                />
+              )}
             />
           </div>
           <IconButton
@@ -120,4 +188,6 @@ export default function SearchAppBar() {
       </AppBar>
     </div>
   );
-}
+};
+
+export default SearchAppBar;

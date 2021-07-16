@@ -100,3 +100,13 @@ export const GET_MY_LIST = gql`
     }
   }
 `;
+
+export const SEARCH = gql`
+  query search($filter: String!) {
+    search(filter: $filter) {
+      books {
+        title
+      }
+    }
+  }
+`;
