@@ -44,12 +44,12 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
     GET_ALL_AUTHOR,
     {
       onCompleted: () => {
-        console.log(data.authors.authors);
+        //console.log(data.authors.authors);
         var response = JSON.parse(JSON.stringify(data.authors));
         response.authors.forEach((item) => {
           item.selected = false;
         });
-        console.log(response);
+        //console.log(response);
         setAuthorData(response.authors);
       },
       onError: () => {

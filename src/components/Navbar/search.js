@@ -2,19 +2,11 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import React, { useState, useEffect } from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Grid,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import ExitToApp from "@material-ui/icons/ExitToApp";
-import { NavLink } from "./elements";
+import { Typography, Grid } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { SEARCH } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
+
 const Search = () => {
   const history = useHistory();
   const [open, setOpen] = useState(false);
@@ -26,7 +18,7 @@ const Search = () => {
       filter: searchText,
     },
     onCompleted: () => {
-      console.log("on completed of search", data.search);
+      //console.log("on completed of search", data.search);
       const res = JSON.parse(JSON.stringify(data.search));
       setOptions(res.books);
     },
@@ -37,9 +29,9 @@ const Search = () => {
       search();
     }
   }, [searchText, search]);
+
   return (
     <Autocomplete
-      id="asynchronous-demo"
       style={{ width: 300 }}
       open={open}
       onOpen={() => {
@@ -47,16 +39,15 @@ const Search = () => {
       }}
       onClose={() => {
         setOpen(false);
-        //history.push(`/home/1`);
       }}
       getOptionSelected={(option, value) => option.title === value.title}
       onChange={(event) => {
-        console.log("in the on change", event.target.textContent);
+        //console.log("in the on change", event.target);
         if (event.target.textContent !== "") {
           let books = options.filter(
             (item) => item.title === event.target.textContent
           );
-          console.log(books);
+          //console.log(books);
           books.length !== 0
             ? history.push(`/home/${books[0].id}`)
             : console.log("Book not found");

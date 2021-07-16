@@ -73,7 +73,7 @@ const DetailsView = () => {
       categoryCount: 10,
     },
     onCompleted: () => {
-      console.log("on completed of details", data.feed);
+      //console.log("on completed of details", data.feed);
       const res = JSON.parse(JSON.stringify(data.feed));
       setFeed(res);
     },
@@ -93,7 +93,7 @@ const DetailsView = () => {
         id: id,
       },
       onCompleted: () => {
-        console.log(bookDetails);
+        //console.log(bookDetails);
         const res = JSON.parse(JSON.stringify(bookDetails.book));
         setDetails(res);
       },
@@ -142,7 +142,12 @@ const DetailsView = () => {
         >
           <Grid item md={12} xs={12}>
             <Container>
-              <Grid container spacing={3} alignItems="center" justify="center">
+              <Grid
+                container
+                spacing={3}
+                alignItems="center"
+                justifyContent="center"
+              >
                 <Grid item xs={12} md={6} lg={6} xl={6}>
                   {details.coverImageUrl === "" ? (
                     <></>
@@ -175,7 +180,7 @@ const DetailsView = () => {
                         container
                         spacing={3}
                         alignItems="center"
-                        justify="center"
+                        justifyContent="center"
                       >
                         {details.genres.map((genre, id) => {
                           return (
@@ -214,7 +219,7 @@ const DetailsView = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <Grid container spacing={3} justify="center">
+                      <Grid container spacing={3} justifyContent="center">
                         <Grid item>
                           <Button
                             variant="contained"

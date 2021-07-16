@@ -19,7 +19,7 @@ const MyListView = () => {
       },
     },
     onCompleted: () => {
-      console.log("on completed of mylist", data.myList);
+      //console.log("on completed of mylist", data.myList);
       const res = JSON.parse(JSON.stringify(data.myList));
       setMyList(res.books);
     },

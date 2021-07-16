@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
   text: {
     fontSize: "22px",
     padding: "32px",
-    lineHeight: "1.15"
+    lineHeight: "1.15",
   },
 }));
 
@@ -43,12 +43,12 @@ const GenresOnboard = ({ setGenreSelected }) => {
 
   const [getAllGenre, { data, loading, error }] = useLazyQuery(GET_ALL_GENRE, {
     onCompleted: () => {
-      console.log(data.genres.genres);
+      //console.log(data.genres.genres);
       var response = JSON.parse(JSON.stringify(data.genres));
       response.genres.forEach((item) => {
         item.selected = false;
       });
-      console.log(response);
+      //console.log(response);
       setGenreData(response.genres);
     },
     onError: () => {

@@ -13,7 +13,7 @@ const TestView = () => {
   if (error) return <h1>Error Found</h1>;
 
   if (data) {
-    console.log(data);
+    //console.log(data);
   }
   return (
     <CommonLayout>

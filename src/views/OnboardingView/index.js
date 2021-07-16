@@ -56,7 +56,7 @@ const OnboardingView = () => {
             container
             spacing={6}
             direction="column"
-            justify="center"
+            justifyContent="center"
             alignItems="center"
           >
             {step === 0 ? (
@@ -73,7 +73,7 @@ const OnboardingView = () => {
                   <Button
                     className={classes.button}
                     onClick={() => {
-                      console.log(genreSelected);
+                      //console.log(genreSelected);
                       setStep(1);
                     }} //check api call validity
                   >
@@ -99,7 +99,7 @@ const OnboardingView = () => {
                   <Button
                     className={classes.button}
                     onClick={() => {
-                      console.log(authorSelected);
+                      //console.log(authorSelected);
                       setStep(2);
                     }} //check validity whether at least 3 have been selected
                   >
