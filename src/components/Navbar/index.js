@@ -95,7 +95,7 @@ const SearchAppBar = () => {
             aria-label="open drawer"
           >
             <NavLink to="/login">
-              <ExitToApp />
+              <ExitToApp style={{ width: 40, height: 40 }} />
             </NavLink>
           </IconButton>
         </Toolbar>
