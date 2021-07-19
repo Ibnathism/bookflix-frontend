@@ -19,8 +19,8 @@ const MyListView = () => {
       },
     },
     onCompleted: () => {
-      //console.log("on completed of mylist", data.myList);
-      const res = JSON.parse(JSON.stringify(data.myList));
+      //console.log("on completed of mylist", data.readLaterList);
+      const res = JSON.parse(JSON.stringify(data.readLaterList));
       setMyList(res.books);
     },
     onError: () => {
