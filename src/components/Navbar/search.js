@@ -12,7 +12,6 @@ const Search = () => {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const [searchText, setSearchText] = useState();
-
   const [search, { data, loading }] = useLazyQuery(SEARCH, {
     variables: {
       filter: searchText,
@@ -41,17 +40,11 @@ const Search = () => {
         setOpen(false);
       }}
       getOptionSelected={(option, value) => option.title === value.title}
-      onChange={(event) => {
-        //console.log("in the on change", event.target);
-        if (event.target.textContent !== "") {
-          let books = options.filter(
-            (item) => item.title === event.target.textContent
-          );
-          //console.log(books);
-          books.length !== 0
-            ? history.push(`/home/${books[0].id}`)
-            : console.log("Book not found");
-        }
+      onChange={(event, newValue) => {
+        //console.log("in the on change", newValue);
+        newValue && newValue.id
+          ? history.push(`/home/${newValue.id}`)
+          : console.log("Book not found");
       }}
       getOptionLabel={(option) => option.title}
       options={options}
