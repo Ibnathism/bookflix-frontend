@@ -115,3 +115,11 @@ export const SEARCH = gql`
     }
   }
 `;
+
+export const GET_HISTORY = gql`
+  query getHistory($bookId: ID!) {
+    userBookInteraction(bookId: $bookId) {
+      currentPageLocation
+    }
+  }
+`;

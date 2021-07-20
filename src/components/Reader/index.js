@@ -5,18 +5,27 @@ import { Container, Typography } from "@material-ui/core";
 import { ReaderContainer } from "./styledComponent";
 import LoadAnimation from "../../animations/feed-loading.json";
 import LottieAnimation from "../../helpers/lottie";
-import { useMutation } from "@apollo/client";
+import { useMutation, useLazyQuery } from "@apollo/client";
 import { UPDATE_READING_HISTORY } from "../../graphql/Mutations";
+import { GET_HISTORY } from "../../graphql/Queries";
 
 const storage = global.localStorage || null;
 
 const BookReader = ({ title, link }) => {
   const { id } = useParams();
   const [location, setLocation] = useState(null);
-  const [
-    updateReadingHistory,
-    { data: dataToUpdate, loading: loadingWhileUpdating },
-  ] = useMutation(UPDATE_READING_HISTORY, {
+  const [getHistory, { data, loading }] = useLazyQuery(GET_HISTORY, {
+    variables: {
+      bookId: id,
+    },
+    onCompleted: () => {
+      console.log("got history", data);
+      data
+        ? setLocation(data.userBookInteraction.currentPageLocation)
+        : setLocation(null);
+    },
+  });
+  const [updateReadingHistory] = useMutation(UPDATE_READING_HISTORY, {
     variables: {
       bookId: id,
       location: location,
@@ -30,6 +39,10 @@ const BookReader = ({ title, link }) => {
     updateReadingHistory();
     storage.setItem("epub-location", location);
   };
+
+  useEffect(() => {
+    getHistory();
+  }, [getHistory]);
 
   return (
     <Container

@@ -48,7 +48,7 @@ export const SET_FAV_Book = gql`
 
 export const SET_BOOK_TO_LIST = gql`
   mutation setBookToList($bookId: ID!, $operation: AddOrRemove!) {
-    setBookToMyList(bookId: $bookId, operation: $operation) {
+    setBookToReadLater(bookId: $bookId, operation: $operation) {
       book {
         title
       }
