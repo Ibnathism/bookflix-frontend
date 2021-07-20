@@ -6,7 +6,6 @@ import LoginView from "./views/Login";
 import SignupView from "./views/Signup";
 import OnboardingView from "./views/OnboardingView";
 import MyListView from "./views/MyList";
-import TestView from "./views/TestView";
 import BookReaderView from "./views/BookReader";
 import {
   gql,
@@ -63,7 +62,6 @@ function App() {
         <Route path="/list" exact component={MyListView} />
         <Route path="/home/:id/read" exact component={BookReaderView} />
         <Route path="/onboarding" exact component={OnboardingView} />
-        <Route path="/test" exact component={TestView} />
         <GlobalStyles />
       </Router>
     </ApolloProvider>

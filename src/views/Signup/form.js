@@ -84,7 +84,7 @@ const SignupForm = () => {
       password: password,
     },
     onCompleted: (data) => {
-      console.log(data);
+      //console.log(data);
       const token = JSON.parse(JSON.stringify(data.signup.token));
       localStorage.setItem("bookflix-token", token);
       history.push("/onboarding");

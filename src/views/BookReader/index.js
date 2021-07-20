@@ -15,7 +15,7 @@ const ReaderView = () => {
       id: id,
     },
     onCompleted: () => {
-      console.log(data);
+      //console.log(data);
       const res = JSON.parse(JSON.stringify(data.book));
       setTitle(res.title);
       setUrl(res.fileUrl);

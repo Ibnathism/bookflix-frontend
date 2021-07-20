@@ -93,7 +93,7 @@ const BookCardB = ({ imageUrl, review }) => {
         >
           <img className={classes.leftContainer} alt="book" src={imageUrl} />
           <div className={classes.rightContainer}>
-            <Grid container direction="column" justify="space-evenly">
+            <Grid container direction="column" justifyContent="space-evenly">
               <Grid item>
                 <Typography className={classes.review} variant="body1">
                   {review}

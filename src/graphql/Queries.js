@@ -88,12 +88,27 @@ export const GET_FEED = gql`
 
 export const GET_MY_LIST = gql`
   query getMyList($paginate: PaginationInput) {
-    myList(paginate: $paginate) {
+    readLaterList(paginate: $paginate) {
       books {
         id
         title
         coverImageUrl
         genres {
+          name
+        }
+      }
+    }
+  }
+`;
+
+export const SEARCH = gql`
+  query search($filter: String!) {
+    search(filter: $filter) {
+      books {
+        title
+        id
+        coverImageUrl
+        authors {
           name
         }
       }

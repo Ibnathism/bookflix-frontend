@@ -1,9 +1,9 @@
-import Navbar from "../../components/Navbar";
+import AppBar from "../../components/Navbar";
 
 const CommonLayout = ({ children }) => {
   return (
     <div>
-      <Navbar />
+      <AppBar />
       {children}
     </div>
   );

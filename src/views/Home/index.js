@@ -23,7 +23,7 @@ const HomeView = () => {
       categoryCount: 10,
     },
     onCompleted: () => {
-      console.log("on completed of home", data.feed);
+      //console.log("on completed of home", data.feed);
       const res = JSON.parse(JSON.stringify(data.feed));
       setFeed(res);
       setTopPicks(res[0]);
@@ -51,7 +51,7 @@ const HomeView = () => {
                 <Grid
                   container
                   direction="column"
-                  justify="center"
+                  justifyContent="center"
                   alignItems="center"
                 >
                   <Grid item>
@@ -63,7 +63,7 @@ const HomeView = () => {
                       spacing={3}
                       direction="row"
                       alignItems="center"
-                      justify="center"
+                      justifyContent="center"
                       style={{ marginTop: "16px" }}
                     >
                       {topPicks.books.slice(0, 3).map((book, id) => {
@@ -85,7 +85,7 @@ const HomeView = () => {
                               container
                               direction="column"
                               alignItems="center"
-                              justify="center"
+                              justifyContent="center"
                               spacing={3}
                             >
                               {
