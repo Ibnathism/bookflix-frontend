@@ -2,10 +2,11 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import React, { useState, useEffect } from "react";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, Paper } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { SEARCH } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
+import constants from "../../data/constants.json";
 
 const Search = () => {
   const history = useHistory();
@@ -39,6 +40,7 @@ const Search = () => {
       onClose={() => {
         setOpen(false);
       }}
+      noOptionsText="Enter Name of the book....."
       getOptionSelected={(option, value) => option.title === value.title}
       onChange={(event, newValue) => {
         //console.log("in the on change", newValue);
@@ -49,30 +51,45 @@ const Search = () => {
       getOptionLabel={(option) => option.title}
       options={options}
       loading={loading}
+      PaperComponent={({ children }) => (
+        <Paper style={{ background: "#030c08", border: "1px solid #D8F3DC" }}>
+          {children}
+        </Paper>
+      )}
       renderOption={(option) => (
-        <React.Fragment>
-          <img
-            alt="img"
-            width="50px"
-            height="70px"
-            src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${option.coverImageUrl}`}
-          />
-          <Grid container style={{ padding: "8px" }}>
-            <Grid>
-              <Typography variant="body1">{option.title}</Typography>
-            </Grid>
-            <Grid>
-              <Typography variant="body1">
-                {option.authors.length !== 0 ? option.authors[0].name : ""}
-              </Typography>
+        <Grid container spacing={3}>
+          <Grid item md={3} xs={3}>
+            <img
+              alt="img"
+              width="54px"
+              height="100%"
+              src={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${option.coverImageUrl}`}
+            />
+          </Grid>
+          <Grid item md={9} xs={9}>
+            <Grid container spacing={1}>
+              <Grid item md={12} xs={12}>
+                <Typography variant="h4" style={{ color: "#D8F3DC" }}>
+                  {option.title.length >= constants.bookNameMaLength
+                    ? `${option.title}`.substr(0, constants.bookNameMaLength) +
+                      "..."
+                    : `${option.title}`}
+                </Typography>
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <Typography variant="body1" style={{ color: "#D8F3DC" }}>
+                  {option.authors.length !== 0 ? option.authors[0].name : ""}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
-        </React.Fragment>
+        </Grid>
       )}
       renderInput={(params) => (
         <TextField
           {...params}
-          variant="outlined"
+          variant="filled"
+          label="Search..."
           value={searchText}
           onChange={(event) => setSearchText(event.target.value)}
           InputProps={{

@@ -44,7 +44,7 @@ const theme = createTheme({
     },
     body1: {
       fontSize: "11px",
-      color: "#030c08",
+      //color: "#030c08",
     },
   },
 });
