@@ -58,3 +58,19 @@ export const SET_BOOK_TO_LIST = gql`
     }
   }
 `;
+
+export const UPDATE_READING_HISTORY = gql`
+  mutation updateReadingHistory($bookId: ID!, $location: String!) {
+    updateBookReadingHistory(
+      bookId: $bookId
+      update: { currentPageLocation: $location }
+    ) {
+      book {
+        title
+        id
+      }
+      currentPageLocation
+      lastUpdate
+    }
+  }
+`;
