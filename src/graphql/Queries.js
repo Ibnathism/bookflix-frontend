@@ -31,7 +31,7 @@ export const GET_BOOK_DETAILS = gql`
 
 export const GET_ALL_GENRE = gql`
   query getAllGenre {
-    genres {
+    genres(orderBy: { name: asc }) {
       genres {
         id
         name
@@ -42,7 +42,7 @@ export const GET_ALL_GENRE = gql`
 
 export const GET_ALL_AUTHOR = gql`
   query getAllAuthor {
-    authors {
+    authors(orderBy: { name: asc }) {
       authors {
         id
         name
