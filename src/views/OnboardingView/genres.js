@@ -70,8 +70,8 @@ const GenresOnboard = ({ setGenreSelected }) => {
     setGenreSelected(myFav);
   };
 
-  const showListItem = (separator, listname) => {
-    let listItems = [];
+  const getListItems = (separator, listname) => {
+    let itemsInList = [];
     let id = separator;
     for (; id < genreData.length; id++) {
       let item = genreData[id];
@@ -80,7 +80,7 @@ const GenresOnboard = ({ setGenreSelected }) => {
         break;
       }
       if (item.name.startsWith(listname)) {
-        listItems.push(
+        itemsInList.push(
           <Grid key={id} item md={3} xs={6} className={classes.container}>
             <Box
               className={classes.box}
@@ -110,7 +110,7 @@ const GenresOnboard = ({ setGenreSelected }) => {
       }
     }
 
-    return listItems;
+    return itemsInList;
   };
 
   return (
@@ -123,37 +123,39 @@ const GenresOnboard = ({ setGenreSelected }) => {
         ) : (
           <Grid container spacing={3}>
             {(() => {
-              let alphabets = [];
+              let allLists = [];
               let separator = 0;
               for (let i = 0; i < 26; i++) {
                 let listname = (i + 10).toString(36).toUpperCase();
-                alphabets.push(
-                  <Grid key={i} item md={12} xs={12}>
+                allLists.push(
+                  <>
                     {(() => {
-                      const listItems = showListItem(separator, listname);
+                      const listItems = getListItems(separator, listname);
                       return (
                         <>
                           {listItems.length === 0 ? (
                             <></>
                           ) : (
-                            <Grid container spacing={3}>
-                              <Grid item md={12} xs={12}>
-                                <Typography
-                                  variant="h1"
-                                  style={{ padding: "8px" }}
-                                >
-                                  {listname}
-                                </Typography>
-                                <Divider
-                                  style={{
-                                    backgroundColor:
-                                      theme.palette.primary.light,
-                                  }}
-                                />
-                              </Grid>
-                              <Grid item md={12} xs={12}>
-                                <Grid container spacing={3}>
-                                  {listItems}
+                            <Grid key={i} item md={12} xs={12}>
+                              <Grid container spacing={3}>
+                                <Grid item md={12} xs={12}>
+                                  <Typography
+                                    variant="h1"
+                                    style={{ padding: "8px" }}
+                                  >
+                                    {listname}
+                                  </Typography>
+                                  <Divider
+                                    style={{
+                                      backgroundColor:
+                                        theme.palette.primary.light,
+                                    }}
+                                  />
+                                </Grid>
+                                <Grid item md={12} xs={12}>
+                                  <Grid container spacing={3}>
+                                    {listItems}
+                                  </Grid>
                                 </Grid>
                               </Grid>
                             </Grid>
@@ -161,10 +163,10 @@ const GenresOnboard = ({ setGenreSelected }) => {
                         </>
                       );
                     })()}
-                  </Grid>
+                  </>
                 );
               }
-              return alphabets;
+              return allLists;
             })()}
           </Grid>
         )}
