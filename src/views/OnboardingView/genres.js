@@ -75,7 +75,7 @@ const GenresOnboard = ({ setGenreSelected }) => {
     let id = separator;
     for (; id < genreData.length; id++) {
       let item = genreData[id];
-      if (listname < item.name[0]) {
+      if (listname < item.name[0] && listname < genreData[id + 1]?.name[0]) {
         separator = id;
         break;
       }
@@ -114,64 +114,62 @@ const GenresOnboard = ({ setGenreSelected }) => {
   };
 
   return (
-    <>
-      <Grid container spacing={3}>
-        {loading || genreData.length === 0 ? (
-          <Container>
-            <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
-          </Container>
-        ) : (
-          <Grid container spacing={3}>
-            {(() => {
-              let allLists = [];
-              let separator = 0;
-              for (let i = 0; i < 26; i++) {
-                let listname = (i + 10).toString(36).toUpperCase();
-                allLists.push(
-                  <>
-                    {(() => {
-                      const listItems = getListItems(separator, listname);
-                      return (
-                        <>
-                          {listItems.length === 0 ? (
-                            <></>
-                          ) : (
-                            <Grid key={i} item md={12} xs={12}>
-                              <Grid container spacing={3}>
-                                <Grid item md={12} xs={12}>
-                                  <Typography
-                                    variant="h1"
-                                    style={{ padding: "8px" }}
-                                  >
-                                    {listname}
-                                  </Typography>
-                                  <Divider
-                                    style={{
-                                      backgroundColor:
-                                        theme.palette.primary.light,
-                                    }}
-                                  />
-                                </Grid>
-                                <Grid item md={12} xs={12}>
-                                  <Grid container spacing={3}>
-                                    {listItems}
-                                  </Grid>
+    <Grid container spacing={3}>
+      {loading || genreData.length === 0 ? (
+        <Container>
+          <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
+        </Container>
+      ) : (
+        <>
+          {(() => {
+            let allLists = [];
+            let separator = 0;
+            for (let i = 0; i < 26; i++) {
+              let listname = (i + 10).toString(36).toUpperCase();
+              allLists.push(
+                <Grid item key={i} md={12} xs={12}>
+                  {(() => {
+                    const listItems = getListItems(separator, listname);
+                    return (
+                      <Grid container spacing={3}>
+                        {listItems.length === 0 ? (
+                          <></>
+                        ) : (
+                          <Grid item md={12} xs={12}>
+                            <Grid container spacing={3}>
+                              <Grid item md={12} xs={12}>
+                                <Typography
+                                  variant="h1"
+                                  style={{ padding: "8px" }}
+                                >
+                                  {listname}
+                                </Typography>
+                                <Divider
+                                  style={{
+                                    backgroundColor:
+                                      theme.palette.primary.light,
+                                  }}
+                                />
+                              </Grid>
+                              <Grid item md={12} xs={12}>
+                                <Grid container spacing={3}>
+                                  {listItems}
                                 </Grid>
                               </Grid>
                             </Grid>
-                          )}
-                        </>
-                      );
-                    })()}
-                  </>
-                );
-              }
-              return allLists;
-            })()}
-          </Grid>
-        )}
-      </Grid>
-    </>
+                          </Grid>
+                        )}
+                      </Grid>
+                    );
+                  })()}
+                </Grid>
+              );
+            }
+            return allLists;
+          })()}
+        </>
+      )}
+    </Grid>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Grid, Typography, Box, Container } from "@material-ui/core";
+import { Grid, Typography, Box, Container, Divider } from "@material-ui/core";
 import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
@@ -60,10 +60,6 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
 
   useEffect(() => {
     getAllAuthor();
-    // authors.forEach((item) => {
-    //   item.selected = false;
-    // });
-    // setAuthorData(authors);
   }, [getAllAuthor]);
 
   const onClickHandler = (id) => {
@@ -75,47 +71,107 @@ const AuthorsOnboard = ({ setAuthorSelected }) => {
     var myFav = authorData.filter((item) => item.selected);
     setAuthorSelected(myFav);
   };
-  return (
-    <>
-      <Grid container spacing={3}>
-        {loading ? (
-          <Container>
-            <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
-          </Container>
-        ) : (
-          <></>
-        )}
-        {authorData.map((item, id) => {
-          return (
-            <Grid item key={id} md={3} xs={6} className={classes.container}>
-              <Box
+
+  const getListItems = (separator, listname) => {
+    let itemsInList = [];
+    let id = separator;
+    for (; id < authorData.length; id++) {
+      let item = authorData[id];
+      if (listname < item.name[0] && listname < authorData[id + 1]?.name[0]) {
+        separator = id;
+        break;
+      }
+      if (item.name.startsWith(listname)) {
+        itemsInList.push(
+          <Grid item key={id} md={3} xs={6} className={classes.container}>
+            <Box
+              style={{
+                backgroundColor: item.selected
+                  ? theme.palette.secondary.main
+                  : theme.palette.primary.main,
+              }}
+              onClick={() => onClickHandler(item.id)}
+              className={classes.box}
+            >
+              <Typography
                 style={{
-                  backgroundColor: item.selected
-                    ? theme.palette.secondary.main
-                    : theme.palette.primary.main,
+                  color: item.selected
+                    ? theme.palette.primary.dark
+                    : theme.palette.primary.light,
                 }}
-                onClick={() => onClickHandler(item.id)}
-                className={classes.box}
+                className={classes.text}
               >
-                <Typography
-                  style={{
-                    color: item.selected
-                      ? theme.palette.primary.dark
-                      : theme.palette.primary.light,
-                  }}
-                  className={classes.text}
-                >
-                  {item.name.length >= constants.authorNameMaxLength
-                    ? `${item.name}`.substr(0, constants.authorNameMaxLength) +
-                      " ..."
-                    : `${item.name}`}
-                </Typography>
-              </Box>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </>
+                {item.name.length >= constants.authorNameMaxLength
+                  ? `${item.name}`.substr(0, constants.authorNameMaxLength) +
+                    " ..."
+                  : `${item.name}`}
+              </Typography>
+            </Box>
+          </Grid>
+        );
+      }
+    }
+
+    return itemsInList;
+  };
+
+  return (
+    <Grid container spacing={3}>
+      {loading || authorData.length === 0 ? (
+        <Container>
+          <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
+        </Container>
+      ) : (
+        <>
+          {(() => {
+            let allLists = [];
+            let separator = 0;
+            for (let i = 0; i < 26; i++) {
+              let listname = (i + 10).toString(36).toUpperCase();
+              allLists.push(
+                <Grid item key={i} md={12} xs={12}>
+                  {(() => {
+                    const listItems = getListItems(separator, listname);
+                    return (
+                      <Grid container spacing={3}>
+                        {listItems.length === 0 ? (
+                          <></>
+                        ) : (
+                          <Grid item md={12} xs={12}>
+                            <Grid container spacing={3}>
+                              <Grid item md={12} xs={12}>
+                                <Typography
+                                  variant="h1"
+                                  style={{ padding: "8px" }}
+                                >
+                                  {listname}
+                                </Typography>
+                                <Divider
+                                  style={{
+                                    backgroundColor:
+                                      theme.palette.primary.light,
+                                  }}
+                                />
+                              </Grid>
+                              <Grid item md={12} xs={12}>
+                                <Grid container spacing={3}>
+                                  {listItems}
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                        )}
+                      </Grid>
+                    );
+                  })()}
+                </Grid>
+              );
+            }
+            return allLists;
+          })()}
+        </>
+      )}
+    </Grid>
   );
 };
 
