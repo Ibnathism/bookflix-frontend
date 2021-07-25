@@ -1,15 +1,13 @@
 import { Grid, Typography, Box, Container } from "@material-ui/core";
-//import authors from "../../data/authors.json";
 import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
 import { useTheme } from "@material-ui/styles";
-
 import { GET_ALL_AUTHOR } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
-
 import LottieAnimation from "../../helpers/lottie";
 import LoadAnimation from "../../animations/feed-loading.json";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -38,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 const AuthorsOnboard = ({ setAuthorSelected }) => {
   const theme = useTheme();
   const classes = useStyles();
+
   const [authorData, setAuthorData] = useState([]);
 
   const [getAllAuthor, { data, loading, error }] = useLazyQuery(

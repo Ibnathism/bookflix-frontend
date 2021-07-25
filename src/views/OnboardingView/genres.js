@@ -1,4 +1,4 @@
-import { Grid, Typography, Box, Container } from "@material-ui/core";
+import { Grid, Typography, Box, Container, Divider } from "@material-ui/core";
 import constants from "../../data/constants.json";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState, useEffect } from "react";
@@ -39,8 +39,6 @@ const GenresOnboard = ({ setGenreSelected }) => {
   const classes = useStyles();
 
   const [genreData, setGenreData] = useState([]);
-  //const [tempSeparator, setTempSeparator] = useState(0);
-  const [tempGenreData, setTempGenreData] = useState([]);
 
   const [getAllGenre, { data, loading, error }] = useLazyQuery(GET_ALL_GENRE, {
     onCompleted: () => {
@@ -51,9 +49,6 @@ const GenresOnboard = ({ setGenreSelected }) => {
       });
       //console.log(response);
       setGenreData(response.genres);
-
-      let temp = [...response.genres];
-      setTempGenreData(temp);
     },
     onError: () => {
       setGenreData([]);
@@ -75,13 +70,13 @@ const GenresOnboard = ({ setGenreSelected }) => {
     setGenreSelected(myFav);
   };
 
-  const showListItem = (tempSeparator, listname) => {
+  const showListItem = (separator, listname) => {
     let listItems = [];
-    let id = tempSeparator;
+    let id = separator;
     for (; id < genreData.length; id++) {
-      let item = tempGenreData[id];
+      let item = genreData[id];
       if (listname < item.name[0]) {
-        tempSeparator = id;
+        separator = id;
         break;
       }
       if (item.name.startsWith(listname)) {
@@ -129,13 +124,13 @@ const GenresOnboard = ({ setGenreSelected }) => {
           <Grid container spacing={3}>
             {(() => {
               let alphabets = [];
-              let tempSeparator = 0;
+              let separator = 0;
               for (let i = 0; i < 26; i++) {
                 let listname = (i + 10).toString(36).toUpperCase();
                 alphabets.push(
                   <Grid key={i} item md={12} xs={12}>
                     {(() => {
-                      const listItems = showListItem(tempSeparator, listname);
+                      const listItems = showListItem(separator, listname);
                       return (
                         <>
                           {listItems.length === 0 ? (
@@ -143,7 +138,18 @@ const GenresOnboard = ({ setGenreSelected }) => {
                           ) : (
                             <Grid container spacing={3}>
                               <Grid item md={12} xs={12}>
-                                <Typography variant="h2">{listname}</Typography>
+                                <Typography
+                                  variant="h1"
+                                  style={{ padding: "8px" }}
+                                >
+                                  {listname}
+                                </Typography>
+                                <Divider
+                                  style={{
+                                    backgroundColor:
+                                      theme.palette.primary.light,
+                                  }}
+                                />
                               </Grid>
                               <Grid item md={12} xs={12}>
                                 <Grid container spacing={3}>
