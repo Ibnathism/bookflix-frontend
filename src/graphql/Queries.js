@@ -100,6 +100,10 @@ export const GET_MY_LIST = gql`
         genres {
           name
         }
+        UserBookInteraction {
+          isFavorite
+          isOnReadLaterList
+        }
       }
     }
   }
