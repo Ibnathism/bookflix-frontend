@@ -46,6 +46,16 @@ const Feed = ({ feed }) => {
                               <BookCardA
                                 imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
                                 genreList={book.genres.slice(0, 2)}
+                                isFav={
+                                  book.UserBookInteraction
+                                    ? book.UserBookInteraction.isFavorite
+                                    : false
+                                }
+                                isOnList={
+                                  book.UserBookInteraction
+                                    ? book.UserBookInteraction.isOnReadLaterList
+                                    : false
+                                }
                               />
                             </RouterLink>
                           </Grid>

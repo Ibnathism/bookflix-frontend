@@ -79,6 +79,10 @@ export const GET_FEED = gql`
         genres {
           name
         }
+        UserBookInteraction {
+          isFavorite
+          isOnReadLaterList
+        }
       }
       count
       category

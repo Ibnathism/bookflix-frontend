@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
 }));
-const BookCardA = ({ imageUrl, genreList }) => {
+const BookCardA = ({ imageUrl, genreList, isFav, isOnList }) => {
   const classes = useStyles();
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
@@ -92,8 +92,8 @@ const BookCardA = ({ imageUrl, genreList }) => {
             </div>
             <div className={classes.icons}>
               <img alt="icon" src="/icons/read-icon.svg" />
-              <img alt="icon" src="/icons/star-icon.svg" />
-              <img alt="icon" src="/icons/like-icon.svg" />
+              {isOnList ? <img alt="icon" src="/icons/star-icon.svg" /> : <></>}
+              {isFav ? <img alt="icon" src="/icons/like-icon.svg" /> : <></>}
               {/* <img alt="icon" src="/icons/dislike-icon.svg" /> */}
             </div>
           </div>
