@@ -77,11 +77,12 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
           onMouseLeave={handleMouseLeave}
           className={classes.hoveredRoot}
         >
-          <img
+          <Box
             className={classes.upperContainerHovered}
-            alt="book"
-            src={imageUrl}
-          />
+            onClick={() => history.push(`home/${id}`)}
+          >
+            <img alt="book" src={imageUrl} width="100%" height="100%" />
+          </Box>
           <div className={classes.lowerContainer}>
             <div className={classes.genre}>
               {genreList.slice(0, 1).map((item, id) => {
