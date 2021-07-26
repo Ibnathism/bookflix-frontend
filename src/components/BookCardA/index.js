@@ -92,8 +92,16 @@ const BookCardA = ({ imageUrl, genreList, isFav, isOnList }) => {
             </div>
             <div className={classes.icons}>
               <img alt="icon" src="/icons/read-icon.svg" />
-              {isOnList ? <img alt="icon" src="/icons/star-icon.svg" /> : <></>}
-              {isFav ? <img alt="icon" src="/icons/like-icon.svg" /> : <></>}
+              {isOnList ? (
+                <img alt="icon" src="/icons/star-icon-enabled.svg" />
+              ) : (
+                <img alt="icon" src="/icons/star-icon.svg" />
+              )}
+              {isFav ? (
+                <img alt="icon" src="/icons/like-icon-enabled.svg" />
+              ) : (
+                <img alt="icon" src="/icons/like-icon.svg" />
+              )}
               {/* <img alt="icon" src="/icons/dislike-icon.svg" /> */}
             </div>
           </div>
