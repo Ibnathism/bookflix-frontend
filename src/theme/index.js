@@ -7,6 +7,7 @@ const theme = createTheme({
     },
     primary: {
       main: "#2D6A4F",
+      //main: "#1ED760", //spotify
       dark: "#030c08",
       light: "#D8F3DC",
     },

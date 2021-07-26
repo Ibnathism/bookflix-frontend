@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0px 0px 8px 8px",
   },
   genre: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(1, 1, 1, 2),
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
   },
   icons: {
-    padding: theme.spacing(0, 1, 2, 1),
+    padding: theme.spacing(0, 2, 2, 2),
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "space-between",
@@ -94,7 +94,7 @@ const BookCardA = ({ imageUrl, genreList }) => {
               <img alt="icon" src="/icons/read-icon.svg" />
               <img alt="icon" src="/icons/star-icon.svg" />
               <img alt="icon" src="/icons/like-icon.svg" />
-              <img alt="icon" src="/icons/dislike-icon.svg" />
+              {/* <img alt="icon" src="/icons/dislike-icon.svg" /> */}
             </div>
           </div>
         </Box>
