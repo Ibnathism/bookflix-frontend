@@ -1,7 +1,8 @@
 import { Box, Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
-import { useHistory } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   hoveredRoot: {
     width: "212px",
@@ -59,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
-  const history = useHistory();
   const classes = useStyles();
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
@@ -77,12 +77,12 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
           onMouseLeave={handleMouseLeave}
           className={classes.hoveredRoot}
         >
-          <Box
+          <RouterLink
+            to={`/home/${id}`}
             className={classes.upperContainerHovered}
-            onClick={() => history.push(`home/${id}`)}
           >
             <img alt="book" src={imageUrl} width="100%" height="100%" />
-          </Box>
+          </RouterLink>
           <div className={classes.lowerContainer}>
             <div className={classes.genre}>
               {genreList.slice(0, 1).map((item, id) => {
@@ -94,24 +94,26 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
               })}
             </div>
             <div className={classes.icons}>
-              <IconButton onClick={() => history.push(`home/${id}/read`)}>
-                <img alt="icon" src="/icons/read-icon.svg" />
-              </IconButton>
+              <RouterLink to={`/home/${id}/read`}>
+                <IconButton>
+                  <img alt="icon" src="/icons/read-icon.svg" />
+                </IconButton>
+              </RouterLink>
               {isOnList ? (
-                <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                <IconButton>
                   <img alt="icon" src="/icons/star-icon-enabled.svg" />
                 </IconButton>
               ) : (
-                <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                <IconButton>
                   <img alt="icon" src="/icons/star-icon.svg" />
                 </IconButton>
               )}
               {isFav ? (
-                <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                <IconButton>
                   <img alt="icon" src="/icons/like-icon-enabled.svg" />
                 </IconButton>
               ) : (
-                <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                <IconButton>
                   <img alt="icon" src="/icons/like-icon.svg" />
                 </IconButton>
               )}

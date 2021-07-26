@@ -6,7 +6,6 @@ import { GET_MY_LIST } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
 import LottieAnimation from "../../helpers/lottie";
 import LoadAnimation from "../../animations/feed-loading.json";
-import { Link as RouterLink } from "react-router-dom";
 
 const MyListView = () => {
   const [myList, setMyList] = useState([]);
@@ -48,12 +47,13 @@ const MyListView = () => {
             {myList.map((book, id) => {
               return (
                 <Grid item key={id}>
-                  <RouterLink to={`/home/${book.id}`}>
-                    <BookCardA
-                      imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
-                      genreList={book.genres}
-                    />
-                  </RouterLink>
+                  {/* <RouterLink to={`/home/${book.id}`}> */}
+                  <BookCardA
+                    id={book.id}
+                    imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
+                    genreList={book.genres}
+                  />
+                  {/* </RouterLink> */}
                 </Grid>
               );
             })}

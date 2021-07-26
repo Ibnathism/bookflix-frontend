@@ -1,7 +1,6 @@
 import { Box, Typography, Grid } from "@material-ui/core";
 import BookCardA from "../../components/BookCardA";
 import BookCardB from "../../components/BookCardB";
-import { Link as RouterLink } from "react-router-dom";
 //import { makeStyles } from "@material-ui/core/styles";
 
 // const useStyles = makeStyles((theme) => ({
@@ -42,7 +41,6 @@ const Feed = ({ feed }) => {
                       {list.books.map((book, id) => {
                         return (
                           <Grid item key={id}>
-                            {/* <RouterLink to={`/home/${book.id}`}> */}
                             <BookCardA
                               id={book.id}
                               imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
@@ -58,7 +56,6 @@ const Feed = ({ feed }) => {
                                   : false
                               }
                             />
-                            {/* </RouterLink> */}
                           </Grid>
                         );
                       })}
@@ -72,21 +69,22 @@ const Feed = ({ feed }) => {
                       {list.books.map((book, id) => {
                         return (
                           <Grid item key={id}>
-                            <RouterLink to={`/home/${book.id}`}>
-                              <BookCardB
-                                imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
-                                review={
-                                  book.description &&
-                                  book.description.length >= 100
-                                    ? `${book.description}`.substr(0, 100) +
-                                      " ..."
-                                    : !book.description ||
-                                      book.description.length <= 5
-                                    ? ""
-                                    : `${book.description}`
-                                }
-                              />
-                            </RouterLink>
+                            {/* <RouterLink to={`/home/${book.id}`}> */}
+                            <BookCardB
+                              id={book.id}
+                              imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
+                              review={
+                                book.description &&
+                                book.description.length >= 100
+                                  ? `${book.description}`.substr(0, 100) +
+                                    " ..."
+                                  : !book.description ||
+                                    book.description.length <= 5
+                                  ? ""
+                                  : `${book.description}`
+                              }
+                            />
+                            {/* </RouterLink> */}
                           </Grid>
                         );
                       })}

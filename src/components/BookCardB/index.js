@@ -1,6 +1,8 @@
 import { Box, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   hoveredRoot: {
     width: "308px",
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.info.main,
   },
 }));
-const BookCardB = ({ imageUrl, review }) => {
+const BookCardB = ({ id, imageUrl, review }) => {
   const classes = useStyles();
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
@@ -73,7 +75,9 @@ const BookCardB = ({ imageUrl, review }) => {
           onMouseLeave={handleMouseLeave}
           className={classes.hoveredRoot}
         >
-          <img className={classes.leftContainer} alt="book" src={imageUrl} />
+          <RouterLink to={`/home/${id}`} className={classes.leftContainer}>
+            <img alt="book" src={imageUrl} width="100%" height="100%" />
+          </RouterLink>
           <div className={classes.rightContainer}>
             <Typography className={classes.review} variant="body1">
               {review ? review : ""}
