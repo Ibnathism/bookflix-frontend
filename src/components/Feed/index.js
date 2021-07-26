@@ -42,22 +42,23 @@ const Feed = ({ feed }) => {
                       {list.books.map((book, id) => {
                         return (
                           <Grid item key={id}>
-                            <RouterLink to={`/home/${book.id}`}>
-                              <BookCardA
-                                imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
-                                genreList={book.genres.slice(0, 2)}
-                                isFav={
-                                  book.UserBookInteraction
-                                    ? book.UserBookInteraction.isFavorite
-                                    : false
-                                }
-                                isOnList={
-                                  book.UserBookInteraction
-                                    ? book.UserBookInteraction.isOnReadLaterList
-                                    : false
-                                }
-                              />
-                            </RouterLink>
+                            {/* <RouterLink to={`/home/${book.id}`}> */}
+                            <BookCardA
+                              id={book.id}
+                              imageUrl={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${book.coverImageUrl}`}
+                              genreList={book.genres.slice(0, 2)}
+                              isFav={
+                                book.UserBookInteraction
+                                  ? book.UserBookInteraction.isFavorite
+                                  : false
+                              }
+                              isOnList={
+                                book.UserBookInteraction
+                                  ? book.UserBookInteraction.isOnReadLaterList
+                                  : false
+                              }
+                            />
+                            {/* </RouterLink> */}
                           </Grid>
                         );
                       })}

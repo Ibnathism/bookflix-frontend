@@ -1,6 +1,7 @@
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
+import { useHistory } from "react-router";
 const useStyles = makeStyles((theme) => ({
   hoveredRoot: {
     width: "212px",
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0px 0px 8px 8px",
   },
   genre: {
-    padding: theme.spacing(1, 1, 1, 2),
+    padding: theme.spacing(1, 1, 0, 2),
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
@@ -57,7 +58,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
 }));
-const BookCardA = ({ imageUrl, genreList, isFav, isOnList }) => {
+const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
+  const history = useHistory();
   const classes = useStyles();
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
@@ -91,16 +93,26 @@ const BookCardA = ({ imageUrl, genreList, isFav, isOnList }) => {
               })}
             </div>
             <div className={classes.icons}>
-              <img alt="icon" src="/icons/read-icon.svg" />
+              <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                <img alt="icon" src="/icons/read-icon.svg" />
+              </IconButton>
               {isOnList ? (
-                <img alt="icon" src="/icons/star-icon-enabled.svg" />
+                <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                  <img alt="icon" src="/icons/star-icon-enabled.svg" />
+                </IconButton>
               ) : (
-                <img alt="icon" src="/icons/star-icon.svg" />
+                <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                  <img alt="icon" src="/icons/star-icon.svg" />
+                </IconButton>
               )}
               {isFav ? (
-                <img alt="icon" src="/icons/like-icon-enabled.svg" />
+                <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                  <img alt="icon" src="/icons/like-icon-enabled.svg" />
+                </IconButton>
               ) : (
-                <img alt="icon" src="/icons/like-icon.svg" />
+                <IconButton onClick={() => history.push(`home/${id}/read`)}>
+                  <img alt="icon" src="/icons/like-icon.svg" />
+                </IconButton>
               )}
               {/* <img alt="icon" src="/icons/dislike-icon.svg" /> */}
             </div>
