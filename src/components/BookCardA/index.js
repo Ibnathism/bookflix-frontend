@@ -2,6 +2,8 @@ import { Box, Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import { SET_BOOK_TO_LIST } from "../../graphql/Mutations";
+import { useMutation } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
   hoveredRoot: {
@@ -62,6 +64,20 @@ const useStyles = makeStyles((theme) => ({
 const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
   const classes = useStyles();
   const [isHovered, setIsHovered] = useState(false);
+  const [onReadLater, setOnReadLater] = useState(isOnList);
+  const [setBookToList] = useMutation(SET_BOOK_TO_LIST, {
+    variables: {
+      bookId: id,
+      operation: onReadLater ? "remove" : "add",
+    },
+    onCompleted: () => {
+      console.log("Book added/removed to your list");
+    },
+    onError: () => {
+      console.log("Could not add/remove book to your list");
+    },
+  });
+
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -99,12 +115,22 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
                   <img alt="icon" src="/icons/read-icon.svg" />
                 </IconButton>
               </RouterLink>
-              {isOnList ? (
-                <IconButton>
+              {onReadLater ? (
+                <IconButton
+                  onClick={() => {
+                    setOnReadLater(!onReadLater);
+                    setBookToList();
+                  }}
+                >
                   <img alt="icon" src="/icons/star-icon-enabled.svg" />
                 </IconButton>
               ) : (
-                <IconButton>
+                <IconButton
+                  onClick={() => {
+                    setOnReadLater(!onReadLater);
+                    setBookToList();
+                  }}
+                >
                   <img alt="icon" src="/icons/star-icon.svg" />
                 </IconButton>
               )}
