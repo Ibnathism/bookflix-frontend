@@ -111,6 +111,9 @@ export const SEARCH = gql`
         authors {
           name
         }
+        genres {
+          name
+        }
       }
     }
   }
