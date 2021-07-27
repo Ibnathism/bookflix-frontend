@@ -66,7 +66,7 @@ const ReaderView = () => {
   }, [getHistory]);
 
   useEffect(() => {
-    if (location) {
+    if (location && location.startsWith("epubcfi")) {
       updateReadingHistory();
       console.log("useEffect", location);
     }

@@ -134,7 +134,7 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
               <RouterLink to={`/home/${id}/read`}>
                 <IconButton
                   onClick={() => {
-                    setOnReadClick(true);
+                    setOnReadClick(!onReadClick);
                   }}
                 >
                   {onReadClick ? (
@@ -160,7 +160,7 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
                   <WatchLater color="primary" style={{ fontSize: 30 }} />
                 ) : (
                   <AccessTime color="action" style={{ fontSize: 30 }} />
-                )}{" "}
+                )}
               </IconButton>
               <IconButton
                 onClick={() => {
