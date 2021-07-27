@@ -129,7 +129,7 @@ const DetailsView = () => {
         </Snackbar>
       )}
 
-      {loading ? (
+      {loading || !bookDetails ? (
         <Container>
           <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
         </Container>
@@ -170,7 +170,7 @@ const DetailsView = () => {
                     <Grid item>
                       <Typography variant="h2" align="left">
                         By{" "}
-                        {details.authors.length !== 0
+                        {details.authors && details.authors.length !== 0
                           ? details.authors[0].name
                           : ""}
                       </Typography>

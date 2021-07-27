@@ -32,8 +32,8 @@ const ReaderView = () => {
       bookId: id,
       location: location,
     },
-    onCompleted: () => {
-      console.log("updated");
+    onCompleted: (data) => {
+      console.log("updated", data.updateBookReadingHistory.currentPageLocation);
     },
     onError: () => {
       console.log("Could not update reading history");
@@ -57,11 +57,6 @@ const ReaderView = () => {
     },
   });
 
-  const onLocationChanged = (location) => {
-    location ? setLocation(location) : setLocation(null);
-    updateReadingHistory();
-  };
-
   useEffect(() => {
     getBookUrl();
   }, [getBookUrl]);
@@ -70,6 +65,13 @@ const ReaderView = () => {
     getHistory();
   }, [getHistory]);
 
+  useEffect(() => {
+    if (location) {
+      updateReadingHistory();
+      console.log("useEffect", location);
+    }
+  }, [location, updateReadingHistory]);
+
   return (
     <CommonLayout>
       {url ? (
@@ -77,7 +79,12 @@ const ReaderView = () => {
           title={title}
           link={`https://bookflix-dev.s3.ap-southeast-1.amazonaws.com/${url}`}
           location={location}
-          onLocationChanged={onLocationChanged}
+          onLocationChanged={(location) => {
+            if (location) {
+              setLocation(location);
+              //updateReadingHistory();
+            }
+          }}
         />
       ) : (
         <></>
