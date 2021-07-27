@@ -128,10 +128,7 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
                   <div className={classes.genreName} key={id}>
                     <Typography variant="body1">
                       {item.name.length >= constants.genreNameMaxLength
-                        ? `${item.name}`.substr(
-                            0,
-                            constants.genreNameMaxLength
-                          ) + " ..."
+                        ? `${item.name}`.substr(0, 24) + " ..."
                         : `${item.name}`}
                     </Typography>
                   </div>
