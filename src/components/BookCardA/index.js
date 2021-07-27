@@ -4,6 +4,14 @@ import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { SET_BOOK_TO_LIST, SET_FAV_BOOK } from "../../graphql/Mutations";
 import { useMutation } from "@apollo/client";
+import {
+  Favorite,
+  FavoriteBorder,
+  WatchLater,
+  AccessTime,
+  ChromeReaderModeOutlined,
+  ChromeReaderModeRounded,
+} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   hoveredRoot: {
@@ -66,6 +74,7 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [onReadLater, setOnReadLater] = useState(isOnList);
   const [onFavList, setOnFavList] = useState(isFav);
+  const [onReadClick, setOnReadClick] = useState(false);
 
   const [setBookToList] = useMutation(SET_BOOK_TO_LIST, {
     variables: {
@@ -123,8 +132,22 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
             </div>
             <div className={classes.icons}>
               <RouterLink to={`/home/${id}/read`}>
-                <IconButton>
-                  <img alt="icon" src="/icons/read-icon.svg" />
+                <IconButton
+                  onClick={() => {
+                    setOnReadClick(true);
+                  }}
+                >
+                  {onReadClick ? (
+                    <ChromeReaderModeRounded
+                      color="primary"
+                      style={{ fontSize: 30 }}
+                    />
+                  ) : (
+                    <ChromeReaderModeOutlined
+                      color="action"
+                      style={{ fontSize: 30 }}
+                    />
+                  )}
                 </IconButton>
               </RouterLink>
               <IconButton
@@ -134,9 +157,9 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
                 }}
               >
                 {onReadLater ? (
-                  <img alt="icon" src="/icons/star-icon-enabled.svg" />
+                  <WatchLater color="primary" style={{ fontSize: 30 }} />
                 ) : (
-                  <img alt="icon" src="/icons/star-icon.svg" />
+                  <AccessTime color="action" style={{ fontSize: 30 }} />
                 )}{" "}
               </IconButton>
               <IconButton
@@ -146,9 +169,9 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
                 }}
               >
                 {onFavList ? (
-                  <img alt="icon" src="/icons/like-icon-enabled.svg" />
+                  <Favorite color="primary" style={{ fontSize: 30 }} />
                 ) : (
-                  <img alt="icon" src="/icons/like-icon.svg" />
+                  <FavoriteBorder color="action" style={{ fontSize: 30 }} />
                 )}
               </IconButton>
             </div>
