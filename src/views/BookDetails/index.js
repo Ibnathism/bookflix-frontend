@@ -16,6 +16,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { useParams, useHistory } from "react-router";
 import LottieAnimation from "../../helpers/lottie";
 import LoadAnimation from "../../animations/feed-loading.json";
+import constants from "../../data/constants.json";
 
 const DetailsView = () => {
   const [feed, setFeed] = useState([]);
@@ -164,7 +165,12 @@ const DetailsView = () => {
                   <Grid container direction="column" spacing={6}>
                     <Grid item>
                       <Typography variant="h1" align="left">
-                        {details.title}
+                        {details.title.length >= constants.bookNameMaxLength
+                          ? `${details.title}`.substr(
+                              0,
+                              constants.bookNameMaxLength
+                            ) + "..."
+                          : `${details.title}`}
                       </Typography>
                     </Grid>{" "}
                     {details.authors && details.authors.length !== 0 ? (

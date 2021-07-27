@@ -85,10 +85,10 @@ const Search = () => {
               <Grid container spacing={1}>
                 <Grid item md={12} xs={12}>
                   <Typography variant="h4" style={{ color: "#D8F3DC" }}>
-                    {option.title.length >= constants.bookNameMaLength
+                    {option.title.length >= constants.bookNameMaxLength
                       ? `${option.title}`.substr(
                           0,
-                          constants.bookNameMaLength
+                          constants.bookNameMaxLength
                         ) + "..."
                       : `${option.title}`}
                   </Typography>
