@@ -2,7 +2,7 @@ import { Box, Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { SET_BOOK_TO_LIST } from "../../graphql/Mutations";
+import { SET_BOOK_TO_LIST, SET_FAV_BOOK } from "../../graphql/Mutations";
 import { useMutation } from "@apollo/client";
 
 const useStyles = makeStyles((theme) => ({
@@ -65,6 +65,8 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
   const classes = useStyles();
   const [isHovered, setIsHovered] = useState(false);
   const [onReadLater, setOnReadLater] = useState(isOnList);
+  const [onFavList, setOnFavList] = useState(isFav);
+
   const [setBookToList] = useMutation(SET_BOOK_TO_LIST, {
     variables: {
       bookId: id,
@@ -78,19 +80,29 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
     },
   });
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
+  const [setFavBooks] = useMutation(SET_FAV_BOOK, {
+    variables: {
+      bookIds: [id],
+      operation: onFavList ? "remove" : "add",
+    },
+    onCompleted: () => {
+      console.log("Successfully added/removed fav book");
+    },
+    onError: () => {
+      console.log("Couldn't add/remove fav book");
+    },
+  });
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
   return (
     <>
       {isHovered ? (
         <Box
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => {
+            setIsHovered(true);
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+          }}
           className={classes.hoveredRoot}
         >
           <RouterLink
@@ -115,42 +127,41 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
                   <img alt="icon" src="/icons/read-icon.svg" />
                 </IconButton>
               </RouterLink>
-              {onReadLater ? (
-                <IconButton
-                  onClick={() => {
-                    setOnReadLater(!onReadLater);
-                    setBookToList();
-                  }}
-                >
+              <IconButton
+                onClick={() => {
+                  setOnReadLater(!onReadLater);
+                  setBookToList();
+                }}
+              >
+                {onReadLater ? (
                   <img alt="icon" src="/icons/star-icon-enabled.svg" />
-                </IconButton>
-              ) : (
-                <IconButton
-                  onClick={() => {
-                    setOnReadLater(!onReadLater);
-                    setBookToList();
-                  }}
-                >
+                ) : (
                   <img alt="icon" src="/icons/star-icon.svg" />
-                </IconButton>
-              )}
-              {isFav ? (
-                <IconButton>
+                )}{" "}
+              </IconButton>
+              <IconButton
+                onClick={() => {
+                  setOnFavList(!onFavList);
+                  setFavBooks();
+                }}
+              >
+                {onFavList ? (
                   <img alt="icon" src="/icons/like-icon-enabled.svg" />
-                </IconButton>
-              ) : (
-                <IconButton>
+                ) : (
                   <img alt="icon" src="/icons/like-icon.svg" />
-                </IconButton>
-              )}
-              {/* <img alt="icon" src="/icons/dislike-icon.svg" /> */}
+                )}
+              </IconButton>
             </div>
           </div>
         </Box>
       ) : (
         <Box
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => {
+            setIsHovered(true);
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+          }}
           className={classes.nonHoveredRoot}
         >
           <img
