@@ -7,7 +7,7 @@ import {
   Button,
   Snackbar,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import { Alert, Rating } from "@material-ui/lab";
 import Feed from "../../components/Feed";
 import { useState, useEffect } from "react";
 import { GET_FEED, GET_BOOK_DETAILS } from "../../graphql/Queries";
@@ -166,15 +166,31 @@ const DetailsView = () => {
                       <Typography variant="h1" align="left">
                         {details.title}
                       </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2" align="left">
-                        By{" "}
-                        {details.authors && details.authors.length !== 0
-                          ? details.authors[0].name
-                          : ""}
-                      </Typography>
-                    </Grid>
+                    </Grid>{" "}
+                    {details.authors && details.authors.length !== 0 ? (
+                      <Grid item>
+                        <Typography variant="h2" align="left">
+                          By {details.authors[0].name}
+                        </Typography>
+                      </Grid>
+                    ) : (
+                      <></>
+                    )}
+                    {details.rating ? (
+                      <Grid item>
+                        <Rating
+                          name="read-only"
+                          value={
+                            details.rating <= 5
+                              ? Math.round(details.rating)
+                              : Math.round(details.rating % 2)
+                          }
+                          readOnly
+                        />
+                      </Grid>
+                    ) : (
+                      <></>
+                    )}
                     <Grid item>
                       <Grid
                         container
@@ -195,23 +211,27 @@ const DetailsView = () => {
                         })}
                       </Grid>
                     </Grid>
-                    <Grid item>
-                      <Grid container spacing={3}>
-                        <Typography
-                          variant="h3"
-                          align="left"
-                          style={{
-                            lineHeight: 1.5,
-                            fontSize:
-                              details?.description?.length >= 300
-                                ? "18px"
-                                : "24px",
-                          }}
-                        >
-                          {details.description}
-                        </Typography>
+                    {details.description ? (
+                      <Grid item>
+                        <Grid container spacing={3}>
+                          <Typography
+                            variant="h3"
+                            align="left"
+                            style={{
+                              lineHeight: 1.5,
+                              fontSize:
+                                details?.description?.length >= 300
+                                  ? "18px"
+                                  : "24px",
+                            }}
+                          >
+                            {details.description}
+                          </Typography>
+                        </Grid>
                       </Grid>
-                    </Grid>
+                    ) : (
+                      <></>
+                    )}
                     <Grid
                       item
                       style={{
