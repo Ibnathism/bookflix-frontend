@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { SET_BOOK_TO_LIST, SET_FAV_BOOK } from "../../graphql/Mutations";
 import { useMutation } from "@apollo/client";
+import constants from "../../data/constants.json";
 import {
   Favorite,
   FavoriteBorder,
@@ -125,7 +126,14 @@ const BookCardA = ({ id, imageUrl, genreList, isFav, isOnList }) => {
               {genreList.slice(0, 1).map((item, id) => {
                 return (
                   <div className={classes.genreName} key={id}>
-                    <Typography variant="body1">{item.name}</Typography>
+                    <Typography variant="body1">
+                      {item.name.length >= constants.genreNameMaxLength
+                        ? `${item.name}`.substr(
+                            0,
+                            constants.genreNameMaxLength
+                          ) + " ..."
+                        : `${item.name}`}
+                    </Typography>
                   </div>
                 );
               })}

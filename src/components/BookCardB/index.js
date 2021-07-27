@@ -82,11 +82,11 @@ const BookCardB = ({ id, imageUrl, review }) => {
             <Typography className={classes.review} variant="body1">
               {review ? review : ""}
             </Typography>
-            <div className={classes.button}>
+            <RouterLink to={`/home/${id}/read`} className={classes.button}>
               <Typography className={classes.buttonText} variant="body1">
-                Read Later
+                Try Now
               </Typography>
-            </div>
+            </RouterLink>
           </div>
         </Box>
       ) : (
@@ -104,11 +104,11 @@ const BookCardB = ({ id, imageUrl, review }) => {
                 </Typography>
               </Grid>
               <Grid item>
-                <div className={classes.button}>
+                <RouterLink to={`/home/${id}/read`} className={classes.button}>
                   <Typography className={classes.buttonText} variant="body1">
-                    Read Later
+                    Try Now
                   </Typography>
-                </div>
+                </RouterLink>
               </Grid>
             </Grid>
           </div>
