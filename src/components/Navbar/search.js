@@ -7,9 +7,29 @@ import { useHistory } from "react-router";
 import { SEARCH } from "../../graphql/Queries";
 import { useLazyQuery } from "@apollo/client";
 import constants from "../../data/constants.json";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+search: {
+  "& .MuiInputLabel-root": {
+    fontSize: "18px",
+    paddingLeft: theme.spacing(1),
+  },
+
+  "& .MuiAutocomplete-inputRoot[class*=\"MuiFilledInput-root\"] .MuiAutocomplete-input": {
+    padding: "9px 12px"
+  },
+
+  "& .MuiAutocomplete-inputRoot": {
+    paddingBottom: "8px",
+  }
+}
+}))
+
 
 const Search = () => {
   const history = useHistory();
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const [searchText, setSearchText] = useState();
@@ -104,7 +124,7 @@ const Search = () => {
         );
       }}
       renderInput={(params) => (
-        <TextField
+        <TextField className={classes.search}
           {...params}
           variant="filled"
           label="Search..."
