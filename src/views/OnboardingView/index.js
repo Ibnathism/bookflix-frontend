@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
 import { useMutation } from "@apollo/client";
-import { SET_FAV_Book } from "../../graphql/Mutations";
+import { SET_FAV_BOOK } from "../../graphql/Mutations";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -35,7 +35,7 @@ const OnboardingView = () => {
   const [authorSelected, setAuthorSelected] = useState([]);
   const [bookSelected, setBookSelected] = useState([]);
 
-  const [setFavBooks] = useMutation(SET_FAV_Book, {
+  const [setFavBooks] = useMutation(SET_FAV_BOOK, {
     variables: {
       bookIds: bookSelected.map((book) => book.id),
       operation: "add",
@@ -56,7 +56,7 @@ const OnboardingView = () => {
             container
             spacing={6}
             direction="column"
-            justify="center"
+            justifyContent="center"
             alignItems="center"
           >
             {step === 0 ? (
@@ -73,7 +73,7 @@ const OnboardingView = () => {
                   <Button
                     className={classes.button}
                     onClick={() => {
-                      console.log(genreSelected);
+                      //console.log(genreSelected);
                       setStep(1);
                     }} //check api call validity
                   >
@@ -99,7 +99,7 @@ const OnboardingView = () => {
                   <Button
                     className={classes.button}
                     onClick={() => {
-                      console.log(authorSelected);
+                      //console.log(authorSelected);
                       setStep(2);
                     }} //check validity whether at least 3 have been selected
                   >

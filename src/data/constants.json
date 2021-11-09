@@ -1,4 +1,5 @@
 {
   "genreNameMaxLength": 32,
-  "authorNameMaxLength": 64
+  "authorNameMaxLength": 64,
+  "bookNameMaxLength": 50
 }

@@ -31,7 +31,7 @@ export const GET_BOOK_DETAILS = gql`
 
 export const GET_ALL_GENRE = gql`
   query getAllGenre {
-    genres {
+    genres(orderBy: { name: asc }) {
       genres {
         id
         name
@@ -42,7 +42,7 @@ export const GET_ALL_GENRE = gql`
 
 export const GET_ALL_AUTHOR = gql`
   query getAllAuthor {
-    authors {
+    authors(orderBy: { name: asc }) {
       authors {
         id
         name
@@ -79,6 +79,10 @@ export const GET_FEED = gql`
         genres {
           name
         }
+        UserBookInteraction {
+          isFavorite
+          isOnReadLaterList
+        }
       }
       count
       category
@@ -88,7 +92,7 @@ export const GET_FEED = gql`
 
 export const GET_MY_LIST = gql`
   query getMyList($paginate: PaginationInput) {
-    myList(paginate: $paginate) {
+    readLaterList(paginate: $paginate) {
       books {
         id
         title
@@ -96,7 +100,37 @@ export const GET_MY_LIST = gql`
         genres {
           name
         }
+        UserBookInteraction {
+          isFavorite
+          isOnReadLaterList
+        }
       }
+    }
+  }
+`;
+
+export const SEARCH = gql`
+  query search($filter: String!) {
+    search(filter: $filter) {
+      books {
+        title
+        id
+        coverImageUrl
+        authors {
+          name
+        }
+        genres {
+          name
+        }
+      }
+    }
+  }
+`;
+
+export const GET_HISTORY = gql`
+  query getHistory($bookId: ID!) {
+    userBookInteraction(bookId: $bookId) {
+      currentPageLocation
     }
   }
 `;

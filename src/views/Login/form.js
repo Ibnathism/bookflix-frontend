@@ -41,14 +41,14 @@ const useStyles = makeStyles((theme) => ({
       width: 300,
       borderRadius: 4,
       paddingLeft: theme.spacing(3.5),
-      fontSize: "20px"
+      fontSize: "20px",
     },
     "& .MuiButton-label": {
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1),
       paddingTop: theme.spacing(0.4),
       paddingBottom: theme.spacing(0.4),
-      fontSize: "18px"
+      fontSize: "18px",
     },
   },
   signupText: {
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   signup: {
     fontSize: "20px",
     marginLeft: theme.spacing(1),
-    textDecoration: "underline"
+    textDecoration: "underline",
   },
 }));
 
@@ -79,7 +79,7 @@ const LoginForm = () => {
       password: password,
     },
     onCompleted: (data) => {
-      console.log(data);
+      //console.log(data);
       const token = JSON.parse(JSON.stringify(data.login.token));
       localStorage.setItem("bookflix-token", token);
       history.push("/home");

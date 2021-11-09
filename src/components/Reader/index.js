@@ -1,18 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { ReactReader } from "react-reader";
 import { Container, Typography } from "@material-ui/core";
 import { ReaderContainer } from "./styledComponent";
 import LoadAnimation from "../../animations/feed-loading.json";
 import LottieAnimation from "../../helpers/lottie";
-const storage = global.localStorage || null;
 
-const BookReader = ({ title, link }) => {
-  const [location, setLocation] = useState(null);
-  const onLocationChanged = (location) => {
-    setLocation(location);
-    storage.setItem("epub-location", location);
-  };
-
+const BookReader = ({ title, link, location, onLocationChanged }) => {
   return (
     <Container
       style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}

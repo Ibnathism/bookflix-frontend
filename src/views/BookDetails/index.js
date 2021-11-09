@@ -7,7 +7,7 @@ import {
   Button,
   Snackbar,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+import { Alert, Rating } from "@material-ui/lab";
 import Feed from "../../components/Feed";
 import { useState, useEffect } from "react";
 import { GET_FEED, GET_BOOK_DETAILS } from "../../graphql/Queries";
@@ -16,6 +16,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { useParams, useHistory } from "react-router";
 import LottieAnimation from "../../helpers/lottie";
 import LoadAnimation from "../../animations/feed-loading.json";
+import constants from "../../data/constants.json";
 
 const DetailsView = () => {
   const [feed, setFeed] = useState([]);
@@ -69,11 +70,11 @@ const DetailsView = () => {
 
   const [getFeed, { data, error }] = useLazyQuery(GET_FEED, {
     variables: {
-      bookCountEachCategory: 6,
-      categoryCount: 10,
+      bookCountEachCategory: 15,
+      categoryCount: 15,
     },
     onCompleted: () => {
-      console.log("on completed of details", data.feed);
+      //console.log("on completed of details", data.feed);
       const res = JSON.parse(JSON.stringify(data.feed));
       setFeed(res);
     },
@@ -93,7 +94,7 @@ const DetailsView = () => {
         id: id,
       },
       onCompleted: () => {
-        console.log(bookDetails);
+        //console.log(bookDetails);
         const res = JSON.parse(JSON.stringify(bookDetails.book));
         setDetails(res);
       },
@@ -129,7 +130,7 @@ const DetailsView = () => {
         </Snackbar>
       )}
 
-      {loading ? (
+      {loading || !bookDetails ? (
         <Container>
           <LottieAnimation lotti={LoadAnimation} height={500} width={500} />
         </Container>
@@ -142,7 +143,12 @@ const DetailsView = () => {
         >
           <Grid item md={12} xs={12}>
             <Container>
-              <Grid container spacing={3} alignItems="center" justify="center">
+              <Grid
+                container
+                spacing={3}
+                alignItems="center"
+                justifyContent="center"
+              >
                 <Grid item xs={12} md={6} lg={6} xl={6}>
                   {details.coverImageUrl === "" ? (
                     <></>
@@ -159,23 +165,44 @@ const DetailsView = () => {
                   <Grid container direction="column" spacing={6}>
                     <Grid item>
                       <Typography variant="h1" align="left">
-                        {details.title}
+                        {details.title.length >= constants.bookNameMaxLength
+                          ? `${details.title}`.substr(
+                              0,
+                              constants.bookNameMaxLength
+                            ) + "..."
+                          : `${details.title}`}
                       </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2" align="left">
-                        By{" "}
-                        {details.authors.length !== 0
-                          ? details.authors[0].name
-                          : ""}
-                      </Typography>
-                    </Grid>
+                    </Grid>{" "}
+                    {details.authors && details.authors.length !== 0 ? (
+                      <Grid item>
+                        <Typography variant="h2" align="left">
+                          By {details.authors[0].name}
+                        </Typography>
+                      </Grid>
+                    ) : (
+                      <></>
+                    )}
+                    {details.rating ? (
+                      <Grid item>
+                        <Rating
+                          name="read-only"
+                          value={
+                            details.rating <= 5
+                              ? Math.round(details.rating)
+                              : Math.round(details.rating % 2)
+                          }
+                          readOnly
+                        />
+                      </Grid>
+                    ) : (
+                      <></>
+                    )}
                     <Grid item>
                       <Grid
                         container
                         spacing={3}
                         alignItems="center"
-                        justify="center"
+                        justifyContent="center"
                       >
                         {details.genres.map((genre, id) => {
                           return (
@@ -190,23 +217,27 @@ const DetailsView = () => {
                         })}
                       </Grid>
                     </Grid>
-                    <Grid item>
-                      <Grid container spacing={3}>
-                        <Typography
-                          variant="h3"
-                          align="left"
-                          style={{
-                            lineHeight: 1.5,
-                            fontSize:
-                              details?.description?.length >= 300
-                                ? "18px"
-                                : "24px",
-                          }}
-                        >
-                          {details.description}
-                        </Typography>
+                    {details.description ? (
+                      <Grid item>
+                        <Grid container spacing={3}>
+                          <Typography
+                            variant="h3"
+                            align="left"
+                            style={{
+                              lineHeight: 1.5,
+                              fontSize:
+                                details?.description?.length >= 300
+                                  ? "18px"
+                                  : "24px",
+                            }}
+                          >
+                            {details.description}
+                          </Typography>
+                        </Grid>
                       </Grid>
-                    </Grid>
+                    ) : (
+                      <></>
+                    )}
                     <Grid
                       item
                       style={{
@@ -214,7 +245,7 @@ const DetailsView = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <Grid container spacing={3} justify="center">
+                      <Grid container spacing={3} justifyContent="center">
                         <Grid item>
                           <Button
                             variant="contained"
